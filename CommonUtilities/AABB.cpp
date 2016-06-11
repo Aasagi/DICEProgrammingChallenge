@@ -1,5 +1,4 @@
 #include "AABB.h"
-#include <cmath>
 
 AABB::AABB(void)
 {
@@ -30,24 +29,6 @@ bool AABB::Inside(const CU::Vector2f& aPoint)
 
 	return false;
 }
-
-bool AABB::Collides(const AABB aAABB)
-{
-	auto myPos = CU::Vector2f(myX, myY);
-	auto aPos = CU::Vector2f(aAABB.GetX(), aAABB.GetY());
-	auto distance = myPos - aPos;
-	distance.x = abs(distance.x);
-	distance.y = abs(distance.y);
-
-	if (distance.x <= (GetWidth() + aAABB.GetWidth()))
-		return true;
-
-	if (distance.y <= (GetHeight() + aAABB.GetHeight()))
-		return true;
-
-	return false;
-}
-
 
 float AABB::GetX() const
 {

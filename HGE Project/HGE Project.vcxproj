@@ -106,6 +106,7 @@
     <ClInclude Include="GameLoop.h" />
     <ClInclude Include="GameObjectManager.h" />
     <ClInclude Include="GameState.h" />
+    <ClInclude Include="GameStateEnum.h" />
     <ClInclude Include="GUI\Button.h" />
     <ClInclude Include="GUI\GUIManager.h" />
     <ClInclude Include="GUI\Widget.h" />

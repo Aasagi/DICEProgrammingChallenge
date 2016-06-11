@@ -21,7 +21,6 @@ public:
 	void		SetHeight(const float aHeight);
 
 	bool		Inside(const CU::Vector2f& aPoint);
-	bool		Collides(const AABB aAABB);
 
 private:
 	float		myX;

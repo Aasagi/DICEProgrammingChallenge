@@ -11,6 +11,7 @@
 Game::Game(void)
 {
 	myFloorTiles.Init(START_AREA_TILE_NUMBER);
+	myCurrentState = ePlaying;
 	holePassCounter = 0;
 }
 
@@ -37,10 +38,13 @@ void Game::Update()
 		mySubStates[i]->Update();
 	}
 
-	myPlayer.Update(GetCollidingTiles(myPlayer));	
-	if (myPlayer.myPosition.x > WINDOW_WIDTH/2.f)
+	if (myCurrentState == ePlaying)
 	{
-		myCamera.myPositionOffset.x = myPlayer.myPosition.myX - WINDOW_WIDTH/2.f;
+		myPlayer.Update(GetCollidingTiles(myPlayer));
+		if (myPlayer.myPosition.x > WINDOW_WIDTH / 2.f)
+		{
+			myCamera.myPositionOffset.x = myPlayer.myPosition.myX - WINDOW_WIDTH / 2.f;
+		}
 	}
 
 	int halfTileCount = myFloorTiles.Count() / 2;
@@ -49,6 +53,10 @@ void Game::Update()
 		if (myFloorTiles[halfTileCount].GetTileHeight() == 0)
 		{
 			holePassCounter++;
+			if (holePassCounter >= 10)
+			{
+				myCurrentState = eWin;
+			}
 		}
 		GetNextFloor();
 	}
@@ -59,6 +67,14 @@ void Game::Update()
 void Game::HandleInput()
 {
 	myPlayer.HandleInput();
+	if (Megaton::GetInputManager()->ButtonPressed(eButton::eI))
+	{
+		myCurrentState = eGameover;
+	}
+	if (Megaton::GetInputManager()->ButtonPressed(eButton::eK))
+	{
+		myCurrentState = eWin;
+	}
 }
 
 void Game::HandleInputWithoutGUI()
@@ -71,13 +87,44 @@ void Game::Notify(const eTriggerType& aTriggerType, void* aTrigger)
 
 void Game::Render()
 {
+
 	SpriteRenderCommand* bgSprite = new SpriteRenderCommand(myBackground1, CU::Vector2f());
 	SpriteRenderCommand* bgSprite2 = new SpriteRenderCommand(myBackground2, CU::Vector2f());
-	
+	if (myCurrentState != ePlaying)
+	{
+		switch (myCurrentState)
+		{
+		case ePlaying:
+			break;
+		case eGameover:
+		{
+			FontRenderCommand* fontRender = new FontRenderCommand(std::string("GAME OVER"), Megaton::GetResourceManager()->GetFont(), CU::Vector2f(WINDOW_WIDTH / 3, WINDOW_HEIGHT / 2));
+			fontRender->SetColor(ARGB(200, 0, 0, 0));
+			Megaton::GetRenderManager()->AddCommand(fontRender);
+			break;
+		}
+		case eWin:
+		{
+			FontRenderCommand* fontRender = new FontRenderCommand(std::string("A WINNER IS YOU"), Megaton::GetResourceManager()->GetFont(), CU::Vector2f(WINDOW_WIDTH / 3, WINDOW_HEIGHT / 2));
+			fontRender->SetColor(ARGB(200, 0, 0, 0));
+			Megaton::GetRenderManager()->AddCommand(fontRender);
+			break;
+
+		}
+		default:
+			break;
+		}
+	}
+
+
 	for (int floorIndex = 0; floorIndex < myFloorTiles.Count(); floorIndex++)
 	{
 		myFloorTiles[floorIndex].Render(myCamera);
 	}
+
+	FontRenderCommand* fontRender = new FontRenderCommand(std::string("Score: ") + std::to_string(holePassCounter), Megaton::GetResourceManager()->GetFont(), CU::Vector2f(20.0f, 20.0f));
+	fontRender->SetColor(ARGB(200, 0, 0, 0));
+	Megaton::GetRenderManager()->AddCommand(fontRender);
 
 	myPlayer.Render(myCamera);
 	Megaton::GetRenderManager()->AddCommand(bgSprite);
@@ -97,7 +144,7 @@ void Game::GetNextFloor()
 {
 	FloorTile lastTile = myFloorTiles[myFloorTiles.Count() - 1];
 	int lastTileHeight = lastTile.GetTileHeight();
-	
+
 	bool recentlyMadeHole = (lastTileHeight == 0);
 
 	for (int tileIndex = 0; tileIndex < myFloorTiles.Count() - 1; tileIndex++)
@@ -105,9 +152,10 @@ void Game::GetNextFloor()
 		myFloorTiles[tileIndex] = myFloorTiles[tileIndex + 1];
 	}
 
+	lastTile.myPosition += CU::Vector2f(TILE_SIZE, 0.0f);
 	if (recentlyMadeHole)
 	{
- 		lastTile.Recalculate(myFloorTiles[myFloorTiles.Count() - 3].GetTileHeight());
+		lastTile.Recalculate(myFloorTiles[myFloorTiles.Count() - 3].GetTileHeight());
 	}
 	else
 	{

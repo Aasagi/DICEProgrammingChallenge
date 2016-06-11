@@ -6,6 +6,7 @@
 #include "FloorTile.h"
 #include "Avatar.h"
 #include "Camera.h"
+#include "GameStateEnum.h"
 
 class Game : public GameState, public TriggerObserver
 {
@@ -23,8 +24,7 @@ public:
 
 private:
 	CU::GrowingArray<FloorTile> GetCollidingTiles(Avatar& player);
-
-
+	
 	CU::GrowingArray<FloorTile>		myFloorTiles;
 
 	float myUpdateTimer;
@@ -35,6 +35,9 @@ private:
 	void GenerateRandomFloor();
 	void GenerateStartArea();
 	void GetNextFloor();
+
+	EGamestateEnum myCurrentState;
+
 
 	hgeSprite* myBackground1;
 	hgeSprite* myBackground2;
