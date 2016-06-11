@@ -107,6 +107,7 @@
     <ClInclude Include="GameObjectManager.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="GameStateEnum.h" />
+    <ClInclude Include="GoalObject.h" />
     <ClInclude Include="GUI\Button.h" />
     <ClInclude Include="GUI\GUIManager.h" />
     <ClInclude Include="GUI\Widget.h" />
@@ -144,6 +145,7 @@
     <ClCompile Include="GameLoop.cpp" />
     <ClCompile Include="GameObjectManager.cpp" />
     <ClCompile Include="GameState.cpp" />
+    <ClCompile Include="GoalObject.cpp" />
     <ClCompile Include="GUI\Button.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
