@@ -49,10 +49,11 @@ void Game::Update()
 		{
 			myCurrentState = eWin;
 		}
+		myCamera.myPositionOffset.x += 0.1f;// myPlayer.myPosition.myX - WINDOW_WIDTH / 2.f;
 		myPlayer.Update(GetCollidingTiles(myPlayer));
-		if (myPlayer.myPosition.x > WINDOW_WIDTH / 2.f)
+		if (myPlayer.myPosition.x - myCamera.myPositionOffset.x <= 0 || myPlayer.myPosition.y- myPlayer.GetAABB().GetHeight() > WINDOW_HEIGHT)
 		{
-			myCamera.myPositionOffset.x = myPlayer.myPosition.myX - WINDOW_WIDTH / 2.f;
+			myCurrentState = eGameover;
 		}
 	}
 

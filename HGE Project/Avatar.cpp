@@ -11,7 +11,7 @@ Avatar::Avatar()
 	mySprite = nullptr;
 	myPosition.Set(WINDOW_WIDTH / 4, WINDOW_HEIGHT / 5 * 4);
 	myFloorPlacing = WINDOW_HEIGHT;
-	myMovementSpeed = 200.f;
+	myMovementSpeed = 100.f;
 }
 
 
@@ -37,7 +37,7 @@ void Avatar::HandleInput()
 	{
 		if (CollidedLastFrame == false)
 		{
-			myNewPosition += CU::Vector2f(-0.5f, 0) * myMovementSpeed*deltaTime;
+			myNewPosition += CU::Vector2f(-1.f, 0) * myMovementSpeed*deltaTime;
 
 		}
 		else
@@ -50,11 +50,11 @@ void Avatar::HandleInput()
 	{
 		if (CollidedLastFrame == false)
 		{
-			myNewPosition += CU::Vector2f(0.5, 0) *myMovementSpeed*deltaTime;
+			myNewPosition += CU::Vector2f(1.f, 0) *myMovementSpeed*deltaTime;
 		}
 		else
 		{
-			myNewPosition += CU::Vector2f(1, 0) *myMovementSpeed*deltaTime;
+ 			myNewPosition += CU::Vector2f(1, 0) *myMovementSpeed*deltaTime;
 
 		}
 	}
@@ -73,14 +73,22 @@ CU::Vector2f Avatar::HandleCollision(CU::GrowingArray<FloorTile> tiles, CU::Vect
 	bool upperRightBlocked = false;
 	bool lowerLeftBlocked = false;
 	bool lowerRightBlocked = false;
+	bool upBlocked = false;
+	bool rightBlocked = false;
+	bool leftBlocked = false;
+	bool downBlocked = false;
 	CollidedLastFrame = false;
 
 	AABB aabb = AABB(position.x, position.y, myBoundingBox.GetWidth(), myBoundingBox.GetHeight());
 
 	CU::Vector2f upperLeft = CU::Vector2f(aabb.GetX(), aabb.GetY());
+	CU::Vector2f up = CU::Vector2f(aabb.GetX(), aabb.GetY()+ aabb.GetWidth()/2);
 	CU::Vector2f upperRight = CU::Vector2f(aabb.GetX() + aabb.GetWidth(), aabb.GetY());
+	CU::Vector2f right = CU::Vector2f(aabb.GetX() + aabb.GetWidth(), aabb.GetY()+ aabb.GetHeight()/2);
 	CU::Vector2f lowerLeft = CU::Vector2f(aabb.GetX(), aabb.GetY() + aabb.GetHeight());
+	CU::Vector2f left = CU::Vector2f(aabb.GetX(), aabb.GetY() + aabb.GetHeight() / 2);
 	CU::Vector2f lowerRight = CU::Vector2f(aabb.GetX() + aabb.GetWidth(), aabb.GetY() + aabb.GetHeight());
+	CU::Vector2f low = CU::Vector2f(aabb.GetX() + aabb.GetWidth()/2, aabb.GetY() + aabb.GetHeight());
 
 	auto tileCount = tiles.Count();
 	for (auto tileIndex = 0; tileIndex < tileCount; tileIndex++)
@@ -106,29 +114,45 @@ CU::Vector2f Avatar::HandleCollision(CU::GrowingArray<FloorTile> tiles, CU::Vect
 		{
 			lowerRightBlocked = true;
 		}
+		if (tileAABB.Inside(up))
+		{
+			upBlocked = true;
+		}
+		if (tileAABB.Inside(low))
+		{
+			downBlocked = true;
+		}
+		if (tileAABB.Inside(left))
+		{
+			leftBlocked = true;
+		}
+		if (tileAABB.Inside(right))
+		{
+			rightBlocked = true;
+		}
 	}
 
-	if (upperleftBlocked || lowerLeftBlocked)
+	if (upperleftBlocked && leftBlocked || lowerLeftBlocked && leftBlocked)
 	{
 		position.x = max(position.x, myPosition.x);
 		CollidedLastFrame = true;
 	}
 
-	if (upperRightBlocked || lowerRightBlocked)
+	if (upperRightBlocked && rightBlocked || lowerRightBlocked && rightBlocked)
 	{
 		position.x = min(position.x, myPosition.x);
 		CollidedLastFrame = true;
 
 	}
 
-	if (upperleftBlocked || upperRightBlocked)
+	if (upperleftBlocked && upBlocked|| upperRightBlocked && upBlocked)
 	{
 		position.y = max(position.y, myPosition.y);
 		CollidedLastFrame = true;
 
 	}
 
-	if (lowerLeftBlocked || lowerRightBlocked)
+	if (lowerLeftBlocked && downBlocked || lowerRightBlocked && downBlocked)
 	{
 		position.y = min(position.y, myPosition.y);
 		CollidedLastFrame = true;
