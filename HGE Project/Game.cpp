@@ -19,6 +19,14 @@ void Game::Init()
 {
 	Megaton::GetResourceManager()->GetSprite("Data/node.png");
 	myFloorSprite = Megaton::GetResourceManager()->GetSprite("Data/nodeCube.png");
+
+	int numTiles = 12;
+	myFloorTiles.Init(numTiles);
+	for (int floorIndex = 0; floorIndex < numTiles; floorIndex++)
+	{ 
+		myFloorTiles.Add(FloorTile());
+		myFloorTiles[floorIndex].myPosition = CU::Vector2f(floorIndex*64.0f, 500.0f);
+	}
 }
 
 void Game::Update()
@@ -50,7 +58,10 @@ void Game::Notify(const eTriggerType& aTriggerType, void* aTrigger)
 
 void Game::Render()
 {
-	SpriteRenderCommand* spriteRenderCommand = new SpriteRenderCommand(myFloorSprite, CU::Vector2f(10.0f, 10.0f));
-	Megaton::GetRenderManager()->AddCommand(spriteRenderCommand);
+	for (int floorIndex = 0; floorIndex < myFloorTiles.Count(); floorIndex++)
+	{
+		SpriteRenderCommand* spriteRenderCommand = new SpriteRenderCommand(myFloorSprite, myFloorTiles[floorIndex].myPosition);
+		Megaton::GetRenderManager()->AddCommand(spriteRenderCommand);
+	}
 
 }
