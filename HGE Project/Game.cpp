@@ -152,7 +152,7 @@ void Game::GetNextFloor()
 		myFloorTiles[tileIndex] = myFloorTiles[tileIndex + 1];
 	}
 
-	lastTile.myPosition += CU::Vector2f(TILE_SIZE, 0.0f);
+	lastTile.SetPosition(lastTile.GetPosition() + CU::Vector2f(TILE_SIZE, 0.0f));
 	if (recentlyMadeHole)
 	{
 		lastTile.Recalculate(myFloorTiles[myFloorTiles.Count() - 3].GetTileHeight());
