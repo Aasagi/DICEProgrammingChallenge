@@ -97,7 +97,6 @@ void Game::Render()
 	SpriteRenderCommand* bgSprite = new SpriteRenderCommand(myBackground1, myCamera.ConvertPositionToCameraPosition(CU::Vector2f(0,WINDOW_WIDTH)));
 	SpriteRenderCommand* bgSprite1 = new SpriteRenderCommand(myBackground1, myCamera.ConvertSquarePositionToCameraPosition(CU::Vector2f(0, 0)));
 
-	SpriteRenderCommand* bgSprite2 = new SpriteRenderCommand(myBackground2, CU::Vector2f());
 	if (myCurrentState != ePlaying)
 	{
 		switch (myCurrentState)
@@ -137,7 +136,6 @@ void Game::Render()
 	myPlayer.Render(myCamera);
 	myGoalObject.Render(myCamera);
 	Megaton::GetRenderManager()->AddCommand(bgSprite);
-	Megaton::GetRenderManager()->AddCommand(bgSprite2);
 	Megaton::GetRenderManager()->AddCommand(bgSprite1);
 }
 
