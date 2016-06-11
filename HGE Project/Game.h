@@ -28,7 +28,8 @@ private:
 
 	Avatar myPlayer;
 
-	void GenerateRandomFloor();
+	void GenerateStartArea();
+	void GetNextFloor();
 };
 
 #endif
