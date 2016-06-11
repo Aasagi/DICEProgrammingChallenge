@@ -11,6 +11,7 @@
 Game::Game(void)
 {
 	myFloorTiles.Init(START_AREA_TILE_NUMBER);
+	holePassCounter = 0;
 }
 
 Game::~Game(void)
@@ -45,6 +46,10 @@ void Game::Update()
 	int halfTileCount = myFloorTiles.Count() / 2;
 	if (myPlayer.GetPosition().x > myFloorTiles[halfTileCount].myPosition.x)
 	{
+		if (myFloorTiles[halfTileCount].GetTileHeight() == 0)
+		{
+			holePassCounter++;
+		}
 		GetNextFloor();
 	}
 	//Put code here
@@ -108,11 +113,11 @@ void Game::GetNextFloor()
 	}
 	else
 	{
-		if (rand() % 2 == 0)
+		if (rand() % 20 == 0)
 		{
 			lastTile.Recalculate(0);
 		}
-		else if (lastTileHeight < 5 && rand()%3 == 0)
+		else if (lastTileHeight < 5 && rand() % 5 == 0)
 		{
 			lastTile.Recalculate(++lastTileHeight);
 		}
