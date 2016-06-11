@@ -3,7 +3,7 @@
 
 #include "GameState.h"
 #include "TriggerObserver.h"
-#include "Square.h"
+#include "FloorTile.h"
 class hgeSprite;
 
 class Game : public GameState, public TriggerObserver
@@ -21,15 +21,11 @@ public:
 	void Notify(const eTriggerType& aTriggerType, void* aTrigger) override;
 
 private:
-	CU::GrowingArray<Square>		mySquare;
-	CU::GrowingArray<bool>			mySquareOccupation;
+	CU::GrowingArray<FloorTile>		myFloorTiles;
 
 	float myUpdateTimer;
 
-	hgeSprite* myNodeSprite;
-	hgeSprite* myVertSprite;
-	hgeSprite* myHoriSprite;
-	hgeSprite* myCubeSprite;
+	hgeSprite* myFloorSprite;
 
 
 };

@@ -18,11 +18,7 @@ Game::~Game(void)
 void Game::Init()
 {
 	Megaton::GetResourceManager()->GetSprite("Data/node.png");
-	myNodeSprite = Megaton::GetResourceManager()->GetSprite("Data/node.png");
-	myVertSprite = Megaton::GetResourceManager()->GetSprite("Data/nodeHori.png");
-	myHoriSprite = Megaton::GetResourceManager()->GetSprite("Data/nodeLong.png");
-	myCubeSprite = Megaton::GetResourceManager()->GetSprite("Data/nodeCube.png");
-
+	myFloorSprite = Megaton::GetResourceManager()->GetSprite("Data/nodeCube.png");
 }
 
 void Game::Update()
@@ -54,7 +50,7 @@ void Game::Notify(const eTriggerType& aTriggerType, void* aTrigger)
 
 void Game::Render()
 {
-
-
+	SpriteRenderCommand* spriteRenderCommand = new SpriteRenderCommand(myFloorSprite, CU::Vector2f(10.0f, 10.0f));
+	Megaton::GetRenderManager()->AddCommand(spriteRenderCommand);
 
 }
