@@ -1,5 +1,7 @@
 /HGE Project.sdf
 /HGE Project.opensdf
+*.obj
+*.log
 
 # Compiled Object files
 *.slo
@@ -285,3 +287,6 @@ paket-files/
 .idea/
 *.sln.iml
 /HGE Project.v12.suo
+
+
+/WorkDir/*.pdb
