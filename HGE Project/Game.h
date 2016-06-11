@@ -29,6 +29,9 @@ private:
 	Avatar myPlayer;
 
 	void GenerateRandomFloor();
+
+	hgeSprite* myBackground1;
+	hgeSprite* myBackground2;
 };
 
 #endif
