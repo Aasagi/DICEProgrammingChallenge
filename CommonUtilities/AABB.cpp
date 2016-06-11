@@ -22,13 +22,27 @@ AABB::~AABB(void)
 
 bool AABB::Inside(const CU::Vector2f& aPoint)
 {
-	if(aPoint.x > myX && aPoint.x < (myX + myWidth) && aPoint.y > myY && aPoint.y < myY + myHeight)
+	if (aPoint.x > myX && aPoint.x < (myX + myWidth) && aPoint.y > myY && aPoint.y < myY + myHeight)
 	{
 		return true;
 	}
 
 	return false;
 }
+
+bool AABB::Collides(const AABB aBoundingBox)
+{
+	if (myX < aBoundingBox.myX + aBoundingBox.myWidth &&
+		myX + myWidth > aBoundingBox.myX &&
+		myY < aBoundingBox.myY + aBoundingBox.myHeight &&
+		myHeight + myY > aBoundingBox.myY)
+	{
+		return true;
+	}
+
+	return false;
+}
+
 
 float AABB::GetX() const
 {

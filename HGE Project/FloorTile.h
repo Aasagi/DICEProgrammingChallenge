@@ -12,6 +12,7 @@ public:
 	~FloorTile();
 	
 	CU::Vector2f myPosition;
+	AABB GetAABB() const;
 
 	SpriteRenderCommand* GetRenderCommand();
 private:

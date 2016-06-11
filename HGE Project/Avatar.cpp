@@ -19,12 +19,21 @@ Avatar::~Avatar()
 void Avatar::Init()
 {
 	mySprite = Megaton::GetResourceManager()->GetSprite("Data/player.png");
+	
+	myBoundingBox.SetWidth(mySprite->GetWidth());
+	myBoundingBox.SetHeight(mySprite->GetHeight());
 }
 
 void Avatar::HandleInput()
 {
 	
 }
+
+void Avatar::HandleCollision(CU::GrowingArray<FloorTile> tiles)
+{
+	
+}
+
 
 void Avatar::Render()
 {
@@ -36,5 +45,14 @@ void Avatar::Update()
 {
 	
 }
+
+AABB Avatar::GetAABB()
+{
+	myBoundingBox.SetX(myPosition.x);
+	myBoundingBox.SetY(myPosition.y);
+
+	return myBoundingBox;
+}
+
 
 

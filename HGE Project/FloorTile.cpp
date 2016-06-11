@@ -19,3 +19,9 @@ SpriteRenderCommand* FloorTile::GetRenderCommand()
 {
 	return new SpriteRenderCommand(myFloorSprite, myPosition);
 }
+
+AABB FloorTile::GetAABB() const
+{
+	return myBoundingBox;
+}
+

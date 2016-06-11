@@ -32,7 +32,9 @@ void Game::Update()
 		mySubStates[i]->Update();
 	}
 
+	myPlayer.HandleCollision(GetCollidingTiles(myPlayer));
 	myPlayer.Update();
+	
 
 	//Put code here
 	Render();
@@ -73,4 +75,22 @@ void Game::GenerateRandomFloor()
 	}
 
 	
+}
+
+CU::GrowingArray<FloorTile> Game::GetCollidingTiles(Avatar& player)
+{
+	auto avatarAABB = player.GetAABB();
+	auto result = CU::GrowingArray<FloorTile>();
+
+	auto tileCount = myFloorTiles.Count();
+	for (auto tileIndex = 0; tileIndex < tileCount; tileIndex++);
+	{
+		auto tile = myFloorTiles[tileCount];
+		auto tileAABB = tile.GetAABB();
+
+		if (avatarAABB.Collides(tileAABB))
+		{
+			result.Add(tile);
+		}		
+	}
 }
