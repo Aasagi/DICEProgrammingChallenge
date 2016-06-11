@@ -139,4 +139,6 @@ CU::GrowingArray<FloorTile> Game::GetCollidingTiles(Avatar& player)
 			result.Add(tile);
 		}		
 	}
+
+	return result;
 }
