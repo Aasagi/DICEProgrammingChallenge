@@ -1,5 +1,5 @@
-﻿Build started 09-Jun-2016 23:40:17.
-     1>Project "C:\Users\Robin\Downloads\TheCrashRiders\HGE Project\HGE Project\CommonUtilities\CommonUtilities.vcxproj" on node 2 (Build target(s)).
+﻿Build started 11-Jun-2016 09:48:17.
+     1>Project "C:\Users\Robin\Desktop\TheCrashRiders\HGE Project\HGE Project\CommonUtilities\CommonUtilities.vcxproj" on node 2 (Rebuild target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt AABB.cpp DL_Debug.cpp DL_StackWalker.cpp FI_File.cpp I3U_tga32.cpp MemoryBucket.cpp StackWalker.cpp Timer.cpp TimerManager.cpp tinyxml2.cpp XMLReader.cpp
          XMLReader.cpp
@@ -15,7 +15,7 @@
          AABB.cpp
          Generating Code...
        Lib:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\Lib.exe /OUT:"C:\Users\Robin\Downloads\TheCrashRiders\HGE Project\HGE Project\Debug\CommonUtilities.lib" /NOLOGO Debug\AABB.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\Lib.exe /OUT:"C:\Users\Robin\Desktop\TheCrashRiders\HGE Project\HGE Project\Debug\CommonUtilities.lib" /NOLOGO Debug\AABB.obj
          Debug\DL_Debug.obj
          Debug\DL_StackWalker.obj
          Debug\FI_File.obj
@@ -26,9 +26,9 @@
          Debug\TimerManager.obj
          Debug\tinyxml2.obj
          Debug\XMLReader.obj
-         CommonUtilities.vcxproj -> C:\Users\Robin\Downloads\TheCrashRiders\HGE Project\HGE Project\Debug\CommonUtilities.lib
-     1>Done Building Project "C:\Users\Robin\Downloads\TheCrashRiders\HGE Project\HGE Project\CommonUtilities\CommonUtilities.vcxproj" (Build target(s)).
+         CommonUtilities.vcxproj -> C:\Users\Robin\Desktop\TheCrashRiders\HGE Project\HGE Project\Debug\CommonUtilities.lib
+     1>Done Building Project "C:\Users\Robin\Desktop\TheCrashRiders\HGE Project\HGE Project\CommonUtilities\CommonUtilities.vcxproj" (Rebuild target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:09.79
+Time Elapsed 00:00:04.00
