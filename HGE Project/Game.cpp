@@ -13,6 +13,7 @@ Game::Game(void)
 	myFloorTiles.Init(START_AREA_TILE_NUMBER);
 	myCurrentState = ePlaying;
 	holePassCounter = 0;
+	tilesPassed = 0;
 }
 
 Game::~Game(void)
@@ -27,6 +28,7 @@ void Game::Init()
 	srand(time(NULL));
 	GenerateStartArea();
 	myPlayer.Init();
+	myGoalObject.myPosition = CU::Vector2f(-100.0f, -100.0f);
 }
 
 void Game::Update()
@@ -48,7 +50,7 @@ void Game::Update()
 	}
 
 	int halfTileCount = myFloorTiles.Count() / 2;
-	if (myPlayer.GetPosition().x > myFloorTiles[halfTileCount].GetPosition().x)
+	if (tilesPassed < TILES_PASS_TO_GOAL && myPlayer.GetPosition().x > myFloorTiles[halfTileCount].GetPosition().x)
 	{
 		if (myFloorTiles[halfTileCount].GetTileHeight() == 0)
 		{
@@ -58,6 +60,7 @@ void Game::Update()
 				myCurrentState = eWin;
 			}
 		}
+		tilesPassed++;
 		GetNextFloor();
 	}
 	//Put code here
@@ -127,6 +130,7 @@ void Game::Render()
 	Megaton::GetRenderManager()->AddCommand(fontRender);
 
 	myPlayer.Render(myCamera);
+	myGoalObject.Render(myCamera);
 	Megaton::GetRenderManager()->AddCommand(bgSprite);
 	Megaton::GetRenderManager()->AddCommand(bgSprite2);
 }
@@ -153,7 +157,14 @@ void Game::GetNextFloor()
 	}
 
 	lastTile.SetPosition(lastTile.GetPosition() + CU::Vector2f(TILE_SIZE, 0.0f));
-	if (recentlyMadeHole)
+	if (tilesPassed >= TILES_PASS_TO_GOAL)
+	{
+		int indexToCheck = recentlyMadeHole ? myFloorTiles.Count() - 3 : myFloorTiles.Count() - 2;
+		lastTile.Recalculate(myFloorTiles[indexToCheck].GetTileHeight());
+
+		myGoalObject.myPosition = lastTile.GetPosition() - CU::Vector2f(0.0f, lastTileHeight * TILE_SIZE);
+	}
+	else if (recentlyMadeHole)
 	{
 		lastTile.Recalculate(myFloorTiles[myFloorTiles.Count() - 3].GetTileHeight());
 	}
@@ -172,7 +183,6 @@ void Game::GetNextFloor()
 			lastTile.Recalculate(--lastTileHeight);
 		}
 	}
-	lastTile.SetPosition(lastTile.GetPosition() +  CU::Vector2f(TILE_SIZE, 0.0f));
 	myFloorTiles[myFloorTiles.Count() - 1] = lastTile;
 }
 

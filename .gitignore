@@ -284,3 +284,4 @@ paket-files/
 # JetBrains Rider
 .idea/
 *.sln.iml
+/HGE Project.v12.suo

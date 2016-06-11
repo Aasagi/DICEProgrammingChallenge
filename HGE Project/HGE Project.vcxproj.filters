@@ -159,6 +159,9 @@
     <ClInclude Include="GameStateEnum.h">
       <Filter>GameStates</Filter>
     </ClInclude>
+    <ClInclude Include="GoalObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -241,6 +244,9 @@
     </ClCompile>
     <ClCompile Include="Camera.cpp">
       <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GoalObject.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
