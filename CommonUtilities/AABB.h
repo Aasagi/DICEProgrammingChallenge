@@ -20,8 +20,8 @@ public:
 	void		SetWidth(const float aWidth);
 	void		SetHeight(const float aHeight);
 
-	bool		Collides(const AABB aAABB);
-	bool		Inside(const CU::Vector2f& aPoint);
+	bool		Collides(const AABB aAABB) const;
+	bool		Inside(const CU::Vector2f& aPoint) const;
 
 private:
 	float		myX;

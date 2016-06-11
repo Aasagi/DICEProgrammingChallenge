@@ -56,7 +56,7 @@ void Game::Update()
 		}
 	}
 
-	int halfTileCount = myFloorTiles.Count() / 2;
+	auto halfTileCount = myFloorTiles.Count() / 2;
 	if (tilesPassed < TILES_PASS_TO_GOAL && myPlayer.GetPosition().x > myFloorTiles[halfTileCount].GetPosition().x)
 	{
 		if (myFloorTiles[halfTileCount].GetTileHeight() == 0)
@@ -129,7 +129,7 @@ void Game::Render()
 	}
 
 
-	for (int floorIndex = 0; floorIndex < myFloorTiles.Count(); floorIndex++)
+	for (auto floorIndex = 0; floorIndex < myFloorTiles.Count(); floorIndex++)
 	{
 		myFloorTiles[floorIndex].Render(myCamera);
 	}

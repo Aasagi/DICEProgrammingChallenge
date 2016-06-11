@@ -12,11 +12,11 @@ public:
 	~Avatar();
 
 	void Init();
-	void Render(Camera& myCamera);
+	void Render(Camera& myCamera) const;
 	void Update(CU::GrowingArray<FloorTile> tiles);
 	void HandleInput();
 	AABB GetAABB();
-	CU::Vector2f GetPosition();
+	CU::Vector2f GetPosition() const;
 
 	CU::Vector2f myPosition;
 private:

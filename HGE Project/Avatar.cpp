@@ -23,34 +23,31 @@ void Avatar::Init()
 {
 	mySprite = Megaton::GetResourceManager()->GetSprite("Data/playerAvatar.png");
 
-	mySprite->SetTextureRect(0, 0, TILE_SIZE / 2, TILE_SIZE / 2);
-	myBoundingBox.SetWidth(TILE_SIZE / 2);
-	myBoundingBox.SetHeight(TILE_SIZE / 2);
+	mySprite->SetTextureRect(0, 0, AVATAR_WIDTH, AVATAR_HEIGHT);
+	myBoundingBox.SetWidth(AVATAR_WIDTH);
+	myBoundingBox.SetHeight(AVATAR_HEIGHT);
 }
 
 void Avatar::HandleInput()
 {
-
 	float deltaTime = 1 / Megaton::GetTimerManager()->GetFPS();
 
 	myNewPosition = myPosition;
 	if (Megaton::GetInputManager()->ButtonIsDown(eButton::eA))
 	{
-		myNewPosition += CU::Vector2f(-1, 0) * myMovementSpeed*deltaTime;
+		myNewPosition += CU::Vector2f(-1, 0) * myMovementSpeed * deltaTime;
 	}
 	if (Megaton::GetInputManager()->ButtonIsDown(eButton::eD))
 	{
-		myNewPosition += CU::Vector2f(1, 0) *myMovementSpeed*deltaTime;
+		myNewPosition += CU::Vector2f(1, 0) * myMovementSpeed * deltaTime;
 	}
 	if (Megaton::GetInputManager()->ButtonPressed(eButton::eSPACE))
 	{
-	//	if (myFloorPlacing <= myPosition.myY)
+		//	if (myFloorPlacing <= myPosition.myY)
 		{
 			myVelocity = CU::Vector2f(0, -1) * 240.f;
 		}
 	}
-
-
 }
 
 CU::Vector2f Avatar::HandleCollision(CU::GrowingArray<FloorTile> tiles, CU::Vector2f position)
@@ -102,7 +99,7 @@ CU::Vector2f Avatar::HandleCollision(CU::GrowingArray<FloorTile> tiles, CU::Vect
 	{
 		position.x = min(position.x, myPosition.x);
 	}
-	
+
 	if (upperleftBlocked || upperRightBlocked)
 	{
 		position.y = max(position.y, myPosition.y);
@@ -117,12 +114,12 @@ CU::Vector2f Avatar::HandleCollision(CU::GrowingArray<FloorTile> tiles, CU::Vect
 	return position;
 }
 
-CU::Vector2f Avatar::GetPosition()
+CU::Vector2f Avatar::GetPosition() const
 {
 	return myPosition;
 }
 
-void Avatar::Render(Camera& aCamera)
+void Avatar::Render(Camera& aCamera) const
 {
 	SpriteRenderCommand* spriteRenderCommand = new SpriteRenderCommand(mySprite, aCamera.ConvertPositionToCameraPosition(myPosition));
 	Megaton::GetRenderManager()->AddCommand(spriteRenderCommand);
@@ -141,7 +138,7 @@ void Avatar::Update(CU::GrowingArray<FloorTile> tiles)
 	}
 	//dif (myVelocity.myY != 0.f)
 	{
-		myVelocity += CU::Vector2f(0, 1000.f) *deltaTime;
+		myVelocity += CU::Vector2f(0, 1000.f) * deltaTime;
 	}
 
 	myNewPosition = HandleCollision(tiles, myNewPosition);
@@ -157,6 +154,3 @@ AABB Avatar::GetAABB()
 
 	return myBoundingBox;
 }
-
-
-
