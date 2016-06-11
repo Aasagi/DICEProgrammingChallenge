@@ -1,9 +1,34 @@
-﻿Build started 2016-06-11 14:16:06.
-     1>Project "C:\Code\DICEProgrammingChallenge\CommonUtilities\CommonUtilities.vcxproj" on node 2 (Build target(s)).
-     1>Lib:
+﻿Build started 2016-06-11 14:31:24.
+     1>Project "C:\Code\DICEProgrammingChallenge\CommonUtilities\CommonUtilities.vcxproj" on node 2 (Rebuild target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt AABB.cpp DL_Debug.cpp DL_StackWalker.cpp FI_File.cpp I3U_tga32.cpp MemoryBucket.cpp StackWalker.cpp Timer.cpp TimerManager.cpp tinyxml2.cpp XMLReader.cpp
+         XMLReader.cpp
+         tinyxml2.cpp
+         TimerManager.cpp
+         Timer.cpp
+         StackWalker.cpp
+         MemoryBucket.cpp
+         I3U_tga32.cpp
+         FI_File.cpp
+         DL_StackWalker.cpp
+         DL_Debug.cpp
+         AABB.cpp
+         Generating Code...
+       Lib:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\Lib.exe /OUT:"C:\Code\DICEProgrammingChallenge\Debug\CommonUtilities.lib" /NOLOGO Debug\AABB.obj
+         Debug\DL_Debug.obj
+         Debug\DL_StackWalker.obj
+         Debug\FI_File.obj
+         Debug\I3U_tga32.obj
+         Debug\MemoryBucket.obj
+         Debug\StackWalker.obj
+         Debug\Timer.obj
+         Debug\TimerManager.obj
+         Debug\tinyxml2.obj
+         Debug\XMLReader.obj
          CommonUtilities.vcxproj -> C:\Code\DICEProgrammingChallenge\Debug\CommonUtilities.lib
-     1>Done Building Project "C:\Code\DICEProgrammingChallenge\CommonUtilities\CommonUtilities.vcxproj" (Build target(s)).
+     1>Done Building Project "C:\Code\DICEProgrammingChallenge\CommonUtilities\CommonUtilities.vcxproj" (Rebuild target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:00.06
+Time Elapsed 00:00:07.28

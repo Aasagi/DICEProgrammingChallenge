@@ -1,5 +1,7 @@
 /HGE Project.sdf
 /HGE Project.opensdf
+*.obj
+*.log
 
 # Compiled Object files
 *.slo
@@ -286,5 +288,4 @@ paket-files/
 *.sln.iml
 /HGE Project.v12.suo
 
-*.obj
-*.log
+

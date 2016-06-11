@@ -23,7 +23,7 @@ AABB::~AABB(void)
 
 bool AABB::Inside(const CU::Vector2f& aPoint)
 {
-	if(aPoint.x > myX && aPoint.x < (myX + myWidth) && aPoint.y > myY && aPoint.y < myY + myHeight)
+	if (aPoint.x > myX && aPoint.x < (myX + myWidth) && aPoint.y > myY && aPoint.y < myY + myHeight)
 	{
 		return true;
 	}
@@ -33,18 +33,13 @@ bool AABB::Inside(const CU::Vector2f& aPoint)
 
 bool AABB::Collides(const AABB aAABB)
 {
-	auto myPos = CU::Vector2f(myX, myY);
-	auto aPos = CU::Vector2f(aAABB.GetX(), aAABB.GetY());
-	auto distance = myPos - aPos;
-	distance.x = abs(distance.x);
-	distance.y = abs(distance.y);
-
-	if (distance.x <= (GetWidth() + aAABB.GetWidth()))
+	if (myX < aAABB.GetX() + aAABB.GetWidth() &&
+		myX + myWidth > aAABB.GetX() &&
+		myY < aAABB.GetY() + aAABB.GetHeight() &&
+		myHeight + myY > aAABB.GetY())
+	{
 		return true;
-
-	if (distance.y <= (GetHeight() + aAABB.GetHeight()))
-		return true;
-
+	}
 	return false;
 }
 
