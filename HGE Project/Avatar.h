@@ -16,6 +16,7 @@ public:
 	void Update(CU::GrowingArray<FloorTile> tiles);
 	void HandleInput();
 	AABB GetAABB();
+	CU::Vector2f GetPosition();
 
 	CU::Vector2f myPosition;
 private:

@@ -12,6 +12,7 @@ Game::Game(void)
 {
 	myFloorTiles.Init(START_AREA_TILE_NUMBER);
 	myCurrentState = ePlaying;
+	holePassCounter = 0;
 }
 
 Game::~Game(void)
@@ -46,8 +47,15 @@ void Game::Update()
 		}
 	}
 
-
-
+	int halfTileCount = myFloorTiles.Count() / 2;
+	if (myPlayer.GetPosition().x > myFloorTiles[halfTileCount].myPosition.x)
+	{
+		if (myFloorTiles[halfTileCount].GetTileHeight() == 0)
+		{
+			holePassCounter++;
+		}
+		GetNextFloor();
+	}
 	//Put code here
 	Render();
 }
@@ -55,10 +63,6 @@ void Game::Update()
 void Game::HandleInput()
 {
 	myPlayer.HandleInput();
-	if (Megaton::GetInputManager()->ButtonPressed(eButton::eSPACE))
-	{
-		GetNextFloor();
-	}
 	if (Megaton::GetInputManager()->ButtonPressed(eButton::eI))
 	{
 		myCurrentState = eGameover;
@@ -140,17 +144,18 @@ void Game::GetNextFloor()
 		myFloorTiles[tileIndex] = myFloorTiles[tileIndex + 1];
 	}
 
+	lastTile.myPosition += CU::Vector2f(TILE_SIZE, 0.0f);
 	if (recentlyMadeHole)
 	{
 		lastTile.Recalculate(myFloorTiles[myFloorTiles.Count() - 3].GetTileHeight());
 	}
 	else
 	{
-		if (rand() % 2 == 0)
+		if (rand() % 20 == 0)
 		{
 			lastTile.Recalculate(0);
 		}
-		else if (lastTileHeight < 5 && rand() % 3 == 0)
+		else if (lastTileHeight < 5 && rand() % 5 == 0)
 		{
 			lastTile.Recalculate(++lastTileHeight);
 		}
@@ -159,7 +164,6 @@ void Game::GetNextFloor()
 			lastTile.Recalculate(--lastTileHeight);
 		}
 	}
-	lastTile.myPosition += CU::Vector2f(TILE_SIZE, 0.0f);
 	myFloorTiles[myFloorTiles.Count() - 1] = lastTile;
 }
 
@@ -175,10 +179,10 @@ CU::GrowingArray<FloorTile> Game::GetCollidingTiles(Avatar& player)
 		auto tile = myFloorTiles[tileIndex];
 		auto tileAABB = tile.GetAABB();
 
-		if (avatarAABB.Collides(tileAABB))
+		/*if (avatarAABB.Collides(tileAABB))
 		{
 			result.Add(tile);
-		}
+		}	*/	
 	}
 
 	return result;
