@@ -44,9 +44,9 @@ void Avatar::HandleInput()
 	}
 	if (Megaton::GetInputManager()->ButtonPressed(eButton::eSPACE))
 	{
-		//if (myFloorPlacing <= myPosition.myY)
+	//	if (myFloorPlacing <= myPosition.myY)
 		{
-			myVelocity = CU::Vector2f(0, -1) * 300.f;
+			myVelocity = CU::Vector2f(0, -1) * 240.f;
 		}
 	}
 

@@ -24,7 +24,10 @@ Game::~Game(void)
 void Game::Init()
 {
 	myBackground1 = Megaton::GetResourceManager()->GetSprite("Data/Background/BG1.png");
+	myBackground1->SetTextureRect(0, 0, 800, 600);
 	myBackground2 = Megaton::GetResourceManager()->GetSprite("Data/Background/BG2.png");
+	myBackground2->SetTextureRect(0, 0, 800, 600,false);
+
 	srand(time(NULL));
 	GenerateStartArea();
 	myPlayer.Init();
@@ -34,7 +37,7 @@ void Game::Init()
 void Game::Update()
 {
 	GameState::Update();
-
+	
 	for (int i = mySubStates.Size() - 1; 0 <= i; --i)
 	{
 		mySubStates[i]->Update();
@@ -96,8 +99,9 @@ void Game::Notify(const eTriggerType& aTriggerType, void* aTrigger)
 void Game::Render()
 {
 
-	SpriteRenderCommand* bgSprite = new SpriteRenderCommand(myBackground1, CU::Vector2f());
-	SpriteRenderCommand* bgSprite2 = new SpriteRenderCommand(myBackground2, CU::Vector2f());
+	SpriteRenderCommand* bgSprite = new SpriteRenderCommand(myBackground1, myCamera.ConvertPositionToCameraPosition(CU::Vector2f(0,WINDOW_WIDTH)));
+	SpriteRenderCommand* bgSprite1 = new SpriteRenderCommand(myBackground1, myCamera.ConvertSquarePositionToCameraPosition(CU::Vector2f(0, 0)));
+
 	if (myCurrentState != ePlaying)
 	{
 		switch (myCurrentState)
@@ -137,7 +141,7 @@ void Game::Render()
 	myPlayer.Render(myCamera);
 	myGoalObject.Render(myCamera);
 	Megaton::GetRenderManager()->AddCommand(bgSprite);
-	Megaton::GetRenderManager()->AddCommand(bgSprite2);
+	Megaton::GetRenderManager()->AddCommand(bgSprite1);
 }
 
 void Game::GenerateStartArea()
