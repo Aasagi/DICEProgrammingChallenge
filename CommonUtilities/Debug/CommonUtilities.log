@@ -1,9 +1,23 @@
-﻿Build started 11-Jun-2016 11:25:21.
+﻿Build started 11-Jun-2016 13:14:30.
      1>Project "C:\Users\Robin\Desktop\TheCrashRiders\HGE Project\HGE Project\CommonUtilities\CommonUtilities.vcxproj" on node 2 (Build target(s)).
-     1>Lib:
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt AABB.cpp
+         AABB.cpp
+       Lib:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\Lib.exe /OUT:"C:\Users\Robin\Desktop\TheCrashRiders\HGE Project\HGE Project\Debug\CommonUtilities.lib" /NOLOGO Debug\AABB.obj
+         Debug\DL_Debug.obj
+         Debug\DL_StackWalker.obj
+         Debug\FI_File.obj
+         Debug\I3U_tga32.obj
+         Debug\MemoryBucket.obj
+         Debug\StackWalker.obj
+         Debug\Timer.obj
+         Debug\TimerManager.obj
+         Debug\tinyxml2.obj
+         Debug\XMLReader.obj
          CommonUtilities.vcxproj -> C:\Users\Robin\Desktop\TheCrashRiders\HGE Project\HGE Project\Debug\CommonUtilities.lib
      1>Done Building Project "C:\Users\Robin\Desktop\TheCrashRiders\HGE Project\HGE Project\CommonUtilities\CommonUtilities.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:00.04
+Time Elapsed 00:00:00.17

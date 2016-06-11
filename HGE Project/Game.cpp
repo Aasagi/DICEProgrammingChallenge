@@ -53,6 +53,10 @@ void Game::Update()
 		if (myFloorTiles[halfTileCount].GetTileHeight() == 0)
 		{
 			holePassCounter++;
+			if (holePassCounter >= 10)
+			{
+				myCurrentState = eWin;
+			}
 		}
 		GetNextFloor();
 	}
@@ -117,6 +121,10 @@ void Game::Render()
 	{
 		myFloorTiles[floorIndex].Render(myCamera);
 	}
+
+	FontRenderCommand* fontRender = new FontRenderCommand(std::string("Score: ") + std::to_string(holePassCounter), Megaton::GetResourceManager()->GetFont(), CU::Vector2f(20.0f, 20.0f));
+	fontRender->SetColor(ARGB(200, 0, 0, 0));
+	Megaton::GetRenderManager()->AddCommand(fontRender);
 
 	myPlayer.Render(myCamera);
 	Megaton::GetRenderManager()->AddCommand(bgSprite);
