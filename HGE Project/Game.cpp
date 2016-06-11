@@ -11,6 +11,7 @@
 Game::Game(void)
 {
 	myFloorTiles.Init(START_AREA_TILE_NUMBER);
+	myCurrentState = ePlaying;
 }
 
 Game::~Game(void)
@@ -36,14 +37,17 @@ void Game::Update()
 		mySubStates[i]->Update();
 	}
 
-	myPlayer.Update(GetCollidingTiles(myPlayer));	
-	if (myPlayer.myPosition.x > WINDOW_WIDTH/2.f)
+	if (myCurrentState == ePlaying)
 	{
-		myCamera.myPositionOffset.x = myPlayer.myPosition.myX - WINDOW_WIDTH/2.f;
+		myPlayer.Update(GetCollidingTiles(myPlayer));
+		if (myPlayer.myPosition.x > WINDOW_WIDTH / 2.f)
+		{
+			myCamera.myPositionOffset.x = myPlayer.myPosition.myX - WINDOW_WIDTH / 2.f;
+		}
 	}
 
 
-	
+
 	//Put code here
 	Render();
 }
@@ -54,6 +58,14 @@ void Game::HandleInput()
 	if (Megaton::GetInputManager()->ButtonPressed(eButton::eSPACE))
 	{
 		GetNextFloor();
+	}
+	if (Megaton::GetInputManager()->ButtonPressed(eButton::eI))
+	{
+		myCurrentState = eGameover;
+	}
+	if (Megaton::GetInputManager()->ButtonPressed(eButton::eK))
+	{
+		myCurrentState = eWin;
 	}
 }
 
@@ -67,11 +79,36 @@ void Game::Notify(const eTriggerType& aTriggerType, void* aTrigger)
 
 void Game::Render()
 {
+
 	SpriteRenderCommand* bgSprite = new SpriteRenderCommand(myBackground1, CU::Vector2f());
 	SpriteRenderCommand* bgSprite2 = new SpriteRenderCommand(myBackground2, CU::Vector2f());
+	if (myCurrentState != ePlaying)
+	{
+		switch (myCurrentState)
+		{
+		case ePlaying:
+			break;
+		case eGameover:
+		{
+			FontRenderCommand* fontRender = new FontRenderCommand(std::string("GAME OVER"), Megaton::GetResourceManager()->GetFont(), CU::Vector2f(WINDOW_WIDTH / 3, WINDOW_HEIGHT / 2));
+			fontRender->SetColor(ARGB(200, 0, 0, 0));
+			Megaton::GetRenderManager()->AddCommand(fontRender);
+			break;
+		}
+		case eWin:
+		{
+			FontRenderCommand* fontRender = new FontRenderCommand(std::string("A WINNER IS YOU"), Megaton::GetResourceManager()->GetFont(), CU::Vector2f(WINDOW_WIDTH / 3, WINDOW_HEIGHT / 2));
+			fontRender->SetColor(ARGB(200, 0, 0, 0));
+			Megaton::GetRenderManager()->AddCommand(fontRender);
+			break;
+
+		}
+		default:
+			break;
+		}
+	}
 
 
-	
 	for (int floorIndex = 0; floorIndex < myFloorTiles.Count(); floorIndex++)
 	{
 		myFloorTiles[floorIndex].Render(myCamera);
@@ -95,7 +132,7 @@ void Game::GetNextFloor()
 {
 	FloorTile lastTile = myFloorTiles[myFloorTiles.Count() - 1];
 	int lastTileHeight = lastTile.GetTileHeight();
-	
+
 	bool recentlyMadeHole = (lastTileHeight == 0);
 
 	for (int tileIndex = 0; tileIndex < myFloorTiles.Count() - 1; tileIndex++)
@@ -105,7 +142,7 @@ void Game::GetNextFloor()
 
 	if (recentlyMadeHole)
 	{
- 		lastTile.Recalculate(myFloorTiles[myFloorTiles.Count() - 3].GetTileHeight());
+		lastTile.Recalculate(myFloorTiles[myFloorTiles.Count() - 3].GetTileHeight());
 	}
 	else
 	{
@@ -113,7 +150,7 @@ void Game::GetNextFloor()
 		{
 			lastTile.Recalculate(0);
 		}
-		else if (lastTileHeight < 5 && rand()%3 == 0)
+		else if (lastTileHeight < 5 && rand() % 3 == 0)
 		{
 			lastTile.Recalculate(++lastTileHeight);
 		}
@@ -141,7 +178,7 @@ CU::GrowingArray<FloorTile> Game::GetCollidingTiles(Avatar& player)
 		if (avatarAABB.Collides(tileAABB))
 		{
 			result.Add(tile);
-		}		
+		}
 	}
 
 	return result;
