@@ -9,9 +9,10 @@
 Avatar::Avatar()
 {
 	mySprite = nullptr;
-	myPosition.Set(WINDOW_WIDTH / 4, WINDOW_HEIGHT - TILE_SIZE * 2);
+	myPosition.Set(WINDOW_WIDTH / 4, WINDOW_HEIGHT - AVATAR_HEIGHT * 2);
 	myFloorPlacing = WINDOW_HEIGHT;
 	myMovementSpeed = 100.f;
+	myIsDucked = false;
 }
 
 
@@ -23,9 +24,7 @@ void Avatar::Init()
 {
 	mySprite = Megaton::GetResourceManager()->GetSprite("Data/playerAvatar.png");
 
-	mySprite->SetTextureRect(0, 0, AVATAR_WIDTH, AVATAR_HEIGHT);
-	myBoundingBox.SetWidth(AVATAR_WIDTH);
-	myBoundingBox.SetHeight(AVATAR_HEIGHT);
+	SetDuckedState(false);
 }
 
 void Avatar::HandleInput()
@@ -46,6 +45,7 @@ void Avatar::HandleInput()
 
 		}
 	}
+
 	if (Megaton::GetInputManager()->ButtonIsDown(eButton::eD))
 	{
 		if (CollidedLastFrame == false)
@@ -54,10 +54,11 @@ void Avatar::HandleInput()
 		}
 		else
 		{
- 			myNewPosition += CU::Vector2f(1, 0) *myMovementSpeed*deltaTime;
+			myNewPosition += CU::Vector2f(1, 0) *myMovementSpeed*deltaTime;
 
 		}
 	}
+
 	if (Megaton::GetInputManager()->ButtonIsDown(eButton::eSPACE))
 	{
 		if (/*CollidedLastFrame == true && */myVelocity.y == 0.f)
@@ -65,10 +66,40 @@ void Avatar::HandleInput()
 			myVelocity = CU::Vector2f(0, -1) * 240.f;
 		}
 	}
+
+	if (Megaton::GetInputManager()->ButtonPressed(eButton::eS))
+		SetDuckedState(true);
+
+	if (Megaton::GetInputManager()->ButtonReleased(eButton::eS))
+		SetDuckedState(false);
+}
+
+void Avatar::SetDuckedState(bool shouldDuck)
+{
+	if (shouldDuck)
+	{
+		myNewPosition.y += AVATAR_HEIGHT / 2;
+
+		mySprite->SetTextureRect(0, 0, AVATAR_WIDTH, AVATAR_HEIGHT / 2);
+	}
+	else
+	{
+		if (myIsDucked)
+		{
+			myNewPosition.y -= AVATAR_HEIGHT / 2;
+			myNewPosition.y--;
+		}
+
+		mySprite->SetTextureRect(0, 0, AVATAR_WIDTH, AVATAR_HEIGHT);
+
+	}
+
+	myIsDucked = shouldDuck;
 }
 
 CU::Vector2f Avatar::HandleCollision(CU::GrowingArray<FloorTile> tiles, CU::Vector2f position)
 {
+	auto boundBox = GetAABB();
 	bool upperleftBlocked = false;
 	bool upperRightBlocked = false;
 	bool lowerLeftBlocked = false;
@@ -79,16 +110,16 @@ CU::Vector2f Avatar::HandleCollision(CU::GrowingArray<FloorTile> tiles, CU::Vect
 	bool downBlocked = false;
 	CollidedLastFrame = false;
 
-	AABB aabb = AABB(position.x, position.y, myBoundingBox.GetWidth(), myBoundingBox.GetHeight());
+	AABB aabb = AABB(position.x, position.y, boundBox.GetWidth(), boundBox.GetHeight());
 
 	CU::Vector2f upperLeft = CU::Vector2f(aabb.GetX(), aabb.GetY());
-	CU::Vector2f up = CU::Vector2f(aabb.GetX(), aabb.GetY()+ aabb.GetWidth()/2);
+	CU::Vector2f up = CU::Vector2f(aabb.GetX(), aabb.GetY() + aabb.GetWidth() / 2);
 	CU::Vector2f upperRight = CU::Vector2f(aabb.GetX() + aabb.GetWidth(), aabb.GetY());
-	CU::Vector2f right = CU::Vector2f(aabb.GetX() + aabb.GetWidth(), aabb.GetY()+ aabb.GetHeight()/2);
+	CU::Vector2f right = CU::Vector2f(aabb.GetX() + aabb.GetWidth(), aabb.GetY() + aabb.GetHeight() / 2);
 	CU::Vector2f lowerLeft = CU::Vector2f(aabb.GetX(), aabb.GetY() + aabb.GetHeight());
 	CU::Vector2f left = CU::Vector2f(aabb.GetX(), aabb.GetY() + aabb.GetHeight() / 2);
 	CU::Vector2f lowerRight = CU::Vector2f(aabb.GetX() + aabb.GetWidth(), aabb.GetY() + aabb.GetHeight());
-	CU::Vector2f low = CU::Vector2f(aabb.GetX() + aabb.GetWidth()/2, aabb.GetY() + aabb.GetHeight());
+	CU::Vector2f low = CU::Vector2f(aabb.GetX() + aabb.GetWidth() / 2, aabb.GetY() + aabb.GetHeight());
 
 	auto tileCount = tiles.Count();
 	for (auto tileIndex = 0; tileIndex < tileCount; tileIndex++)
@@ -145,7 +176,7 @@ CU::Vector2f Avatar::HandleCollision(CU::GrowingArray<FloorTile> tiles, CU::Vect
 
 	}
 
-	if (upperleftBlocked && upBlocked|| upperRightBlocked && upBlocked)
+	if (upperleftBlocked && upBlocked || upperRightBlocked && upBlocked)
 	{
 		position.y = max(position.y, myPosition.y);
 		CollidedLastFrame = true;
@@ -198,8 +229,7 @@ void Avatar::Update(CU::GrowingArray<FloorTile> tiles)
 
 AABB Avatar::GetAABB()
 {
-	myBoundingBox.SetX(myPosition.x);
-	myBoundingBox.SetY(myPosition.y);
+	auto boundingBox = AABB(myPosition.x, myPosition.y, mySprite->GetWidth(), mySprite->GetHeight());
 
-	return myBoundingBox;
+	return boundingBox;
 }

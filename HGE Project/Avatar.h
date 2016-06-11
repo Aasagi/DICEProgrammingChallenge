@@ -15,6 +15,7 @@ public:
 	void Render(Camera& myCamera) const;
 	void Update(CU::GrowingArray<FloorTile> tiles);
 	void HandleInput();
+	void SetDuckedState(bool);
 	AABB GetAABB();
 	CU::Vector2f GetPosition() const;
 
@@ -23,12 +24,12 @@ private:
 	CU::Vector2f HandleCollision(CU::GrowingArray<FloorTile> tiles, CU::Vector2f position);
 
 	CU::Vector2f myNewPosition;
-	AABB myBoundingBox;
 
 	CU::Vector2f myVelocity;
 	float myMovementSpeed;
 	float myFloorPlacing;
 	bool CollidedLastFrame;
 	hgeSprite* mySprite;
+	bool myIsDucked;
 };
 

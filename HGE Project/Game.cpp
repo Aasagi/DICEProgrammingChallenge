@@ -35,6 +35,7 @@ void Game::Init()
 	for (int hangingObjectIndex = 0; hangingObjectIndex < 5; hangingObjectIndex++)
 	{
 		myHangingObjects.Add(HangingObject());
+		myHangingObjects[hangingObjectIndex].SetPosition(CU::Vector2f(-100.0f, -100.0f));
 	}
 	myPlayer.Init();
 	myGoalObject.SetPosition(CU::Vector2f(-100.0f, -100.0f));
@@ -82,15 +83,18 @@ void Game::Update()
 
 	for (int hangingObjectIndex = 0; hangingObjectIndex < myHangingObjects.Count(); hangingObjectIndex++)
 	{
-		if (myPlayer.GetAABB().Collides(myHangingObjects[hangingObjectIndex].GetAABB()))
+		if (myHangingObjects[hangingObjectIndex].OnScreen)
 		{
-			myCurrentState = eGameover;
-		}
+			if (myPlayer.GetAABB().Collides(myHangingObjects[hangingObjectIndex].GetAABB()))
+			{
+				myCurrentState = eGameover;
+			}
 
-		if (myHangingObjects[hangingObjectIndex].OnScreen && myHangingObjects[hangingObjectIndex].GetPostion().x < myCeilingTiles[0].GetPosition().x)
-		{
-			myHangingObjects[hangingObjectIndex].OnScreen = false;
-			myHangingObjects[hangingObjectIndex].SetPosition(CU::Vector2f(-100.0f, -100.0f));
+			if (myHangingObjects[hangingObjectIndex].GetPostion().x < myCeilingTiles[0].GetPosition().x)
+			{
+				myHangingObjects[hangingObjectIndex].OnScreen = false;
+				myHangingObjects[hangingObjectIndex].SetPosition(CU::Vector2f(-100.0f, -100.0f));
+			}
 		}
 	}
 
@@ -100,7 +104,6 @@ void Game::Update()
 
 void Game::HandleInput()
 {
-	myPlayer.HandleInput();
 	if (Megaton::GetInputManager()->ButtonPressed(eButton::eI))
 	{
 		myCurrentState = eGameover;
