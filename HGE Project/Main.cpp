@@ -39,7 +39,7 @@ HGE* HGEInit(const CU::Vector2i& aResolution)
 	hge->System_SetState(HGE_WINDOWED, true);
 //#endif
 	hge->System_SetState(HGE_USESOUND, false);
-	hge->System_SetState(HGE_TITLE, "Turn Based Strategy");
+	hge->System_SetState(HGE_TITLE, "DICE Challenge");
 	hge->System_SetState(HGE_SCREENWIDTH, aResolution.x);
 	hge->System_SetState(HGE_SCREENHEIGHT, aResolution.y);
 	hge->System_SetState(HGE_SHOWSPLASH, false);

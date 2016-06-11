@@ -1,98 +1,10 @@
-﻿Build started 09-Jun-2016 23:41:16.
-     1>Project "C:\Users\Robin\Downloads\TheCrashRiders\HGE Project\HGE Project\HGE Project\HGE Project.vcxproj" on node 2 (Build target(s)).
+﻿Build started 11-Jun-2016 09:56:36.
+     1>Project "C:\Users\Robin\Desktop\TheCrashRiders\HGE Project\HGE Project\HGE Project\HGE Project.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I../ /ZI /nologo /W4 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yc"stdafx.h" /Fp"Debug\DebugEXE.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt stdafx.cpp
-         stdafx.cpp
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I../ /ZI /nologo /W4 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt AudioSystem\AudioSystem.cpp GUI\Button.cpp GUI\GUIManager.cpp Renderer\FontRenderCommand.cpp Renderer\RenderCommand.cpp Renderer\Renderer.cpp Renderer\SpriteRenderCommand.cpp
-         SpriteRenderCommand.cpp
-         Renderer.cpp
-         RenderCommand.cpp
-         FontRenderCommand.cpp
-         GUIManager.cpp
-         Button.cpp
-         AudioSystem.cpp
-         Generating Code...
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I../ /ZI /nologo /W4 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\DebugEXE.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt AudioSystem\Sound.cpp AudioSystem\SoundBase.cpp AudioSystem\Stream.cpp Game.cpp GameLoop.cpp GameObject.cpp GameObjectManager.cpp GameState.cpp InputManager.cpp InputMouse.cpp Line.cpp Main.cpp MainMenu.cpp Megaton.cpp Player.cpp Renderer\RenderManager.cpp ResourceManager.cpp Square.cpp TriggerSystem\TriggerManager.cpp
-         TriggerManager.cpp
-         Square.cpp
-         ResourceManager.cpp
-         RenderManager.cpp
-         Player.cpp
-     1>c:\users\robin\downloads\thecrashriders\hge project\hge project\hge project\player.h(128): warning C4189: 'debugTime' : local variable is initialized but not referenced
-         Megaton.cpp
-     1>c:\users\robin\downloads\thecrashriders\hge project\hge project\hge project\megaton.cpp(35): warning C4244: 'argument' : conversion from 'const int' to 'float', possible loss of data
-         MainMenu.cpp
-         Main.cpp
-         Line.cpp
-         InputMouse.cpp
-         InputManager.cpp
-         GameState.cpp
-         GameObjectManager.cpp
-         GameObject.cpp
-         GameLoop.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I../ /ZI /nologo /W4 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\DebugEXE.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Game.cpp
          Game.cpp
-     1>c:\users\robin\downloads\thecrashriders\hge project\hge project\hge project\game.cpp(55): warning C4244: 'argument' : conversion from 'int' to 'const short', possible loss of data
-     1>c:\users\robin\downloads\thecrashriders\hge project\hge project\hge project\game.cpp(112): warning C4244: 'argument' : conversion from 'int' to 'const short', possible loss of data
-     1>c:\users\robin\downloads\thecrashriders\hge project\hge project\hge project\game.cpp(113): warning C4244: 'argument' : conversion from 'int' to 'const short', possible loss of data
-     1>c:\users\robin\downloads\thecrashriders\hge project\hge project\hge project\game.cpp(117): warning C4244: 'argument' : conversion from 'int' to 'const short', possible loss of data
-     1>c:\users\robin\downloads\thecrashriders\hge project\hge project\hge project\game.cpp(123): warning C4244: 'argument' : conversion from 'int' to 'const short', possible loss of data
-     1>c:\users\robin\downloads\thecrashriders\hge project\hge project\hge project\game.cpp(124): warning C4244: 'argument' : conversion from 'int' to 'const short', possible loss of data
-     1>c:\users\robin\downloads\thecrashriders\hge project\hge project\hge project\game.cpp(128): warning C4244: 'argument' : conversion from 'int' to 'const short', possible loss of data
-     1>c:\users\robin\downloads\thecrashriders\hge project\hge project\hge project\game.cpp(135): warning C4244: 'argument' : conversion from 'int' to 'const short', possible loss of data
-     1>c:\users\robin\downloads\thecrashriders\hge project\hge project\hge project\game.cpp(136): warning C4244: 'argument' : conversion from 'int' to 'const short', possible loss of data
-     1>c:\users\robin\downloads\thecrashriders\hge project\hge project\hge project\game.cpp(140): warning C4244: 'argument' : conversion from 'int' to 'const short', possible loss of data
-     1>c:\users\robin\downloads\thecrashriders\hge project\hge project\hge project\game.cpp(146): warning C4244: 'argument' : conversion from 'int' to 'const short', possible loss of data
-     1>c:\users\robin\downloads\thecrashriders\hge project\hge project\hge project\game.cpp(147): warning C4244: 'argument' : conversion from 'int' to 'const short', possible loss of data
-     1>c:\users\robin\downloads\thecrashriders\hge project\hge project\hge project\game.cpp(151): warning C4244: 'argument' : conversion from 'int' to 'const short', possible loss of data
-     1>c:\users\robin\downloads\thecrashriders\hge project\hge project\hge project\game.cpp(182): warning C4244: 'argument' : conversion from 'int' to 'const short', possible loss of data
-     1>c:\users\robin\downloads\thecrashriders\hge project\hge project\hge project\game.cpp(184): warning C4244: 'argument' : conversion from 'int' to 'const short', possible loss of data
-     1>c:\users\robin\downloads\thecrashriders\hge project\hge project\hge project\game.cpp(185): warning C4244: 'argument' : conversion from 'int' to 'const short', possible loss of data
-     1>c:\users\robin\downloads\thecrashriders\hge project\hge project\hge project\game.cpp(189): warning C4244: 'argument' : conversion from 'int' to 'const short', possible loss of data
-     1>c:\users\robin\downloads\thecrashriders\hge project\hge project\hge project\game.cpp(196): warning C4244: 'argument' : conversion from 'int' to 'const short', possible loss of data
-     1>c:\users\robin\downloads\thecrashriders\hge project\hge project\hge project\game.cpp(198): warning C4244: 'argument' : conversion from 'int' to 'const short', possible loss of data
-     1>c:\users\robin\downloads\thecrashriders\hge project\hge project\hge project\game.cpp(199): warning C4244: 'argument' : conversion from 'int' to 'const short', possible loss of data
-     1>c:\users\robin\downloads\thecrashriders\hge project\hge project\hge project\game.cpp(203): warning C4244: 'argument' : conversion from 'int' to 'const short', possible loss of data
-     1>c:\users\robin\downloads\thecrashriders\hge project\hge project\hge project\game.cpp(210): warning C4244: 'argument' : conversion from 'int' to 'const short', possible loss of data
-     1>c:\users\robin\downloads\thecrashriders\hge project\hge project\hge project\game.cpp(212): warning C4244: 'argument' : conversion from 'int' to 'const short', possible loss of data
-     1>c:\users\robin\downloads\thecrashriders\hge project\hge project\hge project\game.cpp(214): warning C4244: 'argument' : conversion from 'int' to 'const short', possible loss of data
-     1>c:\users\robin\downloads\thecrashriders\hge project\hge project\hge project\game.cpp(218): warning C4244: 'argument' : conversion from 'int' to 'const short', possible loss of data
-     1>c:\users\robin\downloads\thecrashriders\hge project\hge project\hge project\game.cpp(227): warning C4244: 'argument' : conversion from 'int' to 'const short', possible loss of data
-     1>c:\users\robin\downloads\thecrashriders\hge project\hge project\hge project\game.cpp(229): warning C4244: 'argument' : conversion from 'int' to 'const short', possible loss of data
-     1>c:\users\robin\downloads\thecrashriders\hge project\hge project\hge project\game.cpp(230): warning C4244: 'argument' : conversion from 'int' to 'const short', possible loss of data
-     1>c:\users\robin\downloads\thecrashriders\hge project\hge project\hge project\game.cpp(234): warning C4244: 'argument' : conversion from 'int' to 'const short', possible loss of data
-     1>c:\users\robin\downloads\thecrashriders\hge project\hge project\hge project\game.cpp(246): warning C4244: 'argument' : conversion from 'int' to 'const short', possible loss of data
-     1>c:\users\robin\downloads\thecrashriders\hge project\hge project\hge project\game.cpp(250): warning C4244: 'argument' : conversion from 'int' to 'const short', possible loss of data
-     1>c:\users\robin\downloads\thecrashriders\hge project\hge project\hge project\game.cpp(254): warning C4244: 'argument' : conversion from 'int' to 'const short', possible loss of data
-     1>c:\users\robin\downloads\thecrashriders\hge project\hge project\hge project\game.cpp(258): warning C4244: 'argument' : conversion from 'int' to 'const short', possible loss of data
-     1>c:\users\robin\downloads\thecrashriders\hge project\hge project\hge project\game.cpp(270): warning C4244: 'argument' : conversion from 'int' to 'const short', possible loss of data
-     1>c:\users\robin\downloads\thecrashriders\hge project\hge project\hge project\game.cpp(287): warning C4244: 'argument' : conversion from 'int' to 'const short', possible loss of data
-     1>c:\users\robin\downloads\thecrashriders\hge project\hge project\hge project\game.cpp(290): warning C4244: 'argument' : conversion from 'int' to 'const short', possible loss of data
-     1>c:\users\robin\downloads\thecrashriders\hge project\hge project\hge project\game.cpp(293): warning C4244: 'argument' : conversion from 'int' to 'const short', possible loss of data
-     1>c:\users\robin\downloads\thecrashriders\hge project\hge project\hge project\game.cpp(296): warning C4244: 'argument' : conversion from 'int' to 'const short', possible loss of data
-     1>c:\users\robin\downloads\thecrashriders\hge project\hge project\hge project\game.cpp(280): warning C4189: 'lineExists' : local variable is initialized but not referenced
-     1>c:\users\robin\downloads\thecrashriders\hge project\hge project\hge project\game.cpp(309): warning C4244: 'argument' : conversion from 'int' to 'const short', possible loss of data
-     1>c:\users\robin\downloads\thecrashriders\hge project\hge project\hge project\game.cpp(311): warning C4244: 'argument' : conversion from 'int' to 'const short', possible loss of data
-     1>c:\users\robin\downloads\thecrashriders\hge project\hge project\hge project\game.cpp(324): warning C4100: 'aTrigger' : unreferenced formal parameter
-     1>c:\users\robin\downloads\thecrashriders\hge project\hge project\hge project\game.cpp(324): warning C4100: 'aTriggerType' : unreferenced formal parameter
-     1>c:\users\robin\downloads\thecrashriders\hge project\hge project\hge project\game.cpp(333): warning C4244: 'argument' : conversion from 'int' to 'const short', possible loss of data
-     1>c:\users\robin\downloads\thecrashriders\hge project\hge project\hge project\game.cpp(336): warning C4244: 'argument' : conversion from 'int' to 'const short', possible loss of data
-     1>c:\users\robin\downloads\thecrashriders\hge project\hge project\hge project\game.cpp(339): warning C4244: 'argument' : conversion from 'int' to 'const short', possible loss of data
-     1>c:\users\robin\downloads\thecrashriders\hge project\hge project\hge project\game.cpp(342): warning C4244: 'argument' : conversion from 'int' to 'const short', possible loss of data
-     1>c:\users\robin\downloads\thecrashriders\hge project\hge project\hge project\game.cpp(346): warning C4244: 'argument' : conversion from 'int' to 'const short', possible loss of data
-     1>c:\users\robin\downloads\thecrashriders\hge project\hge project\hge project\game.cpp(348): warning C4244: 'argument' : conversion from 'int' to 'const short', possible loss of data
-     1>c:\users\robin\downloads\thecrashriders\hge project\hge project\hge project\game.cpp(355): warning C4244: 'argument' : conversion from 'int' to 'const short', possible loss of data
-     1>c:\users\robin\downloads\thecrashriders\hge project\hge project\hge project\game.cpp(357): warning C4244: 'argument' : conversion from 'int' to 'const short', possible loss of data
-     1>c:\users\robin\downloads\thecrashriders\hge project\hge project\hge project\game.cpp(364): warning C4244: 'argument' : conversion from 'int' to 'const short', possible loss of data
-     1>c:\users\robin\downloads\thecrashriders\hge project\hge project\hge project\game.cpp(366): warning C4244: 'argument' : conversion from 'int' to 'const short', possible loss of data
-     1>c:\users\robin\downloads\thecrashriders\hge project\hge project\hge project\game.cpp(371): warning C4244: 'argument' : conversion from 'int' to 'const short', possible loss of data
-     1>c:\users\robin\downloads\thecrashriders\hge project\hge project\hge project\game.cpp(373): warning C4244: 'argument' : conversion from 'int' to 'const short', possible loss of data
-     1>c:\users\robin\downloads\thecrashriders\hge project\hge project\hge project\game.cpp(380): warning C4244: 'argument' : conversion from 'int' to 'const short', possible loss of data
-     1>c:\users\robin\downloads\thecrashriders\hge project\hge project\hge project\game.cpp(382): warning C4244: 'argument' : conversion from 'int' to 'const short', possible loss of data
-         Stream.cpp
-         SoundBase.cpp
-         Sound.cpp
-         Generating Code...
-     1>c:\users\robin\downloads\thecrashriders\hge project\hge project\hge project\game.cpp(302): warning C4715: 'Game::CheckIfLineExists' : not all control paths return a value
+     1>c:\users\robin\desktop\thecrashriders\hge project\hge project\hge project\game.cpp(51): warning C4100: 'aTrigger' : unreferenced formal parameter
+     1>c:\users\robin\desktop\thecrashriders\hge project\hge project\hge project\game.cpp(51): warning C4100: 'aTriggerType' : unreferenced formal parameter
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"../WorkDir/DebugEXE.exe" /INCREMENTAL /NOLOGO hge.lib hgehelp.lib fmod_vc.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /NODEFAULTLIB:LIBC.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"../WorkDir/DebugEXE.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"../WorkDir/DebugEXE.lib" /MACHINE:X86 /SAFESEH:NO Debug\AudioSystem.obj
          Debug\Sound.obj
@@ -121,11 +33,11 @@
          Debug\Square.obj
          Debug\stdafx.obj
          Debug\TriggerManager.obj
-         "C:\Users\Robin\Downloads\TheCrashRiders\HGE Project\HGE Project\Debug\CommonUtilities.lib"
-         "C:\Users\Robin\Downloads\TheCrashRiders\HGE Project\HGE Project\Debug\NetworkEngine.lib"
-         HGE Project.vcxproj -> C:\Users\Robin\Downloads\TheCrashRiders\HGE Project\HGE Project\HGE Project\../WorkDir/DebugEXE.exe
-     1>Done Building Project "C:\Users\Robin\Downloads\TheCrashRiders\HGE Project\HGE Project\HGE Project\HGE Project.vcxproj" (Build target(s)).
+         "C:\Users\Robin\Desktop\TheCrashRiders\HGE Project\HGE Project\Debug\CommonUtilities.lib"
+         "C:\Users\Robin\Desktop\TheCrashRiders\HGE Project\HGE Project\Debug\NetworkEngine.lib"
+         HGE Project.vcxproj -> C:\Users\Robin\Desktop\TheCrashRiders\HGE Project\HGE Project\HGE Project\../WorkDir/DebugEXE.exe
+     1>Done Building Project "C:\Users\Robin\Desktop\TheCrashRiders\HGE Project\HGE Project\HGE Project\HGE Project.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:13.71
+Time Elapsed 00:00:01.01

@@ -17,17 +17,7 @@ public:
 	void Render();
 	void HandleInput() override;
 	void HandleInputWithoutGUI() override;
-	int	 CountTaken(int aIndex);
 
-	int FindIndex(int aX, int aY);
-
-
-	bool CheckIfLineExists(CU::Vector2i aPosition, int aIndex);
-
-	int WinCheck();
-
-	void UpdateRandom();
-	void UpdateChoice();
 	void Notify(const eTriggerType& aTriggerType, void* aTrigger) override;
 
 private:
@@ -35,11 +25,6 @@ private:
 	CU::GrowingArray<bool>			mySquareOccupation;
 
 	float myUpdateTimer;
-	int myChoiceScore;
-	int myRandomScore;
-	
-	bool myAITurn;
-	bool myHasTakenASquare;
 
 	hgeSprite* myNodeSprite;
 	hgeSprite* myVertSprite;
