@@ -55,10 +55,10 @@ void Avatar::HandleInput()
 
 CU::Vector2f Avatar::HandleCollision(CU::GrowingArray<FloorTile> tiles, CU::Vector2f position)
 {
-	bool zeroLeft = false;
-	bool zeroRight = false;
-	bool zeroUp = false;
-	bool zeroDown = false;
+	bool upperleftBlocked = false;
+	bool upperRightBlocked = false;
+	bool lowerLeftBlocked = false;
+	bool lowerRightBlocked = false;
 
 	AABB aabb = AABB(position.x, position.y, myBoundingBox.GetWidth(), myBoundingBox.GetHeight());
 
@@ -72,29 +72,43 @@ CU::Vector2f Avatar::HandleCollision(CU::GrowingArray<FloorTile> tiles, CU::Vect
 	{
 		auto tileAABB = tiles[tileIndex].GetAABB();
 
-		if (tileAABB.Inside(upperLeft) || tileAABB.Inside(lowerLeft))
-			zeroLeft = true;
+		if (tileAABB.Inside(upperLeft))
+		{
+			upperleftBlocked = true;
+		}
 
-		if (tileAABB.Inside(upperLeft) || tileAABB.Inside(upperRight))
-			zeroUp = true;
+		if (tileAABB.Inside(upperRight))
+		{
+			upperRightBlocked = true;
+		}
 
-		if (tileAABB.Inside(upperRight) || tileAABB.Inside(lowerRight))
-			zeroRight = true;
+		if (tileAABB.Inside(lowerLeft))
+		{
+			lowerLeftBlocked = true;
+		}
 
-		if (tileAABB.Inside(upperRight) || tileAABB.Inside(lowerRight))
-			zeroDown = true;
+		if (tileAABB.Inside(lowerRight))
+		{
+			lowerRightBlocked = true;
+		}
 	}
 
-	if (zeroLeft)
+	if (upperleftBlocked || lowerLeftBlocked)
+	{
 		position.x = max(position.x, myPosition.x);
+	}
 
-	if (zeroRight)
+	if (upperRightBlocked || lowerRightBlocked)
+	{
 		position.x = min(position.x, myPosition.x);
-
-	if (zeroUp)
+	}
+	
+	if (upperleftBlocked || upperRightBlocked)
+	{
 		position.y = max(position.y, myPosition.y);
+	}
 
-	if (zeroDown)
+	if (lowerLeftBlocked || lowerRightBlocked)
 	{
 		position.y = min(position.y, myPosition.y);
 		myVelocity.y = min(myVelocity.y, 0);
