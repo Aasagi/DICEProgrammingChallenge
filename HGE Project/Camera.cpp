@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "Camera.h"
-
+#include <cmath>
 
 Camera::Camera()
 {
@@ -20,5 +20,5 @@ CU::Vector2f Camera::ConvertPositionToCameraPosition(const CU::Vector2f& aPositi
 
 CU::Vector2f Camera::ConvertSquarePositionToCameraPosition(const CU::Vector2f& aPosition)
 {
-	return (aPosition - myPositionOffset*myPositionOffset);
+	return (aPosition - CU::Vector2f(sqrt(myPositionOffset.x), sqrt(myPositionOffset.y)));
 }
