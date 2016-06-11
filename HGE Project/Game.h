@@ -38,6 +38,8 @@ private:
 
 	hgeSprite* myBackground1;
 	hgeSprite* myBackground2;
+
+	int holePassCounter;
 };
 
 #endif

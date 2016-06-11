@@ -11,6 +11,7 @@
 Game::Game(void)
 {
 	myFloorTiles.Init(START_AREA_TILE_NUMBER);
+	holePassCounter = 0;
 }
 
 Game::~Game(void)
@@ -42,8 +43,15 @@ void Game::Update()
 		myCamera.myPositionOffset.x = myPlayer.myPosition.myX - WINDOW_WIDTH/2.f;
 	}
 
-
-	
+	int halfTileCount = myFloorTiles.Count() / 2;
+	if (myPlayer.GetPosition().x > myFloorTiles[halfTileCount].myPosition.x)
+	{
+		if (myFloorTiles[halfTileCount].GetTileHeight() == 0)
+		{
+			holePassCounter++;
+		}
+		GetNextFloor();
+	}
 	//Put code here
 	Render();
 }
@@ -51,10 +59,6 @@ void Game::Update()
 void Game::HandleInput()
 {
 	myPlayer.HandleInput();
-	if (Megaton::GetInputManager()->ButtonPressed(eButton::eSPACE))
-	{
-		GetNextFloor();
-	}
 }
 
 void Game::HandleInputWithoutGUI()
@@ -109,11 +113,11 @@ void Game::GetNextFloor()
 	}
 	else
 	{
-		if (rand() % 2 == 0)
+		if (rand() % 20 == 0)
 		{
 			lastTile.Recalculate(0);
 		}
-		else if (lastTileHeight < 5 && rand()%3 == 0)
+		else if (lastTileHeight < 5 && rand() % 5 == 0)
 		{
 			lastTile.Recalculate(++lastTileHeight);
 		}
@@ -138,10 +142,10 @@ CU::GrowingArray<FloorTile> Game::GetCollidingTiles(Avatar& player)
 		auto tile = myFloorTiles[tileIndex];
 		auto tileAABB = tile.GetAABB();
 
-		if (avatarAABB.Collides(tileAABB))
+		/*if (avatarAABB.Collides(tileAABB))
 		{
 			result.Add(tile);
-		}		
+		}	*/	
 	}
 
 	return result;
