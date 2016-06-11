@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Timer">
+      <UniqueIdentifier>{0aa58f6e-ea02-4635-96da-62538e9f7a9b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Vector">
+      <UniqueIdentifier>{29649745-31e6-4a7b-93fc-18d6f5f5045f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DL_Debug">
+      <UniqueIdentifier>{4294671e-f9ac-418e-b948-424d7d45add1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Data Structures">
+      <UniqueIdentifier>{0106f9b9-e155-4b7f-bbb0-e6b231213b48}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Matrix">
+      <UniqueIdentifier>{fa5548c6-75eb-461d-8071-a099fe3c1813}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="XML">
+      <UniqueIdentifier>{dc41a2a0-d555-4417-a878-1e0e04f29d37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FI_File">
+      <UniqueIdentifier>{f06c7e7f-3f83-4fa5-8a24-aa2d30a2c347}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Targa">
+      <UniqueIdentifier>{65a38d65-4098-49ea-b9af-18fc2d473ddf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Intersection">
+      <UniqueIdentifier>{70895a0c-ae04-43ac-bb38-fcf09596b9d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Memory">
+      <UniqueIdentifier>{85c79d1f-4164-474e-ac35-b0a3089957f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AABB">
+      <UniqueIdentifier>{7b2acf0b-51ce-4cf8-acd0-eb6e1fbe8112}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="DL_Assert.h">
+      <Filter>DL_Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="DL_Debug.h">
+      <Filter>DL_Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="DL_StackWalker.h">
+      <Filter>DL_Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="StackWalker.h">
+      <Filter>DL_Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="Time.h">
+      <Filter>Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer.h">
+      <Filter>Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="TimerManager.h">
+      <Filter>Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector.h">
+      <Filter>Vector</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector2.h">
+      <Filter>Vector</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector2decl.h">
+      <Filter>Vector</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector3.h">
+      <Filter>Vector</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector3decl.h">
+      <Filter>Vector</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector4.h">
+      <Filter>Vector</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector4decl.h">
+      <Filter>Vector</Filter>
+    </ClInclude>
+    <ClInclude Include="VectorOnStack.h">
+      <Filter>Data Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="BinaryTree.h">
+      <Filter>Data Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="DoubleLinkedList.h">
+      <Filter>Data Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="DoubleLinkedListDecl.h">
+      <Filter>Data Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="DoubleLinkedListNodeDecl.h">
+      <Filter>Data Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="GrowingArray.h">
+      <Filter>Data Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="Heap.h">
+      <Filter>Data Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="Stack.h">
+      <Filter>Data Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="StaticArray.h">
+      <Filter>Data Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="TreeNode.h">
+      <Filter>Data Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="Matrix.h">
+      <Filter>Matrix</Filter>
+    </ClInclude>
+    <ClInclude Include="tinyxml2.h">
+      <Filter>XML</Filter>
+    </ClInclude>
+    <ClInclude Include="XMLReader.h">
+      <Filter>XML</Filter>
+    </ClInclude>
+    <ClInclude Include="FI_File.h">
+      <Filter>FI_File</Filter>
+    </ClInclude>
+    <ClInclude Include="I3u_tga32.h">
+      <Filter>Targa</Filter>
+    </ClInclude>
+    <ClInclude Include="I3U_Enums.h">
+      <Filter>Targa</Filter>
+    </ClInclude>
+    <ClInclude Include="Line.h">
+      <Filter>Intersection</Filter>
+    </ClInclude>
+    <ClInclude Include="LineSegment2D.h">
+      <Filter>Intersection</Filter>
+    </ClInclude>
+    <ClInclude Include="Intersection.h">
+      <Filter>Intersection</Filter>
+    </ClInclude>
+    <ClInclude Include="GreaterPointer.h">
+      <Filter>Data Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="LesserPointer.h">
+      <Filter>Data Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="MemoryBucket.h">
+      <Filter>Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="MemoryContainer.h">
+      <Filter>Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="AABB.h">
+      <Filter>AABB</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="DL_Debug.cpp">
+      <Filter>DL_Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="DL_StackWalker.cpp">
+      <Filter>DL_Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="StackWalker.cpp">
+      <Filter>DL_Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="Timer.cpp">
+      <Filter>Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="TimerManager.cpp">
+      <Filter>Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="tinyxml2.cpp">
+      <Filter>XML</Filter>
+    </ClCompile>
+    <ClCompile Include="XMLReader.cpp">
+      <Filter>XML</Filter>
+    </ClCompile>
+    <ClCompile Include="FI_File.cpp">
+      <Filter>FI_File</Filter>
+    </ClCompile>
+    <ClCompile Include="I3U_tga32.cpp">
+      <Filter>Targa</Filter>
+    </ClCompile>
+    <ClCompile Include="MemoryBucket.cpp">
+      <Filter>Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="AABB.cpp">
+      <Filter>AABB</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

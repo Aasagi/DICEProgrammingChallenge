@@ -1,0 +1,11 @@
+<settings>
+	<windowed value="true" />
+	<title value="Navigation mesh" />
+	<screenwidth value="1280" />
+	<screenheight value="720" />
+	<fps value="60" />
+	<logfile value="HGE_Error.log" />
+	<screenbpp value="32" />
+	<showsplash value="false" />
+	<zbuffer value="true" />
+</settings>

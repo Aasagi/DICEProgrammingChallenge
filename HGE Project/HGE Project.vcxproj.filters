@@ -1,0 +1,240 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="GameObjects">
+      <UniqueIdentifier>{f2d67734-6a09-44ea-801b-4c8aaacf187a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ResourceManager">
+      <UniqueIdentifier>{2871d683-8c27-4eeb-aac4-fb248ad7fd5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Main">
+      <UniqueIdentifier>{e89e7948-1a86-4620-8af7-1194359c57c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameLoop">
+      <UniqueIdentifier>{a7831262-e2ea-4701-b8eb-0c0a0edd9c95}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameStates">
+      <UniqueIdentifier>{65d160ff-5d15-4ee8-855b-db176c852e78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Megaton">
+      <UniqueIdentifier>{a94862fe-6d37-4ec4-9aee-8d3b1f3a78c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Megaton\SingleTons">
+      <UniqueIdentifier>{b26bfd56-d8dc-4484-98a7-5550e133d13a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Megaton\SingleTons\InputManager">
+      <UniqueIdentifier>{0cbd952f-3c7b-4f9a-934c-3c1488e619b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Megaton\SingleTons\GUIManager">
+      <UniqueIdentifier>{21b23739-51f6-46aa-83b2-eaf32f3896a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Megaton\SingleTons\AudioSystem">
+      <UniqueIdentifier>{66803eaf-a677-4cca-8b83-bfe9ea77ef9d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Megaton\SingleTons\TriggerManager">
+      <UniqueIdentifier>{e2120914-60a9-41d3-bd43-5a5e9b7a675a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Megaton\SingleTons\Renderer">
+      <UniqueIdentifier>{b924496b-168d-463e-ba0d-850c1015e4a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Widgets">
+      <UniqueIdentifier>{197b2ffc-55f9-4612-bc2f-fb348e545a31}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjectManager.h">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager.h">
+      <Filter>Megaton\SingleTons\InputManager</Filter>
+    </ClInclude>
+    <ClInclude Include="InputButton.h">
+      <Filter>Megaton\SingleTons\InputManager</Filter>
+    </ClInclude>
+    <ClInclude Include="InputMouse.h">
+      <Filter>Megaton\SingleTons\InputManager</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceManager.h">
+      <Filter>ResourceManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="GameLoop.h">
+      <Filter>GameLoop</Filter>
+    </ClInclude>
+    <ClInclude Include="MainMenu.h">
+      <Filter>GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="Megaton.h">
+      <Filter>Megaton</Filter>
+    </ClInclude>
+    <ClInclude Include="TriggerSystem\Trigger.h">
+      <Filter>Megaton\SingleTons\TriggerManager</Filter>
+    </ClInclude>
+    <ClInclude Include="TriggerSystem\TriggerManager.h">
+      <Filter>Megaton\SingleTons\TriggerManager</Filter>
+    </ClInclude>
+    <ClInclude Include="TriggerSystem\TriggerObserver.h">
+      <Filter>Megaton\SingleTons\TriggerManager</Filter>
+    </ClInclude>
+    <ClInclude Include="AudioSystem\AudioSystem.h">
+      <Filter>Megaton\SingleTons\AudioSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="AudioSystem\Sound.h">
+      <Filter>Megaton\SingleTons\AudioSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="AudioSystem\SoundBase.h">
+      <Filter>Megaton\SingleTons\AudioSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="AudioSystem\Stream.h">
+      <Filter>Megaton\SingleTons\AudioSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\GUIManager.h">
+      <Filter>Megaton\SingleTons\GUIManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\FontRenderCommand.h">
+      <Filter>Megaton\SingleTons\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\RenderCommand.h">
+      <Filter>Megaton\SingleTons\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\Renderer.h">
+      <Filter>Megaton\SingleTons\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\RenderManager.h">
+      <Filter>Megaton\SingleTons\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\SpriteRenderCommand.h">
+      <Filter>Megaton\SingleTons\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="GameState.h">
+      <Filter>GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="Settings.h">
+      <Filter>Megaton\SingleTons</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Widget.h">
+      <Filter>Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Button.h">
+      <Filter>Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="Line.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Square.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjectManager.cpp">
+      <Filter>GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>Megaton\SingleTons\InputManager</Filter>
+    </ClCompile>
+    <ClCompile Include="InputMouse.cpp">
+      <Filter>Megaton\SingleTons\InputManager</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceManager.cpp">
+      <Filter>ResourceManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="GameLoop.cpp">
+      <Filter>GameLoop</Filter>
+    </ClCompile>
+    <ClCompile Include="MainMenu.cpp">
+      <Filter>GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="Megaton.cpp">
+      <Filter>Megaton</Filter>
+    </ClCompile>
+    <ClCompile Include="TriggerSystem\TriggerManager.cpp">
+      <Filter>Megaton\SingleTons\TriggerManager</Filter>
+    </ClCompile>
+    <ClCompile Include="AudioSystem\AudioSystem.cpp">
+      <Filter>Megaton\SingleTons\AudioSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="AudioSystem\Sound.cpp">
+      <Filter>Megaton\SingleTons\AudioSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="AudioSystem\SoundBase.cpp">
+      <Filter>Megaton\SingleTons\AudioSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="AudioSystem\Stream.cpp">
+      <Filter>Megaton\SingleTons\AudioSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="GUI\GUIManager.cpp">
+      <Filter>Megaton\SingleTons\GUIManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\FontRenderCommand.cpp">
+      <Filter>Megaton\SingleTons\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\RenderCommand.cpp">
+      <Filter>Megaton\SingleTons\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\Renderer.cpp">
+      <Filter>Megaton\SingleTons\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\RenderManager.cpp">
+      <Filter>Megaton\SingleTons\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\SpriteRenderCommand.cpp">
+      <Filter>Megaton\SingleTons\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="GameState.cpp">
+      <Filter>GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="GUI\Button.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="Line.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Square.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
