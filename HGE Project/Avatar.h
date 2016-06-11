@@ -16,6 +16,7 @@ public:
 	void Update(CU::GrowingArray<FloorTile> tiles);
 	void HandleInput();
 	void SetDuckedState(bool);
+	bool GetHeadIsColliding();
 	AABB GetAABB();
 	CU::Vector2f GetPosition() const;
 
@@ -31,5 +32,6 @@ private:
 	bool CollidedLastFrame;
 	hgeSprite* mySprite;
 	bool myIsDucked;
+	bool myIsCollidingWithHead;
 };
 

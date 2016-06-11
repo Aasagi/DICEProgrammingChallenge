@@ -108,6 +108,7 @@ CU::Vector2f Avatar::HandleCollision(CU::GrowingArray<FloorTile> tiles, CU::Vect
 	bool rightBlocked = false;
 	bool leftBlocked = false;
 	bool downBlocked = false;
+	myIsCollidingWithHead = false;
 	CollidedLastFrame = false;
 
 	AABB aabb = AABB(position.x, position.y, boundBox.GetWidth(), boundBox.GetHeight());
@@ -148,6 +149,7 @@ CU::Vector2f Avatar::HandleCollision(CU::GrowingArray<FloorTile> tiles, CU::Vect
 		if (tileAABB.Inside(up))
 		{
 			upBlocked = true;
+			myIsCollidingWithHead = true;
 		}
 		if (tileAABB.Inside(low))
 		{
@@ -199,6 +201,10 @@ CU::Vector2f Avatar::GetPosition() const
 	return myPosition;
 }
 
+bool Avatar::GetHeadIsColliding()
+{
+	return myIsCollidingWithHead;
+}
 void Avatar::Render(Camera& aCamera) const
 {
 	SpriteRenderCommand* spriteRenderCommand = new SpriteRenderCommand(mySprite, aCamera.ConvertPositionToCameraPosition(myPosition));

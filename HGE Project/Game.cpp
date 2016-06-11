@@ -126,12 +126,8 @@ void Game::Notify(const eTriggerType& aTriggerType, void* aTrigger)
 
 void Game::Render()
 {
-
 	SpriteRenderCommand* bgSprite = new SpriteRenderCommand(myBackground1, myCamera.ConvertPositionToCameraPosition(CU::Vector2f(0, WINDOW_WIDTH)));
 	SpriteRenderCommand* bgSprite1 = new SpriteRenderCommand(myBackground1, myCamera.ConvertSquarePositionToCameraPosition(CU::Vector2f(0, 0)));
-
-
-
 
 	for (int floorIndex = 0; floorIndex < myFloorTiles.Count(); floorIndex++)
 	{
@@ -286,6 +282,10 @@ CU::GrowingArray<FloorTile> Game::GetCollidingTiles(Avatar& player)
 
 		if (avatarAABB.Collides(tileAABB))
 		{
+			if (player.GetHeadIsColliding())
+			{
+				myCeilingTiles[tileIndex].Recalculate(0);
+			}
 			result.Add(tile);
 		}
 	}
