@@ -19,7 +19,12 @@ public:
 
 private:
 	CU::Vector2f myPosition;
+	CU::Vector2f myNewPosition;
 	AABB myBoundingBox;
+
+	CU::Vector2f myVelocity;
+	float myMovementSpeed;
+	float myFloorPlacing;
 
 	hgeSprite* mySprite;
 };

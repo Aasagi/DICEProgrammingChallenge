@@ -20,6 +20,8 @@ Game::~Game(void)
 
 void Game::Init()
 {
+	myBackground1 = Megaton::GetResourceManager()->GetSprite("Data/Background/BG1.png");
+	myBackground2 = Megaton::GetResourceManager()->GetSprite("Data/Background/BG2.png");
 	srand(time(NULL));
 	GenerateRandomFloor();
 	myPlayer.Init();
@@ -57,6 +59,8 @@ void Game::Notify(const eTriggerType& aTriggerType, void* aTrigger)
 
 void Game::Render()
 {
+	SpriteRenderCommand* bgSprite = new SpriteRenderCommand(myBackground1,CU::Vector2f)
+
 	for (int floorIndex = 0; floorIndex < myFloorTiles.Count(); floorIndex++)
 	{
 		Megaton::GetRenderManager()->AddCommand(myFloorTiles[floorIndex].GetRenderCommand());
