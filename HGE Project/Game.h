@@ -30,6 +30,9 @@ private:
 
 	void GenerateStartArea();
 	void GetNextFloor();
+
+	hgeSprite* myBackground1;
+	hgeSprite* myBackground2;
 };
 
 #endif
