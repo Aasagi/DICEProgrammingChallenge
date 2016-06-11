@@ -12,14 +12,15 @@ public:
 	GoalObject();
 	~GoalObject();
 
-	CU::Vector2f myPosition;
 	AABB GetAABB() const;
+	CU::Vector2f GetPostion() const;
+	void SetPosition(const CU::Vector2f& newPosition);
 
 	void Render(Camera& aCamera);
 
-	int GetTileHeight();
 private:
 	hgeSprite* myGoalSprite;
 	AABB myBoundingBox;
+	CU::Vector2f myPosition;
 };
 

@@ -8,7 +8,7 @@
 GoalObject::GoalObject()
 {
 	myGoalSprite = Megaton::GetResourceManager()->GetSprite("Data/goal.png");
-};
+}
 
 GoalObject::~GoalObject()
 {
@@ -24,3 +24,14 @@ AABB GoalObject::GetAABB() const
 	return myBoundingBox;
 }
 
+
+CU::Vector2f GoalObject::GetPostion() const
+{
+	return myPosition;
+}
+
+void GoalObject::SetPosition(const CU::Vector2f& newPosition)
+{
+	myPosition = newPosition;
+	myBoundingBox = AABB(myPosition.x, myPosition.y, myGoalSprite->GetWidth(), myGoalSprite->GetHeight());
+}
