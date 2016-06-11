@@ -27,7 +27,7 @@ private:
 
 	hgeSprite* myFloorSprite;
 
-
+	void GenerateRandomFloor();
 };
 
 #endif

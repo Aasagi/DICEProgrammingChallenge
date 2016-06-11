@@ -6,6 +6,11 @@
 #include "Button.h"
 #include "MainMenu.h"
 #include "Renderer\FontRenderCommand.h"
+
+#define WINDOW_WIDTH 800.0f
+#define WINDOW_HEIGHT 600.0f
+#define TILE_SIZE 20.0f
+
 Game::Game(void)
 {
 }
@@ -19,13 +24,7 @@ void Game::Init()
 {
 	myFloorSprite = Megaton::GetResourceManager()->GetSprite("Data/node.png");
 
-	int numTiles = 800.0f / 20.0f;
-	myFloorTiles.Init(numTiles);
-	for (int floorIndex = 0; floorIndex < numTiles; floorIndex++)
-	{ 
-		myFloorTiles.Add(FloorTile());
-		myFloorTiles[floorIndex].myPosition = CU::Vector2f(floorIndex*20.0f, 580.0f);
-	}
+	GenerateRandomFloor();
 }
 
 void Game::Update()
@@ -63,4 +62,15 @@ void Game::Render()
 		Megaton::GetRenderManager()->AddCommand(spriteRenderCommand);
 	}
 
+}
+
+void Game::GenerateRandomFloor()
+{
+	int numTiles = WINDOW_WIDTH / TILE_SIZE;
+	myFloorTiles.Init(numTiles);
+	for (int floorIndex = 0; floorIndex < numTiles; floorIndex++)
+	{
+		myFloorTiles.Add(FloorTile());
+		myFloorTiles[floorIndex].myPosition = CU::Vector2f(floorIndex*TILE_SIZE, WINDOW_HEIGHT - TILE_SIZE);
+	}
 }
