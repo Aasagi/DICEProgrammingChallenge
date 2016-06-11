@@ -15,6 +15,7 @@ public:
 	void Update(CU::GrowingArray<FloorTile> tiles);
 	void HandleInput();
 	AABB GetAABB();
+	CU::Vector2f GetPosition();
 
 private:
 	CU::Vector2f HandleCollision(CU::GrowingArray<FloorTile> tiles, CU::Vector2f position);

@@ -38,6 +38,11 @@ void Game::Update()
 
 	myPlayer.Update(GetCollidingTiles(myPlayer));	
 
+	int halfTileCount = myFloorTiles.Count() / 2;
+	if (myPlayer.GetPosition().x > myFloorTiles[halfTileCount].myPosition.x)
+	{
+		GetNextFloor();
+	}
 	//Put code here
 	Render();
 }
@@ -45,10 +50,6 @@ void Game::Update()
 void Game::HandleInput()
 {
 	myPlayer.HandleInput();
-	if (Megaton::GetInputManager()->ButtonPressed(eButton::eSPACE))
-	{
-		GetNextFloor();
-	}
 }
 
 void Game::HandleInputWithoutGUI()

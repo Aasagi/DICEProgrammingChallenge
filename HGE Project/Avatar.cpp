@@ -9,7 +9,7 @@
 Avatar::Avatar()
 {
 	mySprite = nullptr;
-	myPosition.Set(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 5 * 4);
+	myPosition.Set(WINDOW_WIDTH / 4, WINDOW_HEIGHT / 5 * 4);
 	myFloorPlacing = myPosition.myY;
 	myMovementSpeed = 200.f;
 
@@ -100,6 +100,10 @@ CU::Vector2f Avatar::HandleCollision(CU::GrowingArray<FloorTile> tiles, CU::Vect
 	return position;
 }
 
+CU::Vector2f Avatar::GetPosition()
+{
+	return myPosition;
+}
 
 void Avatar::Render()
 {
