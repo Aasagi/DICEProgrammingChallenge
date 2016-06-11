@@ -107,7 +107,8 @@ CU::Vector2f Avatar::GetPosition()
 
 void Avatar::Render()
 {
-	SpriteRenderCommand* spriteRenderCommand = new SpriteRenderCommand(mySprite, myPosition);
+	
+	SpriteRenderCommand* spriteRenderCommand = new SpriteRenderCommand(mySprite, aCamera.ConvertPositionToCameraPosition(myPosition));
 	Megaton::GetRenderManager()->AddCommand(spriteRenderCommand);
 }
 

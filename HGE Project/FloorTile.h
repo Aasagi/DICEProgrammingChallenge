@@ -1,6 +1,7 @@
 #pragma once
 #include "CommonUtilities\Vector2.h"
 #include "CommonUtilities\AABB.h"
+#include "Camera.h"
 
 class SpriteRenderCommand;
 class hgeSprite;
@@ -14,7 +15,7 @@ public:
 	CU::Vector2f myPosition;
 	AABB GetAABB() const;
 
-	void Render();
+	void Render(Camera& aCamera);
 	void Recalculate(int tileHeight);
 
 	int GetTileHeight();
