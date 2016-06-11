@@ -1,17 +1,12 @@
 #include "stdafx.h"
 #include "Game.h"
-#include "hgesprite.h"
 #include "SpriteRenderCommand.h"
 #include "Megaton.h"
 #include "Button.h"
 #include "time.h"
 #include "MainMenu.h"
 #include "Renderer\FontRenderCommand.h"
-
-#define WINDOW_WIDTH 800.0f
-#define WINDOW_HEIGHT 600.0f
-#define TILE_SIZE 20.0f
-#define START_AREA_TILE_NUMBER 5
+#include "Defines.h"
 
 Game::Game(void)
 {
@@ -27,6 +22,7 @@ void Game::Init()
 {
 	srand(time(NULL));
 	GenerateRandomFloor();
+	myPlayer.Init();
 }
 
 void Game::Update()
@@ -38,6 +34,7 @@ void Game::Update()
 		mySubStates[i]->Update();
 	}
 
+	myPlayer.Update();
 
 	//Put code here
 	Render();
@@ -45,7 +42,7 @@ void Game::Update()
 
 void Game::HandleInput()
 {
-
+	myPlayer.HandleInput();
 }
 
 void Game::HandleInputWithoutGUI()
@@ -63,6 +60,7 @@ void Game::Render()
 		Megaton::GetRenderManager()->AddCommand(myFloorTiles[floorIndex].GetRenderCommand());
 	}
 
+	myPlayer.Render();
 }
 
 void Game::GenerateRandomFloor()

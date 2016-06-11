@@ -4,6 +4,8 @@
 #include "GameState.h"
 #include "TriggerObserver.h"
 #include "FloorTile.h"
+#include "Avatar.h"
+
 
 class Game : public GameState, public TriggerObserver
 {
@@ -24,6 +26,7 @@ private:
 
 	float myUpdateTimer;
 
+	Avatar myPlayer;
 
 	void GenerateRandomFloor();
 };

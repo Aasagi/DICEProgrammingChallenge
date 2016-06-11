@@ -63,9 +63,6 @@
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GameObject.h">
-      <Filter>GameObjects</Filter>
-    </ClInclude>
     <ClInclude Include="GameObjectManager.h">
       <Filter>GameObjects</Filter>
     </ClInclude>
@@ -80,9 +77,6 @@
     </ClInclude>
     <ClInclude Include="ResourceManager.h">
       <Filter>ResourceManager</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>GameObjects</Filter>
     </ClInclude>
     <ClInclude Include="Game.h">
       <Filter>GameStates</Filter>
@@ -153,15 +147,18 @@
     <ClInclude Include="FloorTile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Avatar.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Defines.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GameObjectManager.cpp">
-      <Filter>GameObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObject.cpp">
       <Filter>GameObjects</Filter>
     </ClCompile>
     <ClCompile Include="InputManager.cpp">
@@ -175,9 +172,6 @@
     </ClCompile>
     <ClCompile Include="Main.cpp">
       <Filter>Main</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>GameObjects</Filter>
     </ClCompile>
     <ClCompile Include="Game.cpp">
       <Filter>GameStates</Filter>
@@ -234,6 +228,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="FloorTile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Avatar.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
