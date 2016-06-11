@@ -6,7 +6,6 @@
 #include "FloorTile.h"
 #include "Avatar.h"
 
-class hgeSprite;
 
 class Game : public GameState, public TriggerObserver
 {
@@ -27,7 +26,6 @@ private:
 
 	float myUpdateTimer;
 
-	hgeSprite* myFloorSprite;
 	Avatar myPlayer;
 
 	void GenerateRandomFloor();

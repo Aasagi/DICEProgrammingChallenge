@@ -18,7 +18,6 @@ Game::~Game(void)
 
 void Game::Init()
 {
-	myFloorSprite = Megaton::GetResourceManager()->GetSprite("Data/node.png");
 
 	GenerateRandomFloor();
 	myPlayer.Init();
@@ -56,8 +55,7 @@ void Game::Render()
 {
 	for (int floorIndex = 0; floorIndex < myFloorTiles.Count(); floorIndex++)
 	{
-		SpriteRenderCommand* spriteRenderCommand = new SpriteRenderCommand(myFloorSprite, myFloorTiles[floorIndex].myPosition);
-		Megaton::GetRenderManager()->AddCommand(spriteRenderCommand);
+		Megaton::GetRenderManager()->AddCommand(myFloorTiles[floorIndex].GetRenderCommand());
 	}
 
 	myPlayer.Render();
@@ -65,6 +63,7 @@ void Game::Render()
 
 void Game::GenerateRandomFloor()
 {
+
 	int numTiles = WINDOW_WIDTH / TILE_SIZE;
 	myFloorTiles.Init(numTiles);
 	for (int floorIndex = 0; floorIndex < numTiles; floorIndex++)
@@ -72,4 +71,6 @@ void Game::GenerateRandomFloor()
 		myFloorTiles.Add(FloorTile());
 		myFloorTiles[floorIndex].myPosition = CU::Vector2f(floorIndex*TILE_SIZE, WINDOW_HEIGHT - TILE_SIZE);
 	}
+
+	
 }
