@@ -19,17 +19,14 @@ public:
 	AABB GetAABB();
 	CU::Vector2f GetPosition() const;
 
-	CU::Vector2f myPosition;
 private:
 	CU::Vector2f HandleCollision(CU::GrowingArray<FloorTile> tiles, CU::Vector2f position);
-
-	CU::Vector2f myNewPosition;
-
+	CU::Vector2f myPosition;
 	CU::Vector2f myVelocity;
+	CU::Vector2f mySize;
 	float myMovementSpeed;
 	float myFloorPlacing;
 	bool CollidedLastFrame;
 	hgeSprite* mySprite;
-	bool myIsDucked;
 };
 
