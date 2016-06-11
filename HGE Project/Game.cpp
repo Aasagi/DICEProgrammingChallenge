@@ -102,6 +102,22 @@ void Game::Render()
 	SpriteRenderCommand* bgSprite = new SpriteRenderCommand(myBackground1, myCamera.ConvertPositionToCameraPosition(CU::Vector2f(0,WINDOW_WIDTH)));
 	SpriteRenderCommand* bgSprite1 = new SpriteRenderCommand(myBackground1, myCamera.ConvertSquarePositionToCameraPosition(CU::Vector2f(0, 0)));
 
+	
+
+
+	for (int floorIndex = 0; floorIndex < myFloorTiles.Count(); floorIndex++)
+	{
+		myFloorTiles[floorIndex].Render(myCamera);
+	}
+
+	myPlayer.Render(myCamera);
+	myGoalObject.Render(myCamera);
+
+	FontRenderCommand* fontRender = new FontRenderCommand(std::string("Score: ") + std::to_string(holePassCounter), Megaton::GetResourceManager()->GetFont(), CU::Vector2f(20.0f, 20.0f));
+	fontRender->SetColor(ARGB(200, 0, 0, 0));
+	Megaton::GetRenderManager()->AddCommand(fontRender);
+
+
 	if (myCurrentState != ePlaying)
 	{
 		switch (myCurrentState)
@@ -129,17 +145,6 @@ void Game::Render()
 	}
 
 
-	for (int floorIndex = 0; floorIndex < myFloorTiles.Count(); floorIndex++)
-	{
-		myFloorTiles[floorIndex].Render(myCamera);
-	}
-
-	FontRenderCommand* fontRender = new FontRenderCommand(std::string("Score: ") + std::to_string(holePassCounter), Megaton::GetResourceManager()->GetFont(), CU::Vector2f(20.0f, 20.0f));
-	fontRender->SetColor(ARGB(200, 0, 0, 0));
-	Megaton::GetRenderManager()->AddCommand(fontRender);
-
-	myPlayer.Render(myCamera);
-	myGoalObject.Render(myCamera);
 	Megaton::GetRenderManager()->AddCommand(bgSprite);
 	Megaton::GetRenderManager()->AddCommand(bgSprite1);
 }

@@ -1,8 +1,26 @@
-﻿Build started 11-Jun-2016 14:11:16.
+﻿Build started 11-Jun-2016 15:03:47.
      1>Project "C:\Users\Robin\Desktop\TheCrashRiders\HGE Project\HGE Project\HGE Project\HGE Project.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I../ /ZI /nologo /W4 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\DebugEXE.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt GoalObject.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I../ /ZI /nologo /W4 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\DebugEXE.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Avatar.cpp FloorTile.cpp Game.cpp GoalObject.cpp
+         Avatar.cpp
+     1>c:\users\robin\desktop\thecrashriders\hge project\hge project\hge project\avatar.cpp(34): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\robin\desktop\thecrashriders\hge project\hge project\hge project\avatar.cpp(91): warning C4244: 'argument' : conversion from 'int' to 'const short', possible loss of data
+     1>c:\users\robin\desktop\thecrashriders\hge project\hge project\hge project\avatar.cpp(160): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+         Generating Code...
+         Compiling...
          GoalObject.cpp
+         Game.cpp
+     1>c:\users\robin\desktop\thecrashriders\hge project\hge project\hge project\game.cpp(31): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
+     1>c:\users\robin\desktop\thecrashriders\hge project\hge project\hge project\game.cpp(60): warning C4244: 'argument' : conversion from 'int' to 'const short', possible loss of data
+     1>c:\users\robin\desktop\thecrashriders\hge project\hge project\hge project\game.cpp(62): warning C4244: 'argument' : conversion from 'int' to 'const short', possible loss of data
+     1>c:\users\robin\desktop\thecrashriders\hge project\hge project\hge project\game.cpp(95): warning C4100: 'aTrigger' : unreferenced formal parameter
+     1>c:\users\robin\desktop\thecrashriders\hge project\hge project\hge project\game.cpp(95): warning C4100: 'aTriggerType' : unreferenced formal parameter
+     1>c:\users\robin\desktop\thecrashriders\hge project\hge project\hge project\game.cpp(110): warning C4244: 'argument' : conversion from 'int' to 'const short', possible loss of data
+     1>c:\users\robin\desktop\thecrashriders\hge project\hge project\hge project\game.cpp(170): warning C4244: 'argument' : conversion from 'int' to 'const short', possible loss of data
+     1>c:\users\robin\desktop\thecrashriders\hge project\hge project\hge project\game.cpp(177): warning C4244: 'argument' : conversion from 'int' to 'const short', possible loss of data
+     1>c:\users\robin\desktop\thecrashriders\hge project\hge project\hge project\game.cpp(212): warning C4244: 'argument' : conversion from 'int' to 'const short', possible loss of data
+         FloorTile.cpp
+         Generating Code...
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"../WorkDir/DebugEXE.exe" /INCREMENTAL /NOLOGO hge.lib hgehelp.lib fmod_vc.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /NODEFAULTLIB:LIBC.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"../WorkDir/DebugEXE.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"../WorkDir/DebugEXE.lib" /MACHINE:X86 /SAFESEH:NO Debug\AudioSystem.obj
          Debug\Sound.obj
@@ -39,4 +57,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:00.82
+Time Elapsed 00:00:02.23

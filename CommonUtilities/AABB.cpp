@@ -39,10 +39,7 @@ bool AABB::Collides(const AABB aAABB)
 	distance.x = abs(distance.x);
 	distance.y = abs(distance.y);
 
-	if (distance.x <= (GetWidth() + aAABB.GetWidth()))
-		return true;
-
-	if (distance.y <= (GetHeight() + aAABB.GetHeight()))
+	if (distance.x <= (GetWidth() + aAABB.GetWidth()) && distance.y <= (GetHeight() + aAABB.GetHeight()))
 		return true;
 
 	return false;
