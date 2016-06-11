@@ -86,6 +86,8 @@ CU::Vector2f Avatar::HandleCollision(CU::GrowingArray<FloorTile> tiles, CU::Vect
 	bool downBlocked = false;
 	CollidedLastFrame = false;
 
+
+
 	CU::Vector2f upperLeft = CU::Vector2f(aabb.GetX(), aabb.GetY());
 	CU::Vector2f up = CU::Vector2f(aabb.GetX(), aabb.GetY() + aabb.GetWidth() / 2);
 	CU::Vector2f upperRight = CU::Vector2f(aabb.GetX() + aabb.GetWidth(), aabb.GetY());

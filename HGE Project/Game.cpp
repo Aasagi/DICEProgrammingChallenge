@@ -26,7 +26,7 @@ void Game::Init()
 	myBackground1 = Megaton::GetResourceManager()->GetSprite("Data/Background/BG1.png");
 	myBackground1->SetTextureRect(0, 0, 800, 600);
 	myBackground2 = Megaton::GetResourceManager()->GetSprite("Data/Background/BG2.png");
-	myBackground2->SetTextureRect(0, 0, 800, 600,false);
+	myBackground2->SetTextureRect(0, 0, 800, 600, false);
 
 	srand(time(NULL));
 	GenerateStartArea();
@@ -37,12 +37,13 @@ void Game::Init()
 void Game::Update()
 {
 	GameState::Update();
-	
+
 	for (int i = mySubStates.Size() - 1; 0 <= i; --i)
 	{
 		mySubStates[i]->Update();
 	}
 
+	auto playerPosition = myPlayer.GetPosition();
 	if (myCurrentState == ePlaying)
 	{
 		if (myPlayer.GetAABB().Collides(myGoalObject.GetAABB()))
@@ -51,14 +52,14 @@ void Game::Update()
 		}
 		//myCamera.myPositionOffset.x += 0.1f;// myPlayer.myPosition.myX - WINDOW_WIDTH / 2.f;
 		myPlayer.Update(GetCollidingTiles(myPlayer));
-		if (myPlayer.myPosition.x - myCamera.myPositionOffset.x <= 0 || myPlayer.myPosition.y- myPlayer.GetAABB().GetHeight() > WINDOW_HEIGHT)
+		if (playerPosition.x - myCamera.myPositionOffset.x <= 0 || playerPosition.y - myPlayer.GetAABB().GetHeight() > WINDOW_HEIGHT)
 		{
 			myCurrentState = eGameover;
 		}
 	}
 
 	auto halfTileCount = myFloorTiles.Count() / 2;
-	if (tilesPassed < TILES_PASS_TO_GOAL && myPlayer.GetPosition().x > myFloorTiles[halfTileCount].GetPosition().x)
+	if (tilesPassed < TILES_PASS_TO_GOAL && playerPosition.x > myFloorTiles[halfTileCount].GetPosition().x)
 	{
 		if (myFloorTiles[halfTileCount].GetTileHeight() == 0)
 		{
@@ -71,7 +72,7 @@ void Game::Update()
 		tilesPassed++;
 		GetNextFloor();
 	}
-	
+
 	//Put code here
 	Render();
 }
@@ -99,10 +100,10 @@ void Game::Notify(const eTriggerType& aTriggerType, void* aTrigger)
 void Game::Render()
 {
 
-	SpriteRenderCommand* bgSprite = new SpriteRenderCommand(myBackground1, myCamera.ConvertPositionToCameraPosition(CU::Vector2f(0,WINDOW_WIDTH)));
+	SpriteRenderCommand* bgSprite = new SpriteRenderCommand(myBackground1, myCamera.ConvertPositionToCameraPosition(CU::Vector2f(0, WINDOW_WIDTH)));
 	SpriteRenderCommand* bgSprite1 = new SpriteRenderCommand(myBackground1, myCamera.ConvertSquarePositionToCameraPosition(CU::Vector2f(0, 0)));
 
-	
+
 
 
 	for (int floorIndex = 0; floorIndex < myFloorTiles.Count(); floorIndex++)
@@ -126,17 +127,17 @@ void Game::Render()
 			break;
 		case eGameover:
 		{
-			FontRenderCommand* fontRender = new FontRenderCommand(std::string("GAME OVER"), Megaton::GetResourceManager()->GetFont(), CU::Vector2f(WINDOW_WIDTH / 3, WINDOW_HEIGHT / 2));
-			fontRender->SetColor(ARGB(200, 0, 0, 0));
-			Megaton::GetRenderManager()->AddCommand(fontRender);
-			break;
+						  FontRenderCommand* fontRender = new FontRenderCommand(std::string("GAME OVER"), Megaton::GetResourceManager()->GetFont(), CU::Vector2f(WINDOW_WIDTH / 3, WINDOW_HEIGHT / 2));
+						  fontRender->SetColor(ARGB(200, 0, 0, 0));
+						  Megaton::GetRenderManager()->AddCommand(fontRender);
+						  break;
 		}
 		case eWin:
 		{
-			FontRenderCommand* fontRender = new FontRenderCommand(std::string("A WINNER IS YOU"), Megaton::GetResourceManager()->GetFont(), CU::Vector2f(WINDOW_WIDTH / 3, WINDOW_HEIGHT / 2));
-			fontRender->SetColor(ARGB(200, 0, 0, 0));
-			Megaton::GetRenderManager()->AddCommand(fontRender);
-			break;
+					 FontRenderCommand* fontRender = new FontRenderCommand(std::string("A WINNER IS YOU"), Megaton::GetResourceManager()->GetFont(), CU::Vector2f(WINDOW_WIDTH / 3, WINDOW_HEIGHT / 2));
+					 fontRender->SetColor(ARGB(200, 0, 0, 0));
+					 Megaton::GetRenderManager()->AddCommand(fontRender);
+					 break;
 
 		}
 		default:
@@ -215,7 +216,7 @@ CU::GrowingArray<FloorTile> Game::GetCollidingTiles(Avatar& player)
 		if (avatarAABB.Collides(tileAABB))
 		{
 			result.Add(tile);
-		}	
+		}
 	}
 
 	return result;
