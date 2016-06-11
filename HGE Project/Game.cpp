@@ -10,7 +10,7 @@
 
 Game::Game(void)
 {
-	
+	myFloorTiles.Init(START_AREA_TILE_NUMBER);
 }
 
 Game::~Game(void)
@@ -73,7 +73,6 @@ void Game::Render()
 
 void Game::GenerateStartArea()
 {
-	myFloorTiles.Init(START_AREA_TILE_NUMBER);
 	for (int floorIndex = 0; floorIndex < START_AREA_TILE_NUMBER; floorIndex++)
 	{
 		myFloorTiles.Add(FloorTile());
@@ -125,7 +124,7 @@ CU::GrowingArray<FloorTile> Game::GetCollidingTiles(Avatar& player)
 	result.Init(tileCount);
 	for (auto tileIndex = 0; tileIndex < tileCount; tileIndex++)
 	{
-		auto tile = myFloorTiles[tileCount];
+		auto tile = myFloorTiles[tileIndex];
 		auto tileAABB = tile.GetAABB();
 
 		if (avatarAABB.Collides(tileAABB))
