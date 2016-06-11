@@ -16,17 +16,17 @@ public:
 	void Update(CU::GrowingArray<FloorTile> tiles);
 	void HandleInput();
 	void SetDuckedState(bool);
-	AABB GetAABB();
+	AABB GetAABB() const;
 	CU::Vector2f GetPosition() const;
 
 private:
 	CU::Vector2f HandleCollision(CU::GrowingArray<FloorTile> tiles, CU::Vector2f position);
 	CU::Vector2f myPosition;
 	CU::Vector2f myVelocity;
+	CU::Vector2f myGravity;
 	CU::Vector2f mySize;
 	float myMovementSpeed;
 	float myFloorPlacing;
-	bool CollidedLastFrame;
 	hgeSprite* mySprite;
 };
 

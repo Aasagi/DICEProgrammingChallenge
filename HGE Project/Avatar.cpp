@@ -9,9 +9,10 @@
 Avatar::Avatar()
 {
 	mySprite = nullptr;
-	myPosition.Set(WINDOW_WIDTH / 4, WINDOW_HEIGHT / 5 * 4);
+	myPosition.Set(WINDOW_WIDTH / 4, WINDOW_HEIGHT / 5);
 	myFloorPlacing = WINDOW_HEIGHT;
 	myMovementSpeed = 100.f;
+	myGravity.Set(0, 0);
 }
 
 
@@ -37,7 +38,7 @@ void Avatar::HandleInput()
 
 	if (Megaton::GetInputManager()->ButtonIsDown(eButton::eD))
 	{
-		myVelocity.x = myMovementSpeed
+		myVelocity.x = myMovementSpeed;
 	}
 
 	if (Megaton::GetInputManager()->ButtonIsDown(eButton::eSPACE))
@@ -62,7 +63,7 @@ void Avatar::SetDuckedState(bool shouldDuck)
 			mySize.y = AVATAR_HEIGHT / 2;
 		}
 	}
-	else 	
+	else
 	{
 		if (mySize.y != AVATAR_HEIGHT)// check if we need to get up again
 
@@ -73,20 +74,20 @@ void Avatar::SetDuckedState(bool shouldDuck)
 	}
 }
 
-CU::Vector2f Avatar::HandleCollision(CU::GrowingArray<FloorTile> tiles, CU::Vector2f position)
+CU::Vector2f Avatar::HandleCollision(CU::GrowingArray<FloorTile> tiles, CU::Vector2f movement)
 {
-	auto aabb = GetAABB();
-	bool upperleftBlocked = false;
-	bool upperRightBlocked = false;
-	bool lowerLeftBlocked = false;
-	bool lowerRightBlocked = false;
+	auto leftAABB = GetAABB();
+	auto upAABB = GetAABB();
+	auto rightAABB = GetAABB();
+
+	aabb.SetX(myPosition.x + movement.x);
+	aabb.SetY(myPosition.y + movement.y);
+
+
 	bool upBlocked = false;
 	bool rightBlocked = false;
 	bool leftBlocked = false;
 	bool downBlocked = false;
-	CollidedLastFrame = false;
-
-
 
 	CU::Vector2f upperLeft = CU::Vector2f(aabb.GetX(), aabb.GetY());
 	CU::Vector2f up = CU::Vector2f(aabb.GetX(), aabb.GetY() + aabb.GetWidth() / 2);
@@ -139,35 +140,22 @@ CU::Vector2f Avatar::HandleCollision(CU::GrowingArray<FloorTile> tiles, CU::Vect
 		}
 	}
 
-	if (upperleftBlocked && leftBlocked || lowerLeftBlocked && leftBlocked)
+	if (upperleftBlocked || leftBlocked || lowerLeftBlocked)
+		movement.x = max(movement.x, 0);
+
+	if (upperRightBlocked || rightBlocked || lowerRightBlocked)
+		movement.x = min(movement.x, 0);
+
+	if (upperleftBlocked || upBlocked || upperRightBlocked)
+		movement.y = max(movement.y, 0);
+
+	if (lowerLeftBlocked || downBlocked || lowerRightBlocked)
 	{
-		position.x = max(position.x, myPosition.x);
-		CollidedLastFrame = true;
+		movement.y = min(movement.y, 0);
+		myGravity.Set(0, 0);
 	}
 
-	if (upperRightBlocked && rightBlocked || lowerRightBlocked && rightBlocked)
-	{
-		position.x = min(position.x, myPosition.x);
-		CollidedLastFrame = true;
-
-	}
-
-	if (upperleftBlocked && upBlocked || upperRightBlocked && upBlocked)
-	{
-		position.y = max(position.y, myPosition.y);
-		CollidedLastFrame = true;
-
-	}
-
-	if (lowerLeftBlocked && downBlocked || lowerRightBlocked && downBlocked)
-	{
-		position.y = min(position.y, myPosition.y);
-		CollidedLastFrame = true;
-
-		myVelocity.y = min(myVelocity.y, 0);
-	}
-
-	return position;
+	return movement;
 }
 
 CU::Vector2f Avatar::GetPosition() const
@@ -186,24 +174,23 @@ void Avatar::Update(CU::GrowingArray<FloorTile> tiles)
 	HandleInput();
 
 	float deltaTime = 1 / Megaton::GetTimerManager()->GetFPS();
-	myNewPosition += myVelocity * deltaTime;
 
-	if (myNewPosition.y >= myFloorPlacing)
+	myGravity.y = 1000.f * deltaTime;
+	auto movement = myVelocity * deltaTime;
+	movement += myGravity;
+
+
+	if (myPosition.y + movement.y > WINDOW_HEIGHT)
 	{
-		myVelocity.y;
-	}
-	//if ()
-	{
-		myVelocity += CU::Vector2f(0, 1000.f) * deltaTime;
+		movement.y = min(0, movement.y);
+		myGravity.Set(0, 0);
 	}
 
-	myNewPosition = HandleCollision(tiles, myNewPosition);
-	myPosition = myNewPosition;
-
-	Megaton::GetTimerManager()->GetFrameTime();
+	movement = HandleCollision(tiles, movement);
+	myPosition += movement;
 }
 
-AABB Avatar::GetAABB()
+AABB Avatar::GetAABB() const
 {
 	auto boundingBox = AABB(myPosition.x, myPosition.y, mySprite->GetWidth(), mySprite->GetHeight());
 
