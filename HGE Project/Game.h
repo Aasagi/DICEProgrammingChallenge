@@ -22,6 +22,9 @@ public:
 	void Notify(const eTriggerType& aTriggerType, void* aTrigger) override;
 
 private:
+	CU::GrowingArray<FloorTile> GetCollidingTiles(Avatar& player);
+
+
 	CU::GrowingArray<FloorTile>		myFloorTiles;
 
 	float myUpdateTimer;

@@ -13,6 +13,7 @@ public:
 	~FloorTile();
 	
 	CU::Vector2f myPosition;
+	AABB GetAABB() const;
 
 	void Render(Camera& aCamera);
 	void Recalculate(int tileHeight);

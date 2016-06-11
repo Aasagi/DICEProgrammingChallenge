@@ -34,3 +34,9 @@ void FloorTile::Render(Camera& aCamera)
 		Megaton::GetRenderManager()->AddCommand(new SpriteRenderCommand(myFloorSprite, aCamera.ConvertPositionToCameraPosition(myPosition - CU::Vector2f(0.0f, tileHeightIndex * TILE_SIZE))));
 	}
 }
+
+AABB FloorTile::GetAABB() const
+{
+	return myBoundingBox;
+}
+

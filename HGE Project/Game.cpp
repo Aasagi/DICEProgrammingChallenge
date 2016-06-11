@@ -10,7 +10,7 @@
 
 Game::Game(void)
 {
-	
+	myFloorTiles.Init(START_AREA_TILE_NUMBER);
 }
 
 Game::~Game(void)
@@ -36,7 +36,7 @@ void Game::Update()
 		mySubStates[i]->Update();
 	}
 
-	myPlayer.Update();
+	myPlayer.Update(GetCollidingTiles(myPlayer));	
 	if (myPlayer.myPosition.x > WINDOW_WIDTH/2.f)
 	{
 		myCamera.myPositionOffset.x = myPlayer.myPosition.myX - WINDOW_WIDTH/2.f;
@@ -84,7 +84,6 @@ void Game::Render()
 
 void Game::GenerateStartArea()
 {
-	myFloorTiles.Init(START_AREA_TILE_NUMBER);
 	for (int floorIndex = 0; floorIndex < START_AREA_TILE_NUMBER; floorIndex++)
 	{
 		myFloorTiles.Add(FloorTile());
@@ -125,4 +124,25 @@ void Game::GetNextFloor()
 	}
 	lastTile.myPosition += CU::Vector2f(TILE_SIZE, 0.0f);
 	myFloorTiles[myFloorTiles.Count() - 1] = lastTile;
+}
+
+CU::GrowingArray<FloorTile> Game::GetCollidingTiles(Avatar& player)
+{
+	auto avatarAABB = player.GetAABB();
+	auto result = CU::GrowingArray<FloorTile>();
+
+	auto tileCount = myFloorTiles.Count();
+	result.Init(tileCount);
+	for (auto tileIndex = 0; tileIndex < tileCount; tileIndex++)
+	{
+		auto tile = myFloorTiles[tileIndex];
+		auto tileAABB = tile.GetAABB();
+
+		if (avatarAABB.Collides(tileAABB))
+		{
+			result.Add(tile);
+		}		
+	}
+
+	return result;
 }
