@@ -6,6 +6,10 @@
 #include "MainMenu.h"
 #include "Renderer\FontRenderCommand.h"
 
+#define WINDOW_WIDTH 800.0f
+#define WINDOW_HEIGHT 600.0f
+#define TILE_SIZE 20.0f
+
 Game::Game(void)
 {
 }
@@ -17,8 +21,9 @@ Game::~Game(void)
 
 void Game::Init()
 {
-	Megaton::GetResourceManager()->GetSprite("Data/node.png");
-	myFloorSprite = Megaton::GetResourceManager()->GetSprite("Data/nodeCube.png");
+	myFloorSprite = Megaton::GetResourceManager()->GetSprite("Data/node.png");
+
+	GenerateRandomFloor();
 	myPlayer.Init();
 }
 
@@ -52,8 +57,22 @@ void Game::Notify(const eTriggerType& aTriggerType, void* aTrigger)
 
 void Game::Render()
 {
-	SpriteRenderCommand* spriteRenderCommand = new SpriteRenderCommand(myFloorSprite, CU::Vector2f(10.0f, 10.0f));
-	Megaton::GetRenderManager()->AddCommand(spriteRenderCommand);
+	for (int floorIndex = 0; floorIndex < myFloorTiles.Count(); floorIndex++)
+	{
+		SpriteRenderCommand* spriteRenderCommand = new SpriteRenderCommand(myFloorSprite, myFloorTiles[floorIndex].myPosition);
+		Megaton::GetRenderManager()->AddCommand(spriteRenderCommand);
+	}
 
 	myPlayer.Render();
+}
+
+void Game::GenerateRandomFloor()
+{
+	int numTiles = WINDOW_WIDTH / TILE_SIZE;
+	myFloorTiles.Init(numTiles);
+	for (int floorIndex = 0; floorIndex < numTiles; floorIndex++)
+	{
+		myFloorTiles.Add(FloorTile());
+		myFloorTiles[floorIndex].myPosition = CU::Vector2f(floorIndex*TILE_SIZE, WINDOW_HEIGHT - TILE_SIZE);
+	}
 }

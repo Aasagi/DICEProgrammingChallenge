@@ -5,6 +5,6 @@ class FloorTile
 public:
 	FloorTile();
 	~FloorTile();
-	CU::Vector2i myPosition;
+	CU::Vector2f myPosition;
 };
 

@@ -30,7 +30,7 @@ private:
 	hgeSprite* myFloorSprite;
 	Avatar myPlayer;
 
-
+	void GenerateRandomFloor();
 };
 
 #endif
