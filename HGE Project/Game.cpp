@@ -17,15 +17,14 @@ Game::~Game(void)
 
 void Game::Init()
 {
-	Megaton::GetResourceManager()->GetSprite("Data/node.png");
-	myFloorSprite = Megaton::GetResourceManager()->GetSprite("Data/nodeCube.png");
+	myFloorSprite = Megaton::GetResourceManager()->GetSprite("Data/node.png");
 
-	int numTiles = 12;
+	int numTiles = 800.0f / 20.0f;
 	myFloorTiles.Init(numTiles);
 	for (int floorIndex = 0; floorIndex < numTiles; floorIndex++)
 	{ 
 		myFloorTiles.Add(FloorTile());
-		myFloorTiles[floorIndex].myPosition = CU::Vector2f(floorIndex*64.0f, 500.0f);
+		myFloorTiles[floorIndex].myPosition = CU::Vector2f(floorIndex*20.0f, 580.0f);
 	}
 }
 
