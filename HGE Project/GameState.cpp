@@ -21,5 +21,4 @@ void GameState::Update()
 	}
 	HandleInputWithoutGUI();
 
-
 }
