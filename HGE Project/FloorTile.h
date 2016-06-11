@@ -14,7 +14,10 @@ public:
 	CU::Vector2f myPosition;
 	AABB GetAABB() const;
 
-	SpriteRenderCommand* GetRenderCommand();
+	void Render();
+	void Recalculate(int tileHeight);
+
+	int GetTileHeight();
 private:
 	hgeSprite* myFloorSprite;
 	AABB myBoundingBox;

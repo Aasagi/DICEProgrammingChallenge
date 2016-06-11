@@ -31,7 +31,8 @@ private:
 
 	Avatar myPlayer;
 
-	void GenerateRandomFloor();
+	void GenerateStartArea();
+	void GetNextFloor();
 
 	hgeSprite* myBackground1;
 	hgeSprite* myBackground2;
