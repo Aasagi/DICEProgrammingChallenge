@@ -285,3 +285,6 @@ paket-files/
 .idea/
 *.sln.iml
 /HGE Project.v12.suo
+
+*.obj
+*.log
