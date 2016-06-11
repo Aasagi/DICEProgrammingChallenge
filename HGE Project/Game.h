@@ -4,6 +4,7 @@
 #include "GameState.h"
 #include "TriggerObserver.h"
 #include "FloorTile.h"
+#include "GoalObject.h"
 #include "Avatar.h"
 #include "Camera.h"
 #include "GameStateEnum.h"
@@ -26,6 +27,7 @@ private:
 	CU::GrowingArray<FloorTile> GetCollidingTiles(Avatar& player);
 	
 	CU::GrowingArray<FloorTile>		myFloorTiles;
+	GoalObject myGoalObject;
 
 	float myUpdateTimer;
 
@@ -43,6 +45,7 @@ private:
 	hgeSprite* myBackground2;
 
 	int holePassCounter;
+	int tilesPassed;
 };
 
 #endif
