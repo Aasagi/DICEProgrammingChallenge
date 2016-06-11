@@ -35,7 +35,7 @@ void Game::Init()
 void Game::Update()
 {
 	GameState::Update();
-
+	
 	for (int i = mySubStates.Size() - 1; 0 <= i; --i)
 	{
 		mySubStates[i]->Update();
