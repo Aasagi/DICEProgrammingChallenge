@@ -11,7 +11,8 @@ Avatar::Avatar()
 	mySprite = nullptr;
 	myPosition.Set(WINDOW_WIDTH / 4, WINDOW_HEIGHT / 5 * 4);
 	myFloorPlacing = WINDOW_HEIGHT;
-	myMovementSpeed = 200.f;
+	myMovementSpeed = 200.f; 
+	myIsDucked = false;
 }
 
 
@@ -23,9 +24,7 @@ void Avatar::Init()
 {
 	mySprite = Megaton::GetResourceManager()->GetSprite("Data/playerAvatar.png");
 
-	mySprite->SetTextureRect(0, 0, AVATAR_WIDTH, AVATAR_HEIGHT);
-	myBoundingBox.SetWidth(AVATAR_WIDTH);
-	myBoundingBox.SetHeight(AVATAR_HEIGHT);
+	SetDuckedState(false);
 }
 
 void Avatar::HandleInput()
@@ -46,6 +45,7 @@ void Avatar::HandleInput()
 
 		}
 	}
+
 	if (Megaton::GetInputManager()->ButtonIsDown(eButton::eD))
 	{
 		if (CollidedLastFrame == false)
@@ -58,6 +58,7 @@ void Avatar::HandleInput()
 
 		}
 	}
+
 	if (Megaton::GetInputManager()->ButtonIsDown(eButton::eSPACE))
 	{
 		if (/*CollidedLastFrame == true && */myVelocity.y == 0.f)
@@ -65,17 +66,47 @@ void Avatar::HandleInput()
 			myVelocity = CU::Vector2f(0, -1) * 240.f;
 		}
 	}
+
+	if (Megaton::GetInputManager()->ButtonPressed(eButton::eS))
+		SetDuckedState(true);
+
+	if (Megaton::GetInputManager()->ButtonReleased(eButton::eS))
+		SetDuckedState(false);
+}
+
+void Avatar::SetDuckedState(bool isDucking)
+{
+	if (isDucking)
+	{
+	//	myPosition.y = AVATAR_HEIGHT / 2; 
+
+		mySprite->SetTextureRect(0, 0, AVATAR_WIDTH, AVATAR_HEIGHT/2);
+
+	}
+	else
+	{
+		if (myIsDucked)
+		{
+			myPosition.y -= AVATAR_HEIGHT / 2;
+		}
+
+		mySprite->SetTextureRect(0, 0, AVATAR_WIDTH, AVATAR_HEIGHT);
+
+	}
+
+	myIsDucked = isDucking;
 }
 
 CU::Vector2f Avatar::HandleCollision(CU::GrowingArray<FloorTile> tiles, CU::Vector2f position)
 {
+	auto boundBox = GetAABB();
 	bool upperleftBlocked = false;
 	bool upperRightBlocked = false;
 	bool lowerLeftBlocked = false;
 	bool lowerRightBlocked = false;
 	CollidedLastFrame = false;
 
-	AABB aabb = AABB(position.x, position.y, myBoundingBox.GetWidth(), myBoundingBox.GetHeight());
+	AABB aabb = AABB(position.x, position.y, boundBox.GetWidth(), boundBox.GetHeight());
 
 	CU::Vector2f upperLeft = CU::Vector2f(aabb.GetX(), aabb.GetY());
 	CU::Vector2f upperRight = CU::Vector2f(aabb.GetX() + aabb.GetWidth(), aabb.GetY());
@@ -174,8 +205,7 @@ void Avatar::Update(CU::GrowingArray<FloorTile> tiles)
 
 AABB Avatar::GetAABB()
 {
-	myBoundingBox.SetX(myPosition.x);
-	myBoundingBox.SetY(myPosition.y);
+	auto boundingBox = AABB(myPosition.x, myPosition.y, mySprite->GetWidth(), mySprite->GetHeight());
 
-	return myBoundingBox;
+	return boundingBox;
 }

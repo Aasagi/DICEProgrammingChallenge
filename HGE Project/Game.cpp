@@ -77,7 +77,6 @@ void Game::Update()
 
 void Game::HandleInput()
 {
-	myPlayer.HandleInput();
 	if (Megaton::GetInputManager()->ButtonPressed(eButton::eI))
 	{
 		myCurrentState = eGameover;
