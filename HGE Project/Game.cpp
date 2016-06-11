@@ -36,9 +36,7 @@ void Game::Update()
 		mySubStates[i]->Update();
 	}
 
-	myPlayer.HandleCollision(GetCollidingTiles(myPlayer));
-	myPlayer.Update();
-	
+	myPlayer.Update(GetCollidingTiles(myPlayer));	
 
 	//Put code here
 	Render();
@@ -59,7 +57,7 @@ void Game::Notify(const eTriggerType& aTriggerType, void* aTrigger)
 
 void Game::Render()
 {
-	SpriteRenderCommand* bgSprite = new SpriteRenderCommand(myBackground1,CU::Vector2f)
+	SpriteRenderCommand* bgSprite = new SpriteRenderCommand(myBackground1, CU::Vector2f());
 
 	for (int floorIndex = 0; floorIndex < myFloorTiles.Count(); floorIndex++)
 	{
@@ -133,7 +131,8 @@ CU::GrowingArray<FloorTile> Game::GetCollidingTiles(Avatar& player)
 	auto result = CU::GrowingArray<FloorTile>();
 
 	auto tileCount = myFloorTiles.Count();
-	for (auto tileIndex = 0; tileIndex < tileCount; tileIndex++);
+	result.Init(tileCount);
+	for (auto tileIndex = 0; tileIndex < tileCount; tileIndex++)
 	{
 		auto tile = myFloorTiles[tileCount];
 		auto tileAABB = tile.GetAABB();

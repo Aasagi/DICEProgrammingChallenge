@@ -12,12 +12,13 @@ public:
 
 	void Init();
 	void Render();
-	void Update();
+	void Update(CU::GrowingArray<FloorTile> tiles);
 	void HandleInput();
-	void HandleCollision(CU::GrowingArray<FloorTile> tiles);
 	AABB GetAABB();
 
 private:
+	CU::Vector2f HandleCollision(CU::GrowingArray<FloorTile> tiles, CU::Vector2f position);
+
 	CU::Vector2f myPosition;
 	CU::Vector2f myNewPosition;
 	AABB myBoundingBox;
