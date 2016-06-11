@@ -1,16 +1,19 @@
 HGE Started..
 
 HGE version: 1.80
-Date: 11.06.2016, 14:12:13
+Date: 11.06.2016, 14:16:07
 
 Application: DICE Challenge
 OS: Windows 6.2.9200
-Memory: 4194303K total, 4194303K free
+Memory: 2097151K total, 1299104K free
 
-D3D Driver: nvumdshim.dll
-Description: Intel(R) HD Graphics 4600
-Version: 9.18.13.4709
+D3D Driver: nvd3dum.dll
+Description: NVIDIA GeForce GT 540M
+Version: 10.18.13.6839
 Mode: 800 x 600 x X8R8G8B8
 
 Init done.
 
+
+Finishing..
+The End.
