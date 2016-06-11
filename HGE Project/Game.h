@@ -5,7 +5,7 @@
 #include "TriggerObserver.h"
 #include "FloorTile.h"
 #include "Avatar.h"
-
+#include "Camera.h"
 
 class Game : public GameState, public TriggerObserver
 {
@@ -28,6 +28,7 @@ private:
 
 	Avatar myPlayer;
 
+	Camera myCamera;
 	void GenerateRandomFloor();
 
 	hgeSprite* myBackground1;

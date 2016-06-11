@@ -8,7 +8,7 @@
 Avatar::Avatar()
 {
 	mySprite = nullptr;
-	myPosition.Set(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 5*4);
+	myPosition.Set(WINDOW_WIDTH / 5, WINDOW_HEIGHT / 5*4);
 	myFloorPlacing = myPosition.myY;
 	myMovementSpeed = 200.f;
 
@@ -49,9 +49,10 @@ void Avatar::HandleInput()
 
 }
 
-void Avatar::Render()
+void Avatar::Render(Camera& aCamera)
 {
-	SpriteRenderCommand* spriteRenderCommand = new SpriteRenderCommand(mySprite, myPosition);
+	
+	SpriteRenderCommand* spriteRenderCommand = new SpriteRenderCommand(mySprite, aCamera.ConvertPositionToCameraPosition(myPosition));
 	Megaton::GetRenderManager()->AddCommand(spriteRenderCommand);
 }
 

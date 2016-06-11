@@ -37,7 +37,11 @@ void Game::Update()
 	}
 
 	myPlayer.Update();
-
+	if (myPlayer.myPosition.x > WINDOW_WIDTH/2.f)
+	{
+		myCamera.myPositionOffset.x = myPlayer.myPosition.myX - WINDOW_WIDTH/2.f;
+	}
+	
 	//Put code here
 	Render();
 }
@@ -57,22 +61,34 @@ void Game::Notify(const eTriggerType& aTriggerType, void* aTrigger)
 
 void Game::Render()
 {
-	SpriteRenderCommand* bgSprite = new SpriteRenderCommand(myBackground1,CU::Vector2f)
+	SpriteRenderCommand* bgSprite = new SpriteRenderCommand(myBackground1, CU::Vector2f());
+	SpriteRenderCommand* bgSprite2 = new SpriteRenderCommand(myBackground2, CU::Vector2f());
 
+
+	
 	for (int floorIndex = 0; floorIndex < myFloorTiles.Count(); floorIndex++)
 	{
-		Megaton::GetRenderManager()->AddCommand(myFloorTiles[floorIndex].GetRenderCommand());
+		CU::Vector2f postion = 	myCamera.ConvertPositionToCameraPosition(myFloorTiles[floorIndex].myPosition);
+		SpriteRenderCommand* floor = new SpriteRenderCommand(*myFloorTiles[floorIndex].GetRenderCommand());
+		floor->SetPosition(postion);
+		Megaton::GetRenderManager()->AddCommand(floor);
 	}
 
-	myPlayer.Render();
+	myPlayer.Render(myCamera);
+	Megaton::GetRenderManager()->AddCommand(bgSprite);
+	Megaton::GetRenderManager()->AddCommand(bgSprite2);
 }
+
+
+
+
 
 void Game::GenerateRandomFloor()
 {
 	bool recentlyMadeHole = false;
 	int lastTileHeight = 1;
 
-	int numTiles = WINDOW_WIDTH / TILE_SIZE;
+	int numTiles = WINDOW_WIDTH *2 / TILE_SIZE;
 	myFloorTiles.Init(numTiles);
 	for (int floorIndex = 0; floorIndex < numTiles; floorIndex++)
 	{

@@ -1,7 +1,7 @@
 #pragma once
 #include "ResourceManager.h"
 #include "CommonUtilities/Vector.h"
-
+#include "Camera.h"
 class Avatar
 {
 public:
@@ -9,12 +9,12 @@ public:
 	~Avatar();
 
 	void Init();
-	void Render();
+	void Render(Camera& myCamera);
 	void Update();
 	void HandleInput();
 
-private:
 	CU::Vector2f myPosition;
+private:
 	CU::Vector2f myNewPosition;
 
 	CU::Vector2f myVelocity;
