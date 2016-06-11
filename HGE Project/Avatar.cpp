@@ -21,10 +21,11 @@ Avatar::~Avatar()
 
 void Avatar::Init()
 {
-	mySprite = Megaton::GetResourceManager()->GetSprite("Data/player.png");
+	mySprite = Megaton::GetResourceManager()->GetSprite("Data/playerAvatar.png");
 
-	myBoundingBox.SetWidth(mySprite->GetWidth());
-	myBoundingBox.SetHeight(mySprite->GetHeight());
+	mySprite->SetTextureRect(0, 0, TILE_SIZE / 2, TILE_SIZE / 2);
+	myBoundingBox.SetWidth(TILE_SIZE / 2);
+	myBoundingBox.SetHeight(TILE_SIZE / 2);
 }
 
 void Avatar::HandleInput()
