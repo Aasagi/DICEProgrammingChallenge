@@ -81,7 +81,7 @@ void Game::Update()
 			{
 				myCurrentState = eGameover;
 			}
-			if (myHangingObjects[hangingObjectIndex].GavePoint == false && myPlayer.GetPosition().x > myHangingObjects[hangingObjectIndex].GetPostion().x && myPlayer.GetPosition().y > myHangingObjects[hangingObjectIndex].GetPostion().y)
+			if (myHangingObjects[hangingObjectIndex].GavePoint == false && myPlayer.GetPosition().x > myHangingObjects[hangingObjectIndex].GetPostion().x + TILE_SIZE && myPlayer.GetPosition().y > myHangingObjects[hangingObjectIndex].GetPostion().y)
 			{
 				holePassCounter++;
 				myHangingObjects[hangingObjectIndex].GavePoint = true;
