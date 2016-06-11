@@ -10,7 +10,7 @@ Avatar::Avatar()
 {
 	mySprite = nullptr;
 	myPosition.Set(WINDOW_WIDTH / 4, WINDOW_HEIGHT / 5 * 4);
-	myFloorPlacing = myPosition.myY;
+	myFloorPlacing = 0.f;
 	myMovementSpeed = 200.f;
 
 }
@@ -56,10 +56,10 @@ void Avatar::HandleInput()
 CU::Vector2f Avatar::HandleCollision(CU::GrowingArray<FloorTile> tiles, CU::Vector2f position)
 {
 	bool zeroLeft = false;
-	bool zeroRight = false; 
-	bool zeroUp = false; 
+	bool zeroRight = false;
+	bool zeroUp = false;
 	bool zeroDown = false;
-	
+
 	AABB aabb = AABB(position.x, position.y, myBoundingBox.GetWidth(), myBoundingBox.GetHeight());
 
 	CU::Vector2f upperLeft = CU::Vector2f(aabb.GetX(), aabb.GetY());
@@ -71,7 +71,7 @@ CU::Vector2f Avatar::HandleCollision(CU::GrowingArray<FloorTile> tiles, CU::Vect
 	for (auto tileIndex = 0; tileIndex < tileCount; tileIndex++)
 	{
 		auto tileAABB = tiles[tileIndex].GetAABB();
-		
+
 		if (tileAABB.Inside(upperLeft) || tileAABB.Inside(lowerLeft))
 			zeroLeft = true;
 
@@ -95,7 +95,10 @@ CU::Vector2f Avatar::HandleCollision(CU::GrowingArray<FloorTile> tiles, CU::Vect
 		position.y = max(position.y, 0);
 
 	if (zeroDown)
+	{
 		position.y = min(position.y, 0);
+		myVelocity.y = min(myVelocity.y, 0);
+	}
 
 	return position;
 }
@@ -117,19 +120,16 @@ void Avatar::Update(CU::GrowingArray<FloorTile> tiles)
 
 	float deltaTime = 1 / Megaton::GetTimerManager()->GetFPS();
 	myNewPosition += myVelocity * deltaTime;
-	if (myNewPosition.myY >= myFloorPlacing)
-	{
-		myVelocity.myY = 0.f;
-	}
-	else
-	{
-		if (myVelocity.myY != 0.f)
-		{
-			myVelocity += CU::Vector2f(0, 1000.f) *deltaTime;
 
-		}
+	if (myNewPosition.y >= myFloorPlacing)
+	{
+		myVelocity.y;
 	}
-
+	if (myVelocity.myY != 0.f)
+	{
+		myVelocity += CU::Vector2f(0, 1000.f) *deltaTime;
+	}
+	
 	myNewPosition = HandleCollision(tiles, myNewPosition);
 	myPosition = myNewPosition;
 
