@@ -31,7 +31,7 @@ void Game::Init()
 	srand(time(NULL));
 	GenerateStartArea();
 	myPlayer.Init();
-	myGoalObject.myPosition = CU::Vector2f(-100.0f, -100.0f);
+	myGoalObject.SetPosition(CU::Vector2f(-100.0f, -100.0f));
 }
 
 void Game::Update()
@@ -45,6 +45,10 @@ void Game::Update()
 
 	if (myCurrentState == ePlaying)
 	{
+		if (myPlayer.GetAABB().Collides(myGoalObject.GetAABB()))
+		{
+			myCurrentState = eWin;
+		}
 		myPlayer.Update(GetCollidingTiles(myPlayer));
 		if (myPlayer.myPosition.x > WINDOW_WIDTH / 2.f)
 		{
@@ -66,6 +70,7 @@ void Game::Update()
 		tilesPassed++;
 		GetNextFloor();
 	}
+	
 	//Put code here
 	Render();
 }
@@ -166,7 +171,7 @@ void Game::GetNextFloor()
 		int indexToCheck = recentlyMadeHole ? myFloorTiles.Count() - 3 : myFloorTiles.Count() - 2;
 		lastTile.Recalculate(myFloorTiles[indexToCheck].GetTileHeight());
 
-		myGoalObject.myPosition = lastTile.GetPosition() - CU::Vector2f(0.0f, lastTileHeight * TILE_SIZE);
+		myGoalObject.SetPosition(lastTile.GetPosition() - CU::Vector2f(0.0f, lastTileHeight * TILE_SIZE));
 	}
 	else if (recentlyMadeHole)
 	{
