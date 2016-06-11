@@ -30,6 +30,8 @@ private:
 
 	Camera myCamera;
 	void GenerateRandomFloor();
+	void GenerateStartArea();
+	void GetNextFloor();
 
 	hgeSprite* myBackground1;
 	hgeSprite* myBackground2;

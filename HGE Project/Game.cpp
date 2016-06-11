@@ -23,7 +23,7 @@ void Game::Init()
 	myBackground1 = Megaton::GetResourceManager()->GetSprite("Data/Background/BG1.png");
 	myBackground2 = Megaton::GetResourceManager()->GetSprite("Data/Background/BG2.png");
 	srand(time(NULL));
-	GenerateRandomFloor();
+	GenerateStartArea();
 	myPlayer.Init();
 }
 
@@ -41,6 +41,8 @@ void Game::Update()
 	{
 		myCamera.myPositionOffset.x = myPlayer.myPosition.myX - WINDOW_WIDTH/2.f;
 	}
+
+
 	
 	//Put code here
 	Render();
@@ -49,6 +51,10 @@ void Game::Update()
 void Game::HandleInput()
 {
 	myPlayer.HandleInput();
+	if (Megaton::GetInputManager()->ButtonPressed(eButton::eSPACE))
+	{
+		GetNextFloor();
+	}
 }
 
 void Game::HandleInputWithoutGUI()
@@ -68,10 +74,7 @@ void Game::Render()
 	
 	for (int floorIndex = 0; floorIndex < myFloorTiles.Count(); floorIndex++)
 	{
-		CU::Vector2f postion = 	myCamera.ConvertPositionToCameraPosition(myFloorTiles[floorIndex].myPosition);
-		SpriteRenderCommand* floor = new SpriteRenderCommand(*myFloorTiles[floorIndex].GetRenderCommand());
-		floor->SetPosition(postion);
-		Megaton::GetRenderManager()->AddCommand(floor);
+		myFloorTiles[floorIndex].Render(myCamera);
 	}
 
 	myPlayer.Render(myCamera);
@@ -79,64 +82,47 @@ void Game::Render()
 	Megaton::GetRenderManager()->AddCommand(bgSprite2);
 }
 
-
-
-
-
-void Game::GenerateRandomFloor()
+void Game::GenerateStartArea()
 {
-	bool recentlyMadeHole = false;
-	int lastTileHeight = 1;
-
-	int numTiles = WINDOW_WIDTH *2 / TILE_SIZE;
-	myFloorTiles.Init(numTiles);
-	for (int floorIndex = 0; floorIndex < numTiles; floorIndex++)
+	myFloorTiles.Init(START_AREA_TILE_NUMBER);
+	for (int floorIndex = 0; floorIndex < START_AREA_TILE_NUMBER; floorIndex++)
 	{
-		bool makeFloor = false;
+		myFloorTiles.Add(FloorTile());
+		myFloorTiles[myFloorTiles.Count() - 1].myPosition = CU::Vector2f(floorIndex*TILE_SIZE, WINDOW_HEIGHT - TILE_SIZE);
+	}
+}
 
-		if (floorIndex < START_AREA_TILE_NUMBER)
-		{
-			makeFloor = true;
-			lastTileHeight = 1;
-		}
-		else if (recentlyMadeHole)
-		{
-			makeFloor = true;
-		}
+void Game::GetNextFloor()
+{
+	FloorTile lastTile = myFloorTiles[myFloorTiles.Count() - 1];
+	int lastTileHeight = lastTile.GetTileHeight();
+	
+	bool recentlyMadeHole = (lastTileHeight == 0);
 
-		if (makeFloor == false)
-		{
-			int randomTile = rand();
-			if (randomTile % 2 == 0)
-			{
-				makeFloor = true;
-
-				if (lastTileHeight < 5 && randomTile % 3 == 0 )
-				{
-					lastTileHeight++;
-				}
-				else if (lastTileHeight > 1 && randomTile % 5 == 0)
-				{
-					lastTileHeight--;
-				}
-			}
-			else
-			{
-				recentlyMadeHole = true;
-			}
-		}
-
-		if (makeFloor)
-		{
-			recentlyMadeHole = false;
-			for (int tileHeightIndex = 1; tileHeightIndex <= lastTileHeight; tileHeightIndex++)
-			{
-				myFloorTiles.Add(FloorTile());
-				myFloorTiles[myFloorTiles.Count() - 1].myPosition = CU::Vector2f(floorIndex*TILE_SIZE, WINDOW_HEIGHT - TILE_SIZE * tileHeightIndex);
-			}
-		}
-
+	for (int tileIndex = 0; tileIndex < myFloorTiles.Count() - 1; tileIndex++)
+	{
+		myFloorTiles[tileIndex] = myFloorTiles[tileIndex + 1];
 	}
 
-	
+	if (recentlyMadeHole)
+	{
+ 		lastTile.Recalculate(myFloorTiles[myFloorTiles.Count() - 3].GetTileHeight());
+	}
+	else
+	{
+		if (rand() % 2 == 0)
+		{
+			lastTile.Recalculate(0);
+		}
+		else if (lastTileHeight < 5 && rand()%3 == 0)
+		{
+			lastTile.Recalculate(++lastTileHeight);
+		}
+		else if (lastTileHeight > 0 && rand() % 5 == 0)
+		{
+			lastTile.Recalculate(--lastTileHeight);
+		}
+	}
+	lastTile.myPosition += CU::Vector2f(TILE_SIZE, 0.0f);
+	myFloorTiles[myFloorTiles.Count() - 1] = lastTile;
 }
