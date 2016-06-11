@@ -283,3 +283,5 @@ paket-files/
 *.app
 /HGE Project/Debug
 /NetworkEngine/Debug
+/HGE Project.sdf
+/HGE Project.v12.suo

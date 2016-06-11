@@ -44,7 +44,7 @@ void Game::Update()
 	}
 
 	int halfTileCount = myFloorTiles.Count() / 2;
-	if (myPlayer.GetPosition().x > myFloorTiles[halfTileCount].myPosition.x)
+	if (myPlayer.GetPosition().x > myFloorTiles[halfTileCount].GetPosition().x)
 	{
 		if (myFloorTiles[halfTileCount].GetTileHeight() == 0)
 		{
@@ -73,8 +73,6 @@ void Game::Render()
 {
 	SpriteRenderCommand* bgSprite = new SpriteRenderCommand(myBackground1, CU::Vector2f());
 	SpriteRenderCommand* bgSprite2 = new SpriteRenderCommand(myBackground2, CU::Vector2f());
-
-
 	
 	for (int floorIndex = 0; floorIndex < myFloorTiles.Count(); floorIndex++)
 	{
@@ -91,7 +89,7 @@ void Game::GenerateStartArea()
 	for (int floorIndex = 0; floorIndex < START_AREA_TILE_NUMBER; floorIndex++)
 	{
 		myFloorTiles.Add(FloorTile());
-		myFloorTiles[myFloorTiles.Count() - 1].myPosition = CU::Vector2f(floorIndex*TILE_SIZE, WINDOW_HEIGHT - TILE_SIZE);
+		myFloorTiles[myFloorTiles.Count() - 1].SetPosition(CU::Vector2f(floorIndex*TILE_SIZE, WINDOW_HEIGHT - TILE_SIZE));
 	}
 }
 
@@ -126,7 +124,7 @@ void Game::GetNextFloor()
 			lastTile.Recalculate(--lastTileHeight);
 		}
 	}
-	lastTile.myPosition += CU::Vector2f(TILE_SIZE, 0.0f);
+	lastTile.SetPosition(lastTile.GetPosition() +  CU::Vector2f(TILE_SIZE, 0.0f));
 	myFloorTiles[myFloorTiles.Count() - 1] = lastTile;
 }
 
@@ -142,10 +140,10 @@ CU::GrowingArray<FloorTile> Game::GetCollidingTiles(Avatar& player)
 		auto tile = myFloorTiles[tileIndex];
 		auto tileAABB = tile.GetAABB();
 
-		/*if (avatarAABB.Collides(tileAABB))
+		if (avatarAABB.Collides(tileAABB))
 		{
 			result.Add(tile);
-		}	*/	
+		}	
 	}
 
 	return result;
