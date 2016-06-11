@@ -1,5 +1,5 @@
-﻿Build started 11-Jun-2016 09:48:21.
-     1>Project "C:\Users\Robin\Desktop\TheCrashRiders\HGE Project\HGE Project\NetworkEngine\NetworkEngine.vcxproj" on node 2 (Rebuild target(s)).
+﻿Build started 2016-06-11 10:46:34.
+     1>Project "C:\Code\DICEProgrammingChallenge\NetworkEngine\NetworkEngine.vcxproj" on node 2 (Rebuild target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I../ /ZI /nologo /W4 /WX- /sdl /Od /Oy- /D _CRT_SECURE_NO_WARNINGS /D _WINSOCK_DEPRECATED_NO_WARNINGS /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt NetworkEngine.cpp RakNet\Base64Encoder.cpp RakNet\BitStream.cpp RakNet\CCRakNetSlidingWindow.cpp RakNet\CCRakNetUDT.cpp RakNet\CheckSum.cpp RakNet\CloudClient.cpp RakNet\CloudCommon.cpp RakNet\CloudServer.cpp RakNet\CommandParserInterface.cpp RakNet\ConnectionGraph2.cpp RakNet\ConsoleServer.cpp RakNet\DataCompressor.cpp RakNet\DirectoryDeltaTransfer.cpp RakNet\DR_SHA1.cpp RakNet\DS_BytePool.cpp RakNet\DS_ByteQueue.cpp RakNet\DS_HuffmanEncodingTree.cpp RakNet\DS_Table.cpp RakNet\DynDNS.cpp RakNet\EmailSender.cpp RakNet\EpochTimeToString.cpp RakNet\FileList.cpp RakNet\FileListTransfer.cpp RakNet\FileOperations.cpp RakNet\FormatString.cpp RakNet\FullyConnectedMesh2.cpp RakNet\Getche.cpp RakNet\Gets.cpp RakNet\GetTime.cpp RakNet\gettimeofday.cpp RakNet\GridSectorizer.cpp RakNet\HTTPConnection.cpp RakNet\HTTPConnection2.cpp RakNet\IncrementalReadInterface.cpp RakNet\Itoa.cpp RakNet\LinuxStrings.cpp RakNet\LocklessTypes.cpp RakNet\LogCommandParser.cpp RakNet\MessageFilter.cpp RakNet\NatPunchthroughClient.cpp RakNet\NatPunchthroughServer.cpp RakNet\NatTypeDetectionClient.cpp RakNet\NatTypeDetectionCommon.cpp RakNet\NatTypeDetectionServer.cpp RakNet\NetworkIDManager.cpp RakNet\NetworkIDObject.cpp RakNet\PacketConsoleLogger.cpp RakNet\PacketFileLogger.cpp RakNet\PacketizedTCP.cpp RakNet\PacketLogger.cpp RakNet\PacketOutputWindowLogger.cpp RakNet\PluginInterface2.cpp RakNet\PS4Includes.cpp RakNet\Rackspace.cpp RakNet\RakMemoryOverride.cpp RakNet\RakNetCommandParser.cpp RakNet\RakNetSocket.cpp RakNet\RakNetSocket2.cpp RakNet\RakNetSocket2_360_720.cpp RakNet\RakNetSocket2_Berkley.cpp RakNet\RakNetSocket2_Berkley_NativeClient.cpp RakNet\RakNetSocket2_NativeClient.cpp RakNet\RakNetSocket2_PS3_PS4.cpp RakNet\RakNetSocket2_PS4.cpp RakNet\RakNetSocket2_Vita.cpp RakNet\RakNetSocket2_WindowsStore8.cpp RakNet\RakNetSocket2_Windows_Linux.cpp RakNet\RakNetSocket2_Windows_Linux_360.cpp RakNet\RakNetStatistics.cpp RakNet\RakNetTransport2.cpp RakNet\RakNetTypes.cpp RakNet\RakPeer.cpp RakNet\RakSleep.cpp RakNet\RakString.cpp RakNet\RakThread.cpp RakNet\RakWString.cpp RakNet\Rand.cpp RakNet\RandSync.cpp RakNet\ReadyEvent.cpp RakNet\RelayPlugin.cpp RakNet\ReliabilityLayer.cpp RakNet\ReplicaManager3.cpp RakNet\Router2.cpp RakNet\RPC4Plugin.cpp RakNet\SecureHandshake.cpp RakNet\SendToThread.cpp RakNet\SignaledEvent.cpp RakNet\SimpleMutex.cpp RakNet\SocketLayer.cpp RakNet\StatisticsHistory.cpp RakNet\StringCompressor.cpp RakNet\StringTable.cpp RakNet\SuperFastHash.cpp RakNet\TableSerializer.cpp RakNet\TCPInterface.cpp RakNet\TeamBalancer.cpp RakNet\TeamManager.cpp RakNet\TelnetTransport.cpp RakNet\ThreadsafePacketLogger.cpp RakNet\TwoWayAuthentication.cpp RakNet\UDPForwarder.cpp RakNet\UDPProxyClient.cpp RakNet\UDPProxyCoordinator.cpp RakNet\UDPProxyServer.cpp RakNet\VariableDeltaSerializer.cpp RakNet\VariableListDeltaTracker.cpp RakNet\VariadicSQLParser.cpp RakNet\VitaIncludes.cpp RakNet\WSAStartupSingleton.cpp RakNet\_FindFirst.cpp
          _FindFirst.cpp
@@ -43,11 +43,11 @@
          RakString.cpp
          RakSleep.cpp
          RakPeer.cpp
-     1>c:\users\robin\desktop\thecrashriders\hge project\hge project\networkengine\raknet\rakpeer.cpp(429): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\robin\desktop\thecrashriders\hge project\hge project\networkengine\raknet\rakpeer.cpp(577): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\robin\desktop\thecrashriders\hge project\hge project\networkengine\raknet\rakpeer.cpp(622): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\robin\desktop\thecrashriders\hge project\hge project\networkengine\raknet\rakpeer.cpp(728): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\robin\desktop\thecrashriders\hge project\hge project\networkengine\raknet\rakpeer.cpp(733): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\code\diceprogrammingchallenge\networkengine\raknet\rakpeer.cpp(429): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\code\diceprogrammingchallenge\networkengine\raknet\rakpeer.cpp(577): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\code\diceprogrammingchallenge\networkengine\raknet\rakpeer.cpp(622): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\code\diceprogrammingchallenge\networkengine\raknet\rakpeer.cpp(728): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\code\diceprogrammingchallenge\networkengine\raknet\rakpeer.cpp(733): warning C4018: '<' : signed/unsigned mismatch
          RakNetTypes.cpp
          Generating Code...
          Compiling...
@@ -83,7 +83,7 @@
          NatTypeDetectionCommon.cpp
          NatTypeDetectionClient.cpp
          NatPunchthroughServer.cpp
-     1>c:\users\robin\desktop\thecrashriders\hge project\hge project\networkengine\raknet\natpunchthroughserver.cpp(246): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\code\diceprogrammingchallenge\networkengine\raknet\natpunchthroughserver.cpp(246): warning C4018: '<' : signed/unsigned mismatch
          NatPunchthroughClient.cpp
          MessageFilter.cpp
          LogCommandParser.cpp
@@ -113,7 +113,7 @@
          DS_ByteQueue.cpp
          DS_BytePool.cpp
          DR_SHA1.cpp
-     1>c:\users\robin\desktop\thecrashriders\hge project\hge project\networkengine\raknet\dr_sha1.cpp(11): warning C4005: '_CRT_SECURE_NO_WARNINGS' : macro redefinition
+     1>c:\code\diceprogrammingchallenge\networkengine\raknet\dr_sha1.cpp(11): warning C4005: '_CRT_SECURE_NO_WARNINGS' : macro redefinition
                  command-line arguments :  see previous definition of '_CRT_SECURE_NO_WARNINGS'
          DirectoryDeltaTransfer.cpp
          DataCompressor.cpp
@@ -131,23 +131,23 @@
          BitStream.cpp
          Base64Encoder.cpp
          NetworkEngine.cpp
-     1>c:\users\robin\desktop\thecrashriders\hge project\hge project\commonutilities\growingarray.h(55): warning C4245: 'initializing' : conversion from 'int' to 'const UINT', signed/unsigned mismatch
-                 c:\users\robin\desktop\thecrashriders\hge project\hge project\networkengine\networkengine.h(63) : see reference to class template instantiation 'CommonUtilities::GrowingArray<NetworkMessage *,UINT>' being compiled
-     1>c:\users\robin\desktop\thecrashriders\hge project\hge project\networkengine\systemaddressmessage.h(26): warning C4100: 'aBitStream' : unreferenced formal parameter
-     1>c:\users\robin\desktop\thecrashriders\hge project\hge project\networkengine\systemaddressmessage.h(30): warning C4100: 'aBitStream' : unreferenced formal parameter
-     1>c:\users\robin\desktop\thecrashriders\hge project\hge project\networkengine\networkengine.cpp(306): warning C4100: 'aIsServer' : unreferenced formal parameter
-     1>c:\users\robin\desktop\thecrashriders\hge project\hge project\networkengine\networkengine.cpp(312): warning C4100: 'aIsServer' : unreferenced formal parameter
-     1>c:\users\robin\desktop\thecrashriders\hge project\hge project\networkengine\networkengine.cpp(318): warning C4100: 'aIsServer' : unreferenced formal parameter
-     1>c:\users\robin\desktop\thecrashriders\hge project\hge project\networkengine\networkengine.cpp(324): warning C4100: 'aIsServer' : unreferenced formal parameter
-     1>c:\users\robin\desktop\thecrashriders\hge project\hge project\networkengine\networkengine.cpp(363): warning C4100: 'aIsServer' : unreferenced formal parameter
-     1>c:\users\robin\desktop\thecrashriders\hge project\hge project\networkengine\networkengine.cpp(369): warning C4100: 'aIsServer' : unreferenced formal parameter
-     1>c:\users\robin\desktop\thecrashriders\hge project\hge project\networkengine\networkengine.cpp(375): warning C4100: 'aIsServer' : unreferenced formal parameter
-     1>c:\users\robin\desktop\thecrashriders\hge project\hge project\networkengine\networkengine.cpp(474): warning C4244: '=' : conversion from 'int' to 'short', possible loss of data
-     1>c:\users\robin\desktop\thecrashriders\hge project\hge project\networkengine\networkengine.cpp(558): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\robin\desktop\thecrashriders\hge project\hge project\networkengine\networkengine.cpp(607): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\code\diceprogrammingchallenge\commonutilities\growingarray.h(55): warning C4245: 'initializing' : conversion from 'int' to 'const UINT', signed/unsigned mismatch
+                 c:\code\diceprogrammingchallenge\networkengine\networkengine.h(63) : see reference to class template instantiation 'CommonUtilities::GrowingArray<NetworkMessage *,UINT>' being compiled
+     1>c:\code\diceprogrammingchallenge\networkengine\systemaddressmessage.h(26): warning C4100: 'aBitStream' : unreferenced formal parameter
+     1>c:\code\diceprogrammingchallenge\networkengine\systemaddressmessage.h(30): warning C4100: 'aBitStream' : unreferenced formal parameter
+     1>c:\code\diceprogrammingchallenge\networkengine\networkengine.cpp(306): warning C4100: 'aIsServer' : unreferenced formal parameter
+     1>c:\code\diceprogrammingchallenge\networkengine\networkengine.cpp(312): warning C4100: 'aIsServer' : unreferenced formal parameter
+     1>c:\code\diceprogrammingchallenge\networkengine\networkengine.cpp(318): warning C4100: 'aIsServer' : unreferenced formal parameter
+     1>c:\code\diceprogrammingchallenge\networkengine\networkengine.cpp(324): warning C4100: 'aIsServer' : unreferenced formal parameter
+     1>c:\code\diceprogrammingchallenge\networkengine\networkengine.cpp(363): warning C4100: 'aIsServer' : unreferenced formal parameter
+     1>c:\code\diceprogrammingchallenge\networkengine\networkengine.cpp(369): warning C4100: 'aIsServer' : unreferenced formal parameter
+     1>c:\code\diceprogrammingchallenge\networkengine\networkengine.cpp(375): warning C4100: 'aIsServer' : unreferenced formal parameter
+     1>c:\code\diceprogrammingchallenge\networkengine\networkengine.cpp(474): warning C4244: '=' : conversion from 'int' to 'short', possible loss of data
+     1>c:\code\diceprogrammingchallenge\networkengine\networkengine.cpp(558): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\code\diceprogrammingchallenge\networkengine\networkengine.cpp(607): warning C4018: '<' : signed/unsigned mismatch
          Generating Code...
        Lib:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\Lib.exe /OUT:"C:\Users\Robin\Desktop\TheCrashRiders\HGE Project\HGE Project\Debug\NetworkEngine.lib" RakNet_VS2008_DLL_Debug_Win32.lib ws2_32.lib /NOLOGO Debug\NetworkEngine.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\Lib.exe /OUT:"C:\Code\DICEProgrammingChallenge\Debug\NetworkEngine.lib" RakNet_VS2008_DLL_Debug_Win32.lib ws2_32.lib /NOLOGO Debug\NetworkEngine.obj
          Debug\Base64Encoder.obj
          Debug\BitStream.obj
          Debug\CCRakNetSlidingWindow.obj
@@ -5325,9 +5325,9 @@
      1>NetworkEngine.obj : warning LNK4006: "public: struct RakNet::RakNetGUID & __thiscall RakNet::RakNetGUID::operator=(struct RakNet::RakNetGUID const &)" (??4RakNetGUID@RakNet@@QAEAAU01@ABU01@@Z) already defined in RakNet_VS2008_DLL_Debug_Win32.lib(RakNet_VS2008_DLL_Debug_Win32.dll); second definition ignored
      1>NetworkEngine.obj : warning LNK4006: "public: static bool __cdecl RakNet::BitStream::DoEndianSwap(void)" (?DoEndianSwap@BitStream@RakNet@@SA_NXZ) already defined in RakNet_VS2008_DLL_Debug_Win32.lib(RakNet_VS2008_DLL_Debug_Win32.dll); second definition ignored
      1>NetworkEngine.obj : warning LNK4006: "public: static bool __cdecl RakNet::BitStream::IsNetworkOrder(void)" (?IsNetworkOrder@BitStream@RakNet@@SA_NXZ) already defined in RakNet_VS2008_DLL_Debug_Win32.lib(RakNet_VS2008_DLL_Debug_Win32.dll); second definition ignored
-         NetworkEngine.vcxproj -> C:\Users\Robin\Desktop\TheCrashRiders\HGE Project\HGE Project\Debug\NetworkEngine.lib
-     1>Done Building Project "C:\Users\Robin\Desktop\TheCrashRiders\HGE Project\HGE Project\NetworkEngine\NetworkEngine.vcxproj" (Rebuild target(s)).
+         NetworkEngine.vcxproj -> C:\Code\DICEProgrammingChallenge\Debug\NetworkEngine.lib
+     1>Done Building Project "C:\Code\DICEProgrammingChallenge\NetworkEngine\NetworkEngine.vcxproj" (Rebuild target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:34.60
+Time Elapsed 00:01:00.97
