@@ -22,7 +22,6 @@ public:
 private:
 	CU::Vector2f HandleCollision(CU::GrowingArray<FloorTile> tiles, CU::Vector2f position);
 
-	CU::Vector2f myPosition;
 	CU::Vector2f myNewPosition;
 	AABB myBoundingBox;
 
