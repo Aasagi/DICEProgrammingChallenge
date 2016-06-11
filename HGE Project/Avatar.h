@@ -28,7 +28,7 @@ private:
 	CU::Vector2f myVelocity;
 	float myMovementSpeed;
 	float myFloorPlacing;
-
+	bool CollidedLastFrame;
 	hgeSprite* mySprite;
 };
 
