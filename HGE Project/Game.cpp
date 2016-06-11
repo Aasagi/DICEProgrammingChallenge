@@ -50,7 +50,7 @@ void Game::Update()
 	}
 
 	int halfTileCount = myFloorTiles.Count() / 2;
-	if (tilesPassed < TILES_PASS_TO_GOAL && myPlayer.GetPosition().x > myFloorTiles[halfTileCount].myPosition.x)
+	if (tilesPassed < TILES_PASS_TO_GOAL && myPlayer.GetPosition().x > myFloorTiles[halfTileCount].GetPosition().x)
 	{
 		if (myFloorTiles[halfTileCount].GetTileHeight() == 0)
 		{
@@ -140,7 +140,7 @@ void Game::GenerateStartArea()
 	for (int floorIndex = 0; floorIndex < START_AREA_TILE_NUMBER; floorIndex++)
 	{
 		myFloorTiles.Add(FloorTile());
-		myFloorTiles[myFloorTiles.Count() - 1].myPosition = CU::Vector2f(floorIndex*TILE_SIZE, WINDOW_HEIGHT - TILE_SIZE);
+		myFloorTiles[myFloorTiles.Count() - 1].SetPosition(CU::Vector2f(floorIndex*TILE_SIZE, WINDOW_HEIGHT - TILE_SIZE));
 	}
 }
 
@@ -156,13 +156,13 @@ void Game::GetNextFloor()
 		myFloorTiles[tileIndex] = myFloorTiles[tileIndex + 1];
 	}
 
-	lastTile.myPosition += CU::Vector2f(TILE_SIZE, 0.0f);
+	lastTile.SetPosition(lastTile.GetPosition() + CU::Vector2f(TILE_SIZE, 0.0f));
 	if (tilesPassed >= TILES_PASS_TO_GOAL)
 	{
 		int indexToCheck = recentlyMadeHole ? myFloorTiles.Count() - 3 : myFloorTiles.Count() - 2;
 		lastTile.Recalculate(myFloorTiles[indexToCheck].GetTileHeight());
 
-		myGoalObject.myPosition = lastTile.myPosition - CU::Vector2f(0.0f, lastTileHeight * TILE_SIZE);
+		myGoalObject.myPosition = lastTile.GetPosition() - CU::Vector2f(0.0f, lastTileHeight * TILE_SIZE);
 	}
 	else if (recentlyMadeHole)
 	{
@@ -198,10 +198,10 @@ CU::GrowingArray<FloorTile> Game::GetCollidingTiles(Avatar& player)
 		auto tile = myFloorTiles[tileIndex];
 		auto tileAABB = tile.GetAABB();
 
-		/*if (avatarAABB.Collides(tileAABB))
+		if (avatarAABB.Collides(tileAABB))
 		{
-		result.Add(tile);
-		}	*/
+			result.Add(tile);
+		}	
 	}
 
 	return result;

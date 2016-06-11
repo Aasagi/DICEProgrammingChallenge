@@ -12,14 +12,16 @@ public:
 	FloorTile();
 	~FloorTile();
 	
-	CU::Vector2f myPosition;
 	AABB GetAABB() const;
 
 	void Render(Camera& aCamera);
 	void Recalculate(int tileHeight);
+	CU::Vector2f GetPosition() const;
+	void SetPosition(CU::Vector2f aPosition);
 
 	int GetTileHeight();
 private:
+	CU::Vector2f myPosition;
 	hgeSprite* myFloorSprite;
 	AABB myBoundingBox;
 

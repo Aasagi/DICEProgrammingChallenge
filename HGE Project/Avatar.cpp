@@ -10,9 +10,8 @@ Avatar::Avatar()
 {
 	mySprite = nullptr;
 	myPosition.Set(WINDOW_WIDTH / 4, WINDOW_HEIGHT / 5 * 4);
-	myFloorPlacing = 0.f;
+	myFloorPlacing = WINDOW_HEIGHT;
 	myMovementSpeed = 200.f;
-
 }
 
 
@@ -22,10 +21,11 @@ Avatar::~Avatar()
 
 void Avatar::Init()
 {
-	mySprite = Megaton::GetResourceManager()->GetSprite("Data/player.png");
+	mySprite = Megaton::GetResourceManager()->GetSprite("Data/playerAvatar.png");
 
-	myBoundingBox.SetWidth(mySprite->GetWidth());
-	myBoundingBox.SetHeight(mySprite->GetHeight());
+	mySprite->SetTextureRect(0, 0, TILE_SIZE / 2, TILE_SIZE / 2);
+	myBoundingBox.SetWidth(TILE_SIZE / 2);
+	myBoundingBox.SetHeight(TILE_SIZE / 2);
 }
 
 void Avatar::HandleInput()
@@ -86,17 +86,17 @@ CU::Vector2f Avatar::HandleCollision(CU::GrowingArray<FloorTile> tiles, CU::Vect
 	}
 
 	if (zeroLeft)
-		position.x = max(position.x, 0);
+		position.x = max(position.x, myPosition.x);
 
 	if (zeroRight)
-		position.x = min(position.x, 0);
+		position.x = min(position.x, myPosition.x);
 
 	if (zeroUp)
-		position.y = max(position.y, 0);
+		position.y = max(position.y, myPosition.y);
 
 	if (zeroDown)
 	{
-		position.y = min(position.y, 0);
+		position.y = min(position.y, myPosition.y);
 		myVelocity.y = min(myVelocity.y, 0);
 	}
 
@@ -125,11 +125,11 @@ void Avatar::Update(CU::GrowingArray<FloorTile> tiles)
 	{
 		myVelocity.y;
 	}
-	if (myVelocity.myY != 0.f)
+	//dif (myVelocity.myY != 0.f)
 	{
 		myVelocity += CU::Vector2f(0, 1000.f) *deltaTime;
 	}
-	
+
 	myNewPosition = HandleCollision(tiles, myNewPosition);
 	myPosition = myNewPosition;
 
