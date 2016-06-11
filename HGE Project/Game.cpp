@@ -5,10 +5,7 @@
 #include "Button.h"
 #include "MainMenu.h"
 #include "Renderer\FontRenderCommand.h"
-
-#define WINDOW_WIDTH 800.0f
-#define WINDOW_HEIGHT 600.0f
-#define TILE_SIZE 20.0f
+#include "Defines.h"
 
 Game::Game(void)
 {
