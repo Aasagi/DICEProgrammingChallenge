@@ -18,6 +18,7 @@ public:
 
 	void Render(Camera& aCamera);
 	bool OnScreen;
+	bool GavePoint;
 
 private:
 	hgeSprite* mySprite;

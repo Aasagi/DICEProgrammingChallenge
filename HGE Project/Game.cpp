@@ -56,7 +56,7 @@ void Game::Update()
 		{
 			myCurrentState = eWin;
 		}
-		myCamera.myPositionOffset.x += 0.1f;// myPlayer.myPosition.myX - WINDOW_WIDTH / 2.f;
+		myCamera.myPositionOffset.x += 0.15f;// myPlayer.myPosition.myX - WINDOW_WIDTH / 2.f;
 		myPlayer.Update(GetCollidingTiles(myPlayer));
 
 	
@@ -69,14 +69,6 @@ void Game::Update()
 	auto halfTileCount = myFloorTiles.Count() / 2;
 	if (tilesPassed < TILES_PASS_TO_GOAL && myPlayer.GetPosition().x > myFloorTiles[halfTileCount].GetPosition().x)
 	{
-		if (myFloorTiles[halfTileCount].GetTileHeight() == 0)
-		{
-			holePassCounter++;
-			if (holePassCounter >= 10)
-			{
-				myCurrentState = eWin;
-			}
-		}
 		tilesPassed++;
 		GetNextFloor();
 	}
@@ -88,6 +80,16 @@ void Game::Update()
 			if (myPlayer.GetAABB().Collides(myHangingObjects[hangingObjectIndex].GetAABB()))
 			{
 				myCurrentState = eGameover;
+			}
+			if (myHangingObjects[hangingObjectIndex].GavePoint == false && myPlayer.GetPosition().x > myHangingObjects[hangingObjectIndex].GetPostion().x && myPlayer.GetPosition().y > myHangingObjects[hangingObjectIndex].GetPostion().y)
+			{
+				holePassCounter++;
+				myHangingObjects[hangingObjectIndex].GavePoint = true;
+				if (holePassCounter >= 10)
+				{
+					myCurrentState = eWin;
+					break;
+				}
 			}
 
 			if (myHangingObjects[hangingObjectIndex].GetPostion().x < myCeilingTiles[0].GetPosition().x)
@@ -187,7 +189,7 @@ void Game::GenerateStartArea()
 		myCeilingTiles.Add(FloorTile());
 
 		myFloorTiles[myFloorTiles.Count() - 1].SetPosition(CU::Vector2f(floorIndex*TILE_SIZE, WINDOW_HEIGHT - TILE_SIZE));
-		myCeilingTiles[myCeilingTiles.Count() - 1].SetPosition(CU::Vector2f(floorIndex*TILE_SIZE, WINDOW_HEIGHT - TILE_SIZE - AVATAR_HEIGHT * 3));
+		myCeilingTiles[myCeilingTiles.Count() - 1].SetPosition(CU::Vector2f(floorIndex*TILE_SIZE, WINDOW_HEIGHT - TILE_SIZE * 3 - AVATAR_HEIGHT));
 	}
 }
 
@@ -223,7 +225,7 @@ void Game::GetNextFloor()
 		{
 		lastTile.Recalculate(0);
 		}
-		else */if (lastTileHeight < 5 && rand() % 5 == 0)
+		else */if (lastTileHeight < 4 && rand() % 5 == 0)
 		{
 		lastTile.Recalculate(++lastTileHeight);
 		}
@@ -236,14 +238,20 @@ void Game::GetNextFloor()
 	if (lastTile.GetTileHeight() <= 1)
 	{
 		myCeilingTiles[myCeilingTiles.Count() - 1].Recalculate(1);
-		if (rand() % 10 == 0)
+		if (myCeilingTiles[myCeilingTiles.Count() - 1].GetTileHeight() == 1 && myCeilingTiles[myCeilingTiles.Count() - 2].GetTileHeight() == 1 && myCeilingTiles[myCeilingTiles.Count() - 3].GetTileHeight() == 1)
 		{
-			for (int hangingObjectIndex = 0; hangingObjectIndex < myHangingObjects.Count(); hangingObjectIndex++)
+			if (rand() % 2 == 0)
 			{
-				if (myHangingObjects[hangingObjectIndex].OnScreen == false)
+				for (int hangingObjectIndex = 0; hangingObjectIndex < myHangingObjects.Count(); hangingObjectIndex++)
 				{
-					myHangingObjects[hangingObjectIndex].OnScreen = true;
-					myHangingObjects[hangingObjectIndex].SetPosition(myCeilingTiles[myCeilingTiles.Count() - 1].GetPosition() + CU::Vector2f(0.0f, TILE_SIZE));
+					if (myHangingObjects[hangingObjectIndex].OnScreen == false)
+					{
+						myHangingObjects[hangingObjectIndex].OnScreen = true;
+						myHangingObjects[hangingObjectIndex].GavePoint = false;
+
+						myHangingObjects[hangingObjectIndex].SetPosition(myCeilingTiles[myCeilingTiles.Count() - 2].GetPosition() + CU::Vector2f(0.0f, TILE_SIZE));
+						break;
+					}
 				}
 			}
 		}
