@@ -11,6 +11,8 @@
 Game::Game(void)
 {
 	myFloorTiles.Init(START_AREA_TILE_NUMBER);
+	myCeilingTiles.Init(START_AREA_TILE_NUMBER);
+	myHangingObjects.Init(5);
 	myCurrentState = ePlaying;
 	holePassCounter = 0;
 	tilesPassed = 0;
@@ -26,10 +28,14 @@ void Game::Init()
 	myBackground1 = Megaton::GetResourceManager()->GetSprite("Data/Background/BG1.png");
 	myBackground1->SetTextureRect(0, 0, 800, 600);
 	myBackground2 = Megaton::GetResourceManager()->GetSprite("Data/Background/BG2.png");
-	myBackground2->SetTextureRect(0, 0, 800, 600,false);
+	myBackground2->SetTextureRect(0, 0, 800, 600, false);
 
 	srand(time(NULL));
 	GenerateStartArea();
+	for (int hangingObjectIndex = 0; hangingObjectIndex < 5; hangingObjectIndex++)
+	{
+		myHangingObjects.Add(HangingObject());
+	}
 	myPlayer.Init();
 	myGoalObject.SetPosition(CU::Vector2f(-100.0f, -100.0f));
 }
@@ -37,7 +43,7 @@ void Game::Init()
 void Game::Update()
 {
 	GameState::Update();
-	
+
 	for (int i = mySubStates.Size() - 1; 0 <= i; --i)
 	{
 		mySubStates[i]->Update();
@@ -51,7 +57,9 @@ void Game::Update()
 		}
 		myCamera.myPositionOffset.x += 0.1f;// myPlayer.myPosition.myX - WINDOW_WIDTH / 2.f;
 		myPlayer.Update(GetCollidingTiles(myPlayer));
-		if (myPlayer.myPosition.x - myCamera.myPositionOffset.x <= 0 || myPlayer.myPosition.y- myPlayer.GetAABB().GetHeight() > WINDOW_HEIGHT)
+
+	
+		if (myPlayer.myPosition.x - myCamera.myPositionOffset.x <= 0 || myPlayer.myPosition.y - myPlayer.GetAABB().GetHeight() > WINDOW_HEIGHT)
 		{
 			myCurrentState = eGameover;
 		}
@@ -71,7 +79,21 @@ void Game::Update()
 		tilesPassed++;
 		GetNextFloor();
 	}
-	
+
+	for (int hangingObjectIndex = 0; hangingObjectIndex < myHangingObjects.Count(); hangingObjectIndex++)
+	{
+		if (myPlayer.GetAABB().Collides(myHangingObjects[hangingObjectIndex].GetAABB()))
+		{
+			myCurrentState = eGameover;
+		}
+
+		if (myHangingObjects[hangingObjectIndex].OnScreen && myHangingObjects[hangingObjectIndex].GetPostion().x < myCeilingTiles[0].GetPosition().x)
+		{
+			myHangingObjects[hangingObjectIndex].OnScreen = false;
+			myHangingObjects[hangingObjectIndex].SetPosition(CU::Vector2f(-100.0f, -100.0f));
+		}
+	}
+
 	//Put code here
 	Render();
 }
@@ -100,17 +122,21 @@ void Game::Notify(const eTriggerType& aTriggerType, void* aTrigger)
 void Game::Render()
 {
 
-	SpriteRenderCommand* bgSprite = new SpriteRenderCommand(myBackground1, myCamera.ConvertPositionToCameraPosition(CU::Vector2f(0,WINDOW_WIDTH)));
+	SpriteRenderCommand* bgSprite = new SpriteRenderCommand(myBackground1, myCamera.ConvertPositionToCameraPosition(CU::Vector2f(0, WINDOW_WIDTH)));
 	SpriteRenderCommand* bgSprite1 = new SpriteRenderCommand(myBackground1, myCamera.ConvertSquarePositionToCameraPosition(CU::Vector2f(0, 0)));
 
-	
+
 
 
 	for (int floorIndex = 0; floorIndex < myFloorTiles.Count(); floorIndex++)
 	{
 		myFloorTiles[floorIndex].Render(myCamera);
+		myCeilingTiles[floorIndex].Render(myCamera);
 	}
-
+	for (int hangingObjectIndex = 0; hangingObjectIndex < myHangingObjects.Count(); hangingObjectIndex++)
+	{
+		myHangingObjects[hangingObjectIndex].Render(myCamera);
+	}
 	myPlayer.Render(myCamera);
 	myGoalObject.Render(myCamera);
 
@@ -155,7 +181,10 @@ void Game::GenerateStartArea()
 	for (int floorIndex = 0; floorIndex < START_AREA_TILE_NUMBER; floorIndex++)
 	{
 		myFloorTiles.Add(FloorTile());
+		myCeilingTiles.Add(FloorTile());
+
 		myFloorTiles[myFloorTiles.Count() - 1].SetPosition(CU::Vector2f(floorIndex*TILE_SIZE, WINDOW_HEIGHT - TILE_SIZE));
+		myCeilingTiles[myCeilingTiles.Count() - 1].SetPosition(CU::Vector2f(floorIndex*TILE_SIZE, WINDOW_HEIGHT - TILE_SIZE - AVATAR_HEIGHT * 3));
 	}
 }
 
@@ -169,9 +198,11 @@ void Game::GetNextFloor()
 	for (int tileIndex = 0; tileIndex < myFloorTiles.Count() - 1; tileIndex++)
 	{
 		myFloorTiles[tileIndex] = myFloorTiles[tileIndex + 1];
+		myCeilingTiles[tileIndex] = myCeilingTiles[tileIndex + 1];
 	}
 
 	lastTile.SetPosition(lastTile.GetPosition() + CU::Vector2f(TILE_SIZE, 0.0f));
+	myCeilingTiles[myCeilingTiles.Count() - 1].SetPosition(myCeilingTiles[myCeilingTiles.Count() - 1].GetPosition() + CU::Vector2f(TILE_SIZE, 0.0f));
 	if (tilesPassed >= TILES_PASS_TO_GOAL)
 	{
 		int indexToCheck = recentlyMadeHole ? myFloorTiles.Count() - 3 : myFloorTiles.Count() - 2;
@@ -185,20 +216,39 @@ void Game::GetNextFloor()
 	}
 	else
 	{
-		if (rand() % 20 == 0)
+		/*if (rand() % 20 == 0)
 		{
-			lastTile.Recalculate(0);
+		lastTile.Recalculate(0);
 		}
-		else if (lastTileHeight < 5 && rand() % 5 == 0)
+		else */if (lastTileHeight < 5 && rand() % 5 == 0)
 		{
-			lastTile.Recalculate(++lastTileHeight);
+		lastTile.Recalculate(++lastTileHeight);
 		}
-		else if (lastTileHeight > 0 && rand() % 5 == 0)
+		else if (lastTileHeight > 1 && rand() % 5 == 0)
 		{
 			lastTile.Recalculate(--lastTileHeight);
 		}
 	}
 	myFloorTiles[myFloorTiles.Count() - 1] = lastTile;
+	if (lastTile.GetTileHeight() <= 1)
+	{
+		myCeilingTiles[myCeilingTiles.Count() - 1].Recalculate(1);
+		if (rand() % 10 == 0)
+		{
+			for (int hangingObjectIndex = 0; hangingObjectIndex < myHangingObjects.Count(); hangingObjectIndex++)
+			{
+				if (myHangingObjects[hangingObjectIndex].OnScreen == false)
+				{
+					myHangingObjects[hangingObjectIndex].OnScreen = true;
+					myHangingObjects[hangingObjectIndex].SetPosition(myCeilingTiles[myCeilingTiles.Count() - 1].GetPosition() + CU::Vector2f(0.0f, TILE_SIZE));
+				}
+			}
+		}
+	}
+	else
+	{
+		myCeilingTiles[myCeilingTiles.Count() - 1].Recalculate(0);
+	}
 }
 
 CU::GrowingArray<FloorTile> Game::GetCollidingTiles(Avatar& player)
@@ -207,7 +257,7 @@ CU::GrowingArray<FloorTile> Game::GetCollidingTiles(Avatar& player)
 	auto result = CU::GrowingArray<FloorTile>();
 
 	auto tileCount = myFloorTiles.Count();
-	result.Init(tileCount);
+	result.Init(tileCount * 2);
 	for (auto tileIndex = 0; tileIndex < tileCount; tileIndex++)
 	{
 		auto tile = myFloorTiles[tileIndex];
@@ -216,8 +266,17 @@ CU::GrowingArray<FloorTile> Game::GetCollidingTiles(Avatar& player)
 		if (avatarAABB.Collides(tileAABB))
 		{
 			result.Add(tile);
-		}	
+		}
 	}
+	for (auto tileIndex = 0; tileIndex < tileCount; tileIndex++)
+	{
+		auto tile = myCeilingTiles[tileIndex];
+		auto tileAABB = tile.GetAABB();
 
+		if (avatarAABB.Collides(tileAABB))
+		{
+			result.Add(tile);
+		}
+	}
 	return result;
 }

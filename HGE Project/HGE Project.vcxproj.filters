@@ -162,6 +162,9 @@
     <ClInclude Include="GoalObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="HangingObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -246,6 +249,9 @@
       <Filter>Header Files</Filter>
     </ClCompile>
     <ClCompile Include="GoalObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HangingObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -111,6 +111,7 @@
     <ClInclude Include="GUI\Button.h" />
     <ClInclude Include="GUI\GUIManager.h" />
     <ClInclude Include="GUI\Widget.h" />
+    <ClInclude Include="HangingObject.h" />
     <ClInclude Include="InputButton.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="InputMouse.h" />
@@ -154,6 +155,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="HangingObject.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="InputMouse.cpp" />
     <ClCompile Include="Line.cpp" />

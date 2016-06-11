@@ -9,7 +9,7 @@
 Avatar::Avatar()
 {
 	mySprite = nullptr;
-	myPosition.Set(WINDOW_WIDTH / 4, WINDOW_HEIGHT / 5 * 4);
+	myPosition.Set(WINDOW_WIDTH / 4, WINDOW_HEIGHT - TILE_SIZE * 2);
 	myFloorPlacing = WINDOW_HEIGHT;
 	myMovementSpeed = 100.f;
 }

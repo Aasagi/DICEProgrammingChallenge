@@ -5,6 +5,7 @@
 #include "TriggerObserver.h"
 #include "FloorTile.h"
 #include "GoalObject.h"
+#include "HangingObject.h"
 #include "Avatar.h"
 #include "Camera.h"
 #include "GameStateEnum.h"
@@ -27,6 +28,8 @@ private:
 	CU::GrowingArray<FloorTile> GetCollidingTiles(Avatar& player);
 	
 	CU::GrowingArray<FloorTile>		myFloorTiles;
+	CU::GrowingArray<FloorTile>		myCeilingTiles;
+	CU::GrowingArray<HangingObject>	myHangingObjects;
 	GoalObject myGoalObject;
 
 	float myUpdateTimer;
