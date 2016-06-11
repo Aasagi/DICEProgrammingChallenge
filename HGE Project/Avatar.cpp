@@ -104,9 +104,9 @@ CU::Vector2f Avatar::HandleCollision(CU::GrowingArray<FloorTile> tiles, CU::Vect
 }
 
 
-void Avatar::Render()
+void Avatar::Render(Camera& aCamera)
 {
-	SpriteRenderCommand* spriteRenderCommand = new SpriteRenderCommand(mySprite, myPosition);
+	SpriteRenderCommand* spriteRenderCommand = new SpriteRenderCommand(mySprite, aCamera.ConvertPositionToCameraPosition(myPosition));
 	Megaton::GetRenderManager()->AddCommand(spriteRenderCommand);
 }
 

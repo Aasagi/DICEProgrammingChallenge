@@ -27,11 +27,11 @@ int FloorTile::GetTileHeight()
 }
 
 
-void FloorTile::Render()
+void FloorTile::Render(Camera& aCamera)
 {
 	for (int tileHeightIndex = 0; tileHeightIndex < myTileHeight; tileHeightIndex++)
 	{
-		Megaton::GetRenderManager()->AddCommand(new SpriteRenderCommand(myFloorSprite, myPosition - CU::Vector2f(0.0f, tileHeightIndex * TILE_SIZE)));
+		Megaton::GetRenderManager()->AddCommand(new SpriteRenderCommand(myFloorSprite, aCamera.ConvertPositionToCameraPosition(myPosition - CU::Vector2f(0.0f, tileHeightIndex * TILE_SIZE))));
 	}
 }
 

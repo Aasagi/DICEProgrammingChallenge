@@ -37,7 +37,13 @@ void Game::Update()
 	}
 
 	myPlayer.Update(GetCollidingTiles(myPlayer));	
+	if (myPlayer.myPosition.x > WINDOW_WIDTH/2.f)
+	{
+		myCamera.myPositionOffset.x = myPlayer.myPosition.myX - WINDOW_WIDTH/2.f;
+	}
 
+
+	
 	//Put code here
 	Render();
 }
@@ -62,13 +68,18 @@ void Game::Notify(const eTriggerType& aTriggerType, void* aTrigger)
 void Game::Render()
 {
 	SpriteRenderCommand* bgSprite = new SpriteRenderCommand(myBackground1, CU::Vector2f());
+	SpriteRenderCommand* bgSprite2 = new SpriteRenderCommand(myBackground2, CU::Vector2f());
 
+
+	
 	for (int floorIndex = 0; floorIndex < myFloorTiles.Count(); floorIndex++)
 	{
-		myFloorTiles[floorIndex].Render();
+		myFloorTiles[floorIndex].Render(myCamera);
 	}
 
-	myPlayer.Render();
+	myPlayer.Render(myCamera);
+	Megaton::GetRenderManager()->AddCommand(bgSprite);
+	Megaton::GetRenderManager()->AddCommand(bgSprite2);
 }
 
 void Game::GenerateStartArea()

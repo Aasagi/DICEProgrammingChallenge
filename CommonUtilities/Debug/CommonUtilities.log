@@ -1,9 +1,9 @@
-﻿Build started 2016-06-11 11:46:18.
-     1>Project "C:\Code\DICEProgrammingChallenge\CommonUtilities\CommonUtilities.vcxproj" on node 2 (Build target(s)).
+﻿Build started 11-Jun-2016 11:25:21.
+     1>Project "C:\Users\Robin\Desktop\TheCrashRiders\HGE Project\HGE Project\CommonUtilities\CommonUtilities.vcxproj" on node 2 (Build target(s)).
      1>Lib:
-         CommonUtilities.vcxproj -> C:\Code\DICEProgrammingChallenge\Debug\CommonUtilities.lib
-     1>Done Building Project "C:\Code\DICEProgrammingChallenge\CommonUtilities\CommonUtilities.vcxproj" (Build target(s)).
+         CommonUtilities.vcxproj -> C:\Users\Robin\Desktop\TheCrashRiders\HGE Project\HGE Project\Debug\CommonUtilities.lib
+     1>Done Building Project "C:\Users\Robin\Desktop\TheCrashRiders\HGE Project\HGE Project\CommonUtilities\CommonUtilities.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:00.09
+Time Elapsed 00:00:00.04

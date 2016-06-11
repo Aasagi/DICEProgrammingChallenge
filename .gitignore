@@ -281,6 +281,5 @@ paket-files/
 *.exe
 *.out
 *.app
-/*.sdf
 /HGE Project/Debug
 /NetworkEngine/Debug
