@@ -1,7 +1,12 @@
-﻿Build started 2016-06-11 13:33:11.
+﻿Build started 2016-06-11 13:36:53.
      1>Project "C:\Code\DICEProgrammingChallenge\HGE Project\HGE Project.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I../ /ZI /nologo /W4 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\DebugEXE.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Game.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I../ /ZI /nologo /W4 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt GUI\Button.cpp GUI\GUIManager.cpp
+         Button.cpp
+         Generating Code...
+         Skipping... (no relevant changes detected)
+         GUIManager.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I../ /ZI /nologo /W4 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\DebugEXE.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Avatar.cpp FloorTile.cpp Game.cpp GameLoop.cpp GameState.cpp Main.cpp MainMenu.cpp
          Game.cpp
      1>c:\code\diceprogrammingchallenge\hge project\game.cpp(27): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
      1>c:\code\diceprogrammingchallenge\hge project\game.cpp(51): warning C4244: 'argument' : conversion from 'int' to 'const short', possible loss of data
@@ -11,10 +16,47 @@
      1>c:\code\diceprogrammingchallenge\hge project\game.cpp(122): warning C4244: 'argument' : conversion from 'int' to 'const short', possible loss of data
      1>c:\code\diceprogrammingchallenge\hge project\game.cpp(152): warning C4244: 'argument' : conversion from 'int' to 'const short', possible loss of data
      1>c:\code\diceprogrammingchallenge\hge project\game.cpp(188): warning C4244: 'argument' : conversion from 'int' to 'const short', possible loss of data
-     1>c:\code\diceprogrammingchallenge\hge project\game.cpp(191): error C2039: 'Collides' : is not a member of 'AABB'
-                 c:\code\diceprogrammingchallenge\commonutilities\aabb.h(7) : see declaration of 'AABB'
-     1>Done Building Project "C:\Code\DICEProgrammingChallenge\HGE Project\HGE Project.vcxproj" (Build target(s)) -- FAILED.
+         Generating Code...
+         Skipping... (no relevant changes detected)
+         MainMenu.cpp
+         Main.cpp
+         GameState.cpp
+         GameLoop.cpp
+         FloorTile.cpp
+         Avatar.cpp
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"../WorkDir/DebugEXE.exe" /INCREMENTAL /NOLOGO hge.lib hgehelp.lib fmod_vc.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /NODEFAULTLIB:LIBC.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"../WorkDir/DebugEXE.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"../WorkDir/DebugEXE.lib" /MACHINE:X86 /SAFESEH:NO Debug\AudioSystem.obj
+         Debug\Sound.obj
+         Debug\SoundBase.obj
+         Debug\Stream.obj
+         Debug\Avatar.obj
+         Debug\Camera.obj
+         Debug\Game.obj
+         Debug\GameLoop.obj
+         Debug\GameObjectManager.obj
+         Debug\GameState.obj
+         Debug\Button.obj
+         Debug\GUIManager.obj
+         Debug\InputManager.obj
+         Debug\InputMouse.obj
+         Debug\Line.obj
+         Debug\Main.obj
+         Debug\MainMenu.obj
+         Debug\Megaton.obj
+         Debug\FontRenderCommand.obj
+         Debug\RenderCommand.obj
+         Debug\Renderer.obj
+         Debug\RenderManager.obj
+         Debug\SpriteRenderCommand.obj
+         Debug\ResourceManager.obj
+         Debug\FloorTile.obj
+         Debug\stdafx.obj
+         Debug\TriggerManager.obj
+         C:\Code\DICEProgrammingChallenge\Debug\CommonUtilities.lib
+         C:\Code\DICEProgrammingChallenge\Debug\NetworkEngine.lib
+         HGE Project.vcxproj -> C:\Code\DICEProgrammingChallenge\HGE Project\../WorkDir/DebugEXE.exe
+     1>Done Building Project "C:\Code\DICEProgrammingChallenge\HGE Project\HGE Project.vcxproj" (Build target(s)).
 
-Build FAILED.
+Build succeeded.
 
-Time Elapsed 00:00:00.90
+Time Elapsed 00:00:04.04
