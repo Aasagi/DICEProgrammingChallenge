@@ -137,10 +137,10 @@ CU::GrowingArray<FloorTile> Game::GetCollidingTiles(Avatar& player)
 		auto tile = myFloorTiles[tileIndex];
 		auto tileAABB = tile.GetAABB();
 
-		if (avatarAABB.Collides(tileAABB))
+		/*if (avatarAABB.Collides(tileAABB))
 		{
 			result.Add(tile);
-		}		
+		}	*/	
 	}
 
 	return result;
