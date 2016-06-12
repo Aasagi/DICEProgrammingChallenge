@@ -24,8 +24,11 @@ public:
 	void Notify(const eTriggerType& aTriggerType, void* aTrigger) override;
 
 private:
+	CU::GrowingArray<FloorTile> GetNearbyTiles(const Avatar& avatar);
 	CU::GrowingArray<FloorTile> GetCollidingTiles(Avatar& player);
-	
+	CU::GrowingArray<FloorTile> InnerGetCollidingTiles(const AABB& aabb);
+
+
 	CU::GrowingArray<FloorTile>		myFloorTiles;
 	GoalObject myGoalObject;
 

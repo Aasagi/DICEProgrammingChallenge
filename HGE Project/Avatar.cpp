@@ -74,93 +74,141 @@ void Avatar::SetDuckedState(bool shouldDuck)
 	}
 }
 
-CU::Vector2f Avatar::HandleCollision(CU::GrowingArray<FloorTile> tiles, CU::Vector2f movement)
+CU::Vector2f Avatar::HandleCollision(CU::GrowingArray<FloorTile> nearbyTiles, CU::Vector2f movement)
 {
-	auto leftAABB = GetAABB();
-	auto upAABB = GetAABB();
-	auto rightAABB = GetAABB();
+	auto result = CommonUtilities::Vector2f(movement);
+	auto movedAabb = AABB(GetAABB());
+	movedAabb.SetX(movedAabb.GetX() + movement.x);
+	movedAabb.SetY(movedAabb.GetY() + movement.y);
 
-	aabb.SetX(myPosition.x + movement.x);
-	aabb.SetY(myPosition.y + movement.y);
+	//auto tilesCollidingWithMoved = CU::GrowingArray<FloorTile>();
+	auto nearbyTileCount = nearbyTiles.Count();
+	//tilesCollidingWithMoved.Init(nearbyTileCount);
 
+	auto highestTileY = MAXINT;
 
-	bool upBlocked = false;
-	bool rightBlocked = false;
-	bool leftBlocked = false;
-	bool downBlocked = false;
-
-	CU::Vector2f upperLeft = CU::Vector2f(aabb.GetX(), aabb.GetY());
-	CU::Vector2f up = CU::Vector2f(aabb.GetX(), aabb.GetY() + aabb.GetWidth() / 2);
-	CU::Vector2f upperRight = CU::Vector2f(aabb.GetX() + aabb.GetWidth(), aabb.GetY());
-	CU::Vector2f right = CU::Vector2f(aabb.GetX() + aabb.GetWidth(), aabb.GetY() + aabb.GetHeight() / 2);
-	CU::Vector2f lowerLeft = CU::Vector2f(aabb.GetX(), aabb.GetY() + aabb.GetHeight());
-	CU::Vector2f left = CU::Vector2f(aabb.GetX(), aabb.GetY() + aabb.GetHeight() / 2);
-	CU::Vector2f lowerRight = CU::Vector2f(aabb.GetX() + aabb.GetWidth(), aabb.GetY() + aabb.GetHeight());
-	CU::Vector2f low = CU::Vector2f(aabb.GetX() + aabb.GetWidth() / 2, aabb.GetY() + aabb.GetHeight());
-
-	auto tileCount = tiles.Count();
-	for (auto tileIndex = 0; tileIndex < tileCount; tileIndex++)
+	for (auto tileIndex = 0; tileIndex < nearbyTileCount; tileIndex++)
 	{
-		auto tileAABB = tiles[tileIndex].GetAABB();
+		auto tile = nearbyTiles[tileIndex];
 
-		if (tileAABB.Inside(upperLeft))
+		if (tile.GetAABB().Collides(movedAabb))
 		{
-			upperleftBlocked = true;
-		}
-
-		if (tileAABB.Inside(upperRight))
-		{
-			upperRightBlocked = true;
-		}
-
-		if (tileAABB.Inside(lowerLeft))
-		{
-			lowerLeftBlocked = true;
-		}
-
-		if (tileAABB.Inside(lowerRight))
-		{
-			lowerRightBlocked = true;
-		}
-		if (tileAABB.Inside(up))
-		{
-			upBlocked = true;
-		}
-		if (tileAABB.Inside(low))
-		{
-			downBlocked = true;
-		}
-		if (tileAABB.Inside(left))
-		{
-			leftBlocked = true;
-		}
-		if (tileAABB.Inside(right))
-		{
-			rightBlocked = true;
+			auto differance = (movedAabb.GetY() + movedAabb.GetHeight()) - tile.GetPosition().y;
+			result.y = movement.y - differance;
+			myGravity.Set(0, 0);
+			myVelocity.Set(0, 0);
 		}
 	}
 
-	if (upperleftBlocked || leftBlocked || lowerLeftBlocked)
-		movement.x = max(movement.x, 0);
+	return result;
 
-	if (upperRightBlocked || rightBlocked || lowerRightBlocked)
-		movement.x = min(movement.x, 0);
+	//auto leftAABB = GetAABB();
+	//auto upAABB = GetAABB();
+	//auto rightAABB = GetAABB();
 
-	if (upperleftBlocked || upBlocked || upperRightBlocked)
-		movement.y = max(movement.y, 0);
+	//aabb.SetX(myPosition.x + movement.x);
+	//aabb.SetY(myPosition.y + movement.y);
 
-	if (lowerLeftBlocked || downBlocked || lowerRightBlocked)
-	{
-		movement.y = min(movement.y, 0);
-		myGravity.Set(0, 0);
-	}
 
-	return movement;
+	//bool upBlocked = false;
+	//bool rightBlocked = false;
+	//bool leftBlocked = false;
+	//bool downBlocked = false;
+
+	//CU::Vector2f upperLeft = CU::Vector2f(aabb.GetX(), aabb.GetY());
+	//CU::Vector2f up = CU::Vector2f(aabb.GetX(), aabb.GetY() + aabb.GetWidth() / 2);
+	//CU::Vector2f upperRight = CU::Vector2f(aabb.GetX() + aabb.GetWidth(), aabb.GetY());
+	//CU::Vector2f right = CU::Vector2f(aabb.GetX() + aabb.GetWidth(), aabb.GetY() + aabb.GetHeight() / 2);
+	//CU::Vector2f lowerLeft = CU::Vector2f(aabb.GetX(), aabb.GetY() + aabb.GetHeight());
+	//CU::Vector2f left = CU::Vector2f(aabb.GetX(), aabb.GetY() + aabb.GetHeight() / 2);
+	//CU::Vector2f lowerRight = CU::Vector2f(aabb.GetX() + aabb.GetWidth(), aabb.GetY() + aabb.GetHeight());
+	//CU::Vector2f low = CU::Vector2f(aabb.GetX() + aabb.GetWidth() / 2, aabb.GetY() + aabb.GetHeight());
+
+	//auto tileCount = nearbyTiles.Count();
+	//for (auto tileIndex = 0; tileIndex < tileCount; tileIndex++)
+	//{
+	//	auto tileAABB = nearbyTiles[tileIndex].GetAABB();
+
+	//	if (tileAABB.Inside(upperLeft))
+	//	{
+	//		upperleftBlocked = true;
+	//	}
+
+	//	if (tileAABB.Inside(upperRight))
+	//	{
+	//		upperRightBlocked = true;
+	//	}
+
+	//	if (tileAABB.Inside(lowerLeft))
+	//	{
+	//		lowerLeftBlocked = true;
+	//	}
+
+	//	if (tileAABB.Inside(lowerRight))
+	//	{
+	//		lowerRightBlocked = true;
+	//	}
+	//	if (tileAABB.Inside(up))
+	//	{
+	//		upBlocked = true;
+	//	}
+	//	if (tileAABB.Inside(low))
+	//	{
+	//		downBlocked = true;
+	//	}
+	//	if (tileAABB.Inside(left))
+	//	{
+	//		leftBlocked = true;
+	//	}
+	//	if (tileAABB.Inside(right))
+	//	{
+	//		rightBlocked = true;
+	//	}
+	//}
+
+	//if (upperleftBlocked || leftBlocked || lowerLeftBlocked)
+	//	movement.x = max(movement.x, 0);
+
+	//if (upperRightBlocked || rightBlocked || lowerRightBlocked)
+	//	movement.x = min(movement.x, 0);
+
+	//if (upperleftBlocked || upBlocked || upperRightBlocked)
+	//	movement.y = max(movement.y, 0);
+
+	//if (lowerLeftBlocked || downBlocked || lowerRightBlocked)
+	//{
+	//	movement.y = min(movement.y, 0);
+	//	myGravity.Set(0, 0);
+	//}
+
+	//return movement;
 }
 
 CU::Vector2f Avatar::GetPosition() const
 {
 	return myPosition;
+}
+
+void Avatar::HandleOverlapment(const CommonUtilities::GrowingArray<FloorTile>& overlappingTiles)
+{
+	int highestTileY = MAXINT;
+
+	const int tileCount = overlappingTiles.Count();
+	for (int tileIndex = 0; tileIndex < tileCount; tileIndex++)
+	{
+		auto tileY = overlappingTiles[tileIndex].GetPosition().y;
+
+		if (tileY < highestTileY)
+			highestTileY = tileY;
+	}
+
+	auto yDifference = highestTileY - (GetPosition().y + mySize.y);
+	if (yDifference <= 0)
+	{
+		myPosition.y += yDifference;
+		myGravity.Set(0, 0);
+		myVelocity.y = min(myVelocity.y, 0);
+	}
 }
 
 void Avatar::Render(Camera& aCamera) const
@@ -169,7 +217,7 @@ void Avatar::Render(Camera& aCamera) const
 	Megaton::GetRenderManager()->AddCommand(spriteRenderCommand);
 }
 
-void Avatar::Update(CU::GrowingArray<FloorTile> tiles)
+void Avatar::Update(CU::GrowingArray<FloorTile> aNearbyTiles)
 {
 	HandleInput();
 
@@ -186,7 +234,7 @@ void Avatar::Update(CU::GrowingArray<FloorTile> tiles)
 		myGravity.Set(0, 0);
 	}
 
-	movement = HandleCollision(tiles, movement);
+	movement = HandleCollision(aNearbyTiles, movement);
 	myPosition += movement;
 }
 

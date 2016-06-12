@@ -34,6 +34,7 @@ void Game::Init()
 	myGoalObject.SetPosition(CU::Vector2f(-100.0f, -100.0f));
 }
 
+
 void Game::Update()
 {
 	GameState::Update();
@@ -50,8 +51,9 @@ void Game::Update()
 		{
 			myCurrentState = eWin;
 		}
-		//myCamera.myPositionOffset.x += 0.1f;// myPlayer.myPosition.myX - WINDOW_WIDTH / 2.f;
-		myPlayer.Update(GetCollidingTiles(myPlayer));
+
+		//myPlayer.HandleOverlapment(GetCollidingTiles(myPlayer));
+		myPlayer.Update(GetNearbyTiles(myPlayer));
 		if (playerPosition.x - myCamera.myPositionOffset.x <= 0 || playerPosition.y - myPlayer.GetAABB().GetHeight() > WINDOW_HEIGHT)
 		{
 			myCurrentState = eGameover;
@@ -102,9 +104,6 @@ void Game::Render()
 
 	SpriteRenderCommand* bgSprite = new SpriteRenderCommand(myBackground1, myCamera.ConvertPositionToCameraPosition(CU::Vector2f(0, WINDOW_WIDTH)));
 	SpriteRenderCommand* bgSprite1 = new SpriteRenderCommand(myBackground1, myCamera.ConvertSquarePositionToCameraPosition(CU::Vector2f(0, 0)));
-
-
-
 
 	for (int floorIndex = 0; floorIndex < myFloorTiles.Count(); floorIndex++)
 	{
@@ -203,7 +202,25 @@ void Game::GetNextFloor()
 
 CU::GrowingArray<FloorTile> Game::GetCollidingTiles(Avatar& player)
 {
-	auto avatarAABB = player.GetAABB();
+	return InnerGetCollidingTiles(player.GetAABB());
+}
+
+CU::GrowingArray<FloorTile> Game::GetNearbyTiles(const Avatar& avatar)
+{
+	auto expandedAabb = myPlayer.GetAABB();
+	expandedAabb.SetX(expandedAabb.GetX() - expandedAabb.GetWidth());
+	expandedAabb.SetY(expandedAabb.GetY() - expandedAabb.GetHeight());
+	expandedAabb.SetHeight(expandedAabb.GetHeight() * 2);
+	expandedAabb.SetWidth(expandedAabb.GetWidth() * 2);
+
+	auto result = InnerGetCollidingTiles(expandedAabb);
+	const int resultCount = result.Count();
+
+	return result;
+}
+
+CU::GrowingArray<FloorTile> Game::InnerGetCollidingTiles(const AABB& aabb)
+{
 	auto result = CU::GrowingArray<FloorTile>();
 
 	auto tileCount = myFloorTiles.Count();
@@ -213,7 +230,7 @@ CU::GrowingArray<FloorTile> Game::GetCollidingTiles(Avatar& player)
 		auto tile = myFloorTiles[tileIndex];
 		auto tileAABB = tile.GetAABB();
 
-		if (avatarAABB.Collides(tileAABB))
+		if (aabb.Collides(tileAABB))
 		{
 			result.Add(tile);
 		}
@@ -221,3 +238,4 @@ CU::GrowingArray<FloorTile> Game::GetCollidingTiles(Avatar& player)
 
 	return result;
 }
+

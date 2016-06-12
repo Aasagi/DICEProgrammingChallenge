@@ -144,12 +144,6 @@
     <ClInclude Include="Line.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FloorTile.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Avatar.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Defines.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -159,8 +153,14 @@
     <ClInclude Include="GameStateEnum.h">
       <Filter>GameStates</Filter>
     </ClInclude>
+    <ClInclude Include="Avatar.h">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="FloorTile.h">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
     <ClInclude Include="GoalObject.h">
-      <Filter>Header Files</Filter>
+      <Filter>GameObjects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -236,17 +236,17 @@
     <ClCompile Include="Line.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="FloorTile.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Avatar.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Camera.cpp">
       <Filter>Header Files</Filter>
     </ClCompile>
+    <ClCompile Include="Avatar.cpp">
+      <Filter>GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="FloorTile.cpp">
+      <Filter>GameObjects</Filter>
+    </ClCompile>
     <ClCompile Include="GoalObject.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>GameObjects</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

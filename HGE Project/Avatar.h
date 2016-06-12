@@ -18,6 +18,7 @@ public:
 	void SetDuckedState(bool);
 	AABB GetAABB() const;
 	CU::Vector2f GetPosition() const;
+	void HandleOverlapment(const CommonUtilities::GrowingArray<FloorTile>& growing_array);
 
 private:
 	CU::Vector2f HandleCollision(CU::GrowingArray<FloorTile> tiles, CU::Vector2f position);

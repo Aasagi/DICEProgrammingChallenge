@@ -33,13 +33,20 @@ bool AABB::Inside(const CU::Vector2f& aPoint) const
 
 bool AABB::Collides(const AABB aAABB) const
 {
-	if (myX < aAABB.GetX() + aAABB.GetWidth() &&
-		myX + myWidth > aAABB.GetX() &&
-		myY < aAABB.GetY() + aAABB.GetHeight() &&
-		myHeight + myY > aAABB.GetY())
+	if (myX <= aAABB.GetX() + aAABB.GetWidth())
 	{
-		return true;
+		if(myX + myWidth >= aAABB.GetX())
+		{
+			if(myY <= aAABB.GetY() + aAABB.GetHeight())
+			{
+				if(myHeight + myY >= aAABB.GetY())
+				{
+					return true;
+				}
+			}
+		}
 	}
+	
 	return false;
 }
 
